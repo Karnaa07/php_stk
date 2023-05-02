@@ -25,6 +25,7 @@ class Car extends Vehicle implements IntVehicule{
     {
         echo "Construction d'une voiture";
         parent::__construct();
+
     }
     public function accelerate($speed = 0): void
     {

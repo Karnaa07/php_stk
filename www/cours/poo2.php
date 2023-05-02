@@ -74,6 +74,6 @@ $myUser->setLastname("Toto");
 echo $myUser->getFirstname();
 
 
-//$myUser();
+$myUser();
 
 echo $myUser;

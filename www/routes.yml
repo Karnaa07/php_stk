@@ -1,0 +1,16 @@
+/:
+  controller: Main
+  action: home
+
+/contact:
+  controller: Main
+  action: contact
+
+/login:
+  controller: Auth
+  action: login
+
+/logout:
+  controller: Auth
+  action: logout
+
