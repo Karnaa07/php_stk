@@ -1,16 +1,16 @@
-/:
+default:
   controller: Main
   action: home
 
-/contact:
+contact:
   controller: Main
   action: contact
 
-/login:
+login:
   controller: Auth
   action: login
 
-/logout:
+logout:
   controller: Auth
   action: logout
 
