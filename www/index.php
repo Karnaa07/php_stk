@@ -1,4 +1,7 @@
 <?php
+
+namespace App;
+
 //Afficher le controller et l'action correspondant à l'URI
 
 $uri = $_SERVER["REQUEST_URI"];
@@ -25,3 +28,25 @@ if(empty($routes[$uri]["controller"]) || empty($routes[$uri]["action"]) ){
 
 $controller = $routes[$uri]["controller"];
 $action = $routes[$uri]["action"];
+
+
+// $controller => Auth ou Main
+// $action=> home ou login
+
+
+if(!file_exists("Controllers/".$controller.".php")){
+    die("Le fichier Controllers/".$controller.".php n'existe pas");
+}
+include "Controllers/".$controller.".php";
+
+if(!class_exists($controller)){
+    die("La classe ".$controller." n'existe pas");
+}
+
+$objController = new $controller();
+
+if(!method_exists($objController, $action)){
+    die("L'action ".$action." n'existe pas");
+}
+
+$objController->$action();

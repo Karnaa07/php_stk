@@ -2,6 +2,14 @@ default:
   controller: Main
   action: home
 
+a-propos:
+  controller: Main
+  action: aboutUs
+
+about-us:
+  controller: Main
+  action: aboutUs
+
 contact:
   controller: Main
   action: contact

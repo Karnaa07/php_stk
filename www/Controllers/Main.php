@@ -1,7 +1,9 @@
 <?php
+
+namespace App\Controllers;
 class Main
 {
-    public function index(): void
+    public function home(): void
     {
         echo "Page d'accueil";
     }
@@ -9,6 +11,11 @@ class Main
     public function contact(): void
     {
         echo "Page de contact";
+    }
+
+    public function aboutUs(): void
+    {
+        echo "Page à propos";
     }
 
 }
