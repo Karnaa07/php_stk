@@ -2,6 +2,25 @@
 
 namespace App;
 
+//require "Core/View.php";
+
+spl_autoload_register(function ($class) {
+
+    //$class = App\Core\View
+    $class = str_replace("App\\","", $class);
+    //$class = Core\View
+    $class = str_replace("\\","/", $class);
+    //$class = Core/View
+    $class = $class.".php";
+    //$class = Core/View.php
+    if(file_exists($class)){
+        include $class;
+    }
+});
+
+
+
+
 //Afficher le controller et l'action correspondant à l'URI
 
 $uri = $_SERVER["REQUEST_URI"];
@@ -39,10 +58,11 @@ if(!file_exists("Controllers/".$controller.".php")){
 }
 include "Controllers/".$controller.".php";
 
+$controller = "\\App\\Controllers\\".$controller;
+
 if(!class_exists($controller)){
     die("La classe ".$controller." n'existe pas");
 }
-
 $objController = new $controller();
 
 if(!method_exists($objController, $action)){
