@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-class User
+use App\Core\SQL;
+class User extends SQL
 {
     private Int $id = 0;
     private String $firstname;
@@ -10,7 +11,7 @@ class User
     private String $email;
     private String $pwd;
     private String $country;
-    private Int $status;
+    private Int $status = 0;
     private \DateTime $date_inserted;
     private \DateTime $date_updated;
 
@@ -47,7 +48,7 @@ class User
      */
     public function setFirstname(string $firstname): void
     {
-        $this->firstname = $firstname;
+        $this->firstname = ucwords(strtolower(trim($firstname)));
     }
 
     /**
@@ -63,7 +64,7 @@ class User
      */
     public function setLastname(string $lastname): void
     {
-        $this->lastname = $lastname;
+        $this->lastname = strtoupper(trim($lastname));
     }
 
     /**
@@ -79,7 +80,7 @@ class User
      */
     public function setEmail(string $email): void
     {
-        $this->email = $email;
+        $this->email = strtolower(trim($email));
     }
 
     /**
@@ -95,7 +96,7 @@ class User
      */
     public function setPwd(string $pwd): void
     {
-        $this->pwd = $pwd;
+        $this->pwd = password_hash($pwd, PASSWORD_DEFAULT);
     }
 
     /**
@@ -111,7 +112,7 @@ class User
      */
     public function setCountry(string $country): void
     {
-        $this->country = $country;
+        $this->country = strtoupper(trim($country));
     }
 
     /**
