@@ -6,17 +6,17 @@ use App\Core\SQL;
 class User extends SQL
 {
     private Int $id = 0;
-    private String $firstname;
-    private String $lastname;
-    private String $email;
-    private String $pwd;
-    private String $country;
-    private Int $status = 0;
-    private \DateTime $date_inserted;
-    private \DateTime $date_updated;
+    protected String $firstname;
+    protected String $lastname;
+    protected String $email;
+    protected String $pwd;
+    protected String $country;
+    protected Int $status = 0;
+    private ?String $date_inserted;
+    private ?String $date_updated;
 
     public function __construct(){
-
+        parent::__construct();
     }
 
     /**
