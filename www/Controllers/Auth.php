@@ -22,10 +22,11 @@ class Auth
         //Form validé ? et correct ?
         if($form->isSubmited() && $form->isValid()){
             $user = new User();
-            $user->setFirstname();
-            $user->setLastname();
-            $user->setEmail();
-            $user->setPwd();
+            $user->setFirstname($_POST["firstname"]);
+            $user->setLastname($_POST["lastname"]);
+            $user->setEmail($_POST["email"]);
+            $user->setPwd($_POST["pwd"]);
+            $user->setCountry("FR");
             $user->save();
         }
         $view->assign("formErrors", $form->errors);
