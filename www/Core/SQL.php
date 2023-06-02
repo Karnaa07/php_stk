@@ -1,25 +1,52 @@
 <?php
 namespace App\Core;
 
-abstract class SQL{
+class SQL{
 
+    private static $instance;
     private $pdo;
     private $table;
 
-    public function __construct()
+    // public function __construct()
+    // {
+    //     //Connexion à la bdd
+    //     //SINGLETON à réaliser
+    //     try {
+    //         $this->pdo = new \PDO("pgsql:host=database;dbname=esgi;port=5432", "esgi", "Test1234");
+    //     }catch(\Exception $e){
+    //         die("Erreur SQL : ".$e->getMessage());
+    //     }
+
+    //     //$this->table = static::class;
+    //     $classExploded = explode("\\", get_called_class());
+    //     $this->table = "esgi_".end($classExploded);
+    // }
+
+    private function __construct()
     {
-        //Connexion à la bdd
-        //SINGLETON à réaliser
+        // Connexion à la base de données
         try {
             $this->pdo = new \PDO("pgsql:host=database;dbname=esgi;port=5432", "esgi", "Test1234");
-        }catch(\Exception $e){
-            die("Erreur SQL : ".$e->getMessage());
+        } catch (\Exception $e) {
+            die("Erreur SQL : " . $e->getMessage());
         }
-
-        //$this->table = static::class;
-        $classExploded = explode("\\", get_called_class());
-        $this->table = "esgi_".end($classExploded);
     }
+
+    // Méthode pour récupérer l'instance unique de la classe (crée une nouvelle instance si elle n'existe pas déjà)
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    // Méthode pour obtenir l'objet PDO de la connexion à la base de données
+    public function getConnection()
+    {
+        return $this->pdo;
+    }
+
 
     public static function populate(Int $id): object
     {

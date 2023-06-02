@@ -22,18 +22,7 @@ class User extends SQL
 
     public function __construct()
     {
-        parent::__construct();
-        $this->pdo = $this->getPDO();
-    }
-
-    private function getPDO()
-    {
-        // Connexion à la base de données
-        try {
-            return new PDO("pgsql:host=database;dbname=esgi;port=5432", "esgi", "Test1234");
-        } catch (\Exception $e) {
-            die("Erreur SQL : " . $e->getMessage());
-        }
+        $this->pdo = SQL::getInstance()->getConnection();
     }
 
     /**
