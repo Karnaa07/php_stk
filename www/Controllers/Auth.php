@@ -28,7 +28,7 @@ class Auth
             // L'utilisateur est authentifié avec succès
             // Créez une session pour l'utilisateur et redirigez-le vers la page d'accueil
             $_SESSION["user"] = $user;
-            header('Location: /');
+            header('Location: /dashboard');
             exit;
         } else {
             // Les informations d'identification sont incorrectes
