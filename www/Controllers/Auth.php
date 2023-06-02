@@ -19,7 +19,7 @@ class Auth
         $view = new View("Auth/register", "front");
         $view->assign("form", $form->getConfig());
 
-        //Form validé ? et correct ?
+        //Form validé ? et correctx ?
         if($form->isSubmited() && $form->isValid()){
             $user = new User();
             $user->setFirstname($_POST["firstname"]);
@@ -38,5 +38,6 @@ class Auth
     {
         echo "Page de déconnexion";
     }
+
 
 }
