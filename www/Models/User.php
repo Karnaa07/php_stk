@@ -20,6 +20,7 @@ class User extends SQL
     private $pdo;
     protected $table = "esgi_user";
 
+    //Connexion with singleton
     public function __construct()
     {
         $this->pdo = SQL::getInstance()->getConnection();
