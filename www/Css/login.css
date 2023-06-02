@@ -1,0 +1,69 @@
+body{
+  background-image: url(../assets/background_login.svg);
+  background-size: cover;
+  color: white;
+}
+
+/* Formulaire */
+.form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(17, 17, 17, 0.8);
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* Titre du formulaire */
+.form-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Champ de saisie */
+.form-input {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  background-color: #222;
+  color: #fff;
+  border-radius: 3px;
+}
+
+/* Placeholder (texte d'indication) */
+.form-input::placeholder {
+  color: #888;
+}
+
+/* Boutons */
+.form-submit,
+.form-reset {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Style au survol des boutons */
+.form-submit:hover,
+.form-reset:hover {
+  background-color: #555;
+}
+
+/* Messages d'erreur */
+.error-message {
+  color: #ff5555;
+  margin-top: 5px;
+}
+
+/* Style des messages d'erreur */
+.error-input {
+  border: 1px solid #ff5555;
+}
