@@ -18,6 +18,7 @@ class Auth
     // Formulaire soumis et valide
     if ($form->isSubmited() && $form->isValid()) {
         $user = new User();
+
         
         // Vérification des informations d'identification
         $email = $_POST["email"];

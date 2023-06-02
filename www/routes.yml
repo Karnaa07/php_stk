@@ -22,7 +22,7 @@ logout:
   controller: Auth
   action: logout
 
-s-inscrire:
+register:
   controller: Auth
   action: register
 
