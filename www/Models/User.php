@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Core\SQL;
+use PDO;
+
 class User extends SQL
 {
     private Int $id = 0;
@@ -15,8 +17,23 @@ class User extends SQL
     private ?String $date_inserted;
     private ?String $date_updated;
 
-    public function __construct(){
+    private $pdo;
+    protected $table = "esgi_user";
+
+    public function __construct()
+    {
         parent::__construct();
+        $this->pdo = $this->getPDO();
+    }
+
+    private function getPDO()
+    {
+        // Connexion à la base de données
+        try {
+            return new PDO("pgsql:host=database;dbname=esgi;port=5432", "esgi", "Test1234");
+        } catch (\Exception $e) {
+            die("Erreur SQL : " . $e->getMessage());
+        }
     }
 
     /**
@@ -163,6 +180,21 @@ class User extends SQL
         $this->date_updated = $date_updated;
     }
 
+    public function authenticate($email, $pwd): bool
+    {
+        $queryPrepared = $this->pdo->prepare("SELECT * FROM ".$this->table." WHERE email=:email");
+        $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
+        $queryPrepared->execute(["email" => $email]);
+        $user = $queryPrepared->fetchObject(); // Utiliser fetchObject() pour obtenir un objet User
+
+        if ($user && password_verify($pwd, $user->pwd)) {
+            // Les informations d'identification sont valides
+            return true;
+        } else {
+            // Les informations d'identification sont incorrectes
+            return false;
+        }
+    }
 
 
 }
