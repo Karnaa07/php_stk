@@ -1,0 +1,22 @@
+.charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.charts-card {
+    background-color: var($color-green-light2);
+    margin-bottom: 20px;
+    padding: 25px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+
+.charts-title {
+    display: flex;
+    justify-content: center;
+    font-size: 27px;
+    font-weight: 6000;
+}
