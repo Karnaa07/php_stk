@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Core\SQL;
+use PDO;
+
 class User extends SQL
 {
     private Int $id = 0;
@@ -14,9 +16,14 @@ class User extends SQL
     protected Int $status = 0;
     private ?String $date_inserted;
     private ?String $date_updated;
+    protected ?String $token;
 
-    public function __construct(){
-        parent::__construct();
+    protected $table = "esgi_user";
+
+    //Connexion with singleton
+    public function __construct()
+    {
+        $this->pdo = SQL::getInstance()->getConnection();
     }
 
     /**
@@ -163,6 +170,19 @@ class User extends SQL
         $this->date_updated = $date_updated;
     }
 
+    public function generateToken(): void
+    {
+        $this->setToken(bin2hex(random_bytes(16)));
+    }
 
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    public function setToken(?String $token): void
+    {
+        $this->token = $token;
+    }
 
 }

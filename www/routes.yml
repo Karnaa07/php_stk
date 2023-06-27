@@ -2,10 +2,10 @@ default:
   controller: Auth
   action: login
 
+
 dashboard:
   controller: Dashboard
   action: board
-
 
 a-propos:
   controller: Main
@@ -27,13 +27,17 @@ logout:
   controller: Auth
   action: logout
 
-s-inscrire:
+register:
   controller: Auth
   action: register
 
   #rajouter une page avec fonctionnalité :
   #verifier dans la bdd s'il y a un enregistrement dans page dont le nom de la page est ... (le sleug)
 
-  test:
-    controller: page
-    action: show
+test:
+  controller: page
+  action: show
+
+dashboard_1:
+  controller: Main
+  action: home
