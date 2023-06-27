@@ -2,6 +2,10 @@ default:
   controller: Auth
   action: login
 
+dashboard:
+  controller: Dashboard
+  action: board
+
 a-propos:
   controller: Main
   action: aboutUs
@@ -22,10 +26,10 @@ logout:
   controller: Auth
   action: logout
 
-s-inscrire:
+register:
   controller: Auth
   action: register
 
-dashboard:
+accueil:
   controller: Main
   action: home
