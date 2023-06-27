@@ -26,6 +26,6 @@ register:
   controller: Auth
   action: register
 
-dashboard:
+dashboard_1:
   controller: Main
   action: home

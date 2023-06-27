@@ -4,23 +4,8 @@ namespace App\Core;
 class SQL{
 
     private static $instance;
-    private $pdo;
-    private $table;
-
-    // public function __construct()
-    // {
-    //     //Connexion à la bdd
-    //     //SINGLETON à réaliser
-    //     try {
-    //         $this->pdo = new \PDO("pgsql:host=database;dbname=esgi;port=5432", "esgi", "Test1234");
-    //     }catch(\Exception $e){
-    //         die("Erreur SQL : ".$e->getMessage());
-    //     }
-
-    //     //$this->table = static::class;
-    //     $classExploded = explode("\\", get_called_class());
-    //     $this->table = "esgi_".end($classExploded);
-    // }
+    protected $pdo;
+    private $table = "esgi_user";
 
     private function __construct()
     {
@@ -74,22 +59,20 @@ class SQL{
         $columnsToExclude = get_class_vars(get_class());
         $columns = array_diff_key($columns, $columnsToExclude);
 
-        if(is_numeric($this->getId()) && $this->getId()>0) {
+        if (is_numeric($this->getId()) && $this->getId() > 0) {
             $sqlUpdate = [];
-            foreach ($columns as $column=>$value) {
-                $sqlUpdate[] = $column."=:".$column;
+            foreach ($columns as $column => $value) {
+                $sqlUpdate[] = $column . "=:" . $column;
             }
-            $queryPrepared = $this->pdo->prepare("UPDATE ".$this->table.
-                " SET ".implode(",", $sqlUpdate). " WHERE id=".$this->getId());
-        }else{
-            $queryPrepared = $this->pdo->prepare("INSERT INTO ".$this->table.
-                " (".implode("," , array_keys($columns) ).") 
-            VALUES
-             (:".implode(",:" , array_keys($columns) ).") ");
+            $queryPrepared = $this->pdo->prepare("UPDATE " . $this->table .
+                " SET " . implode(",", $sqlUpdate) . " WHERE id=" . $this->getId());
+        } else {
+            $queryPrepared = $this->pdo->prepare("INSERT INTO " . $this->table .
+                " (" . implode(",", array_keys($columns)) . ") 
+                VALUES
+                (:" . implode(",:", array_keys($columns)) . ")");
         }
 
         $queryPrepared->execute($columns);
-
     }
-
 }

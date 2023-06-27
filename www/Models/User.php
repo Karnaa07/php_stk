@@ -16,8 +16,8 @@ class User extends SQL
     protected Int $status = 0;
     private ?String $date_inserted;
     private ?String $date_updated;
+    protected ?String $token;
 
-    private $pdo;
     protected $table = "esgi_user";
 
     //Connexion with singleton
@@ -170,21 +170,19 @@ class User extends SQL
         $this->date_updated = $date_updated;
     }
 
-    public function authenticate($email, $pwd): bool
+    public function generateToken(): void
     {
-        $queryPrepared = $this->pdo->prepare("SELECT * FROM ".$this->table." WHERE email=:email");
-        $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
-        $queryPrepared->execute(["email" => $email]);
-        $user = $queryPrepared->fetchObject(); // Utiliser fetchObject() pour obtenir un objet User
-
-        if ($user && password_verify($pwd, $user->pwd)) {
-            // Les informations d'identification sont valides
-            return true;
-        } else {
-            // Les informations d'identification sont incorrectes
-            return false;
-        }
+        $this->setToken(bin2hex(random_bytes(16)));
     }
 
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    public function setToken(?String $token): void
+    {
+        $this->token = $token;
+    }
 
 }
