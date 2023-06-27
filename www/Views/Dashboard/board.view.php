@@ -113,7 +113,7 @@
                     </a>
                 </li>
                 <li class="item">
-                    <a href="#">
+                    <a href="/logout">
                         <span class="material-icons-sharp">
                             logout
                         </span>
@@ -317,7 +317,7 @@
             </button>
             <div class="profile">
                 <div class="profile-info">
-                    <p>Salut, <strong> Joël</strong></p>
+                    <p>Salut, <strong> <?= $pseudo?> </strong></p>
                     <small>Admin</small>
                 </div>
                 <div class="profile-image">
