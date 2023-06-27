@@ -57,7 +57,7 @@ class Auth
         $view = new View("Auth/register", "front");
         $view->assign("form", $form->getConfig());
 
-        //Form validé ? et correct ?
+        //Form validé ? et correctx ?
         if($form->isSubmited() && $form->isValid()){
             $user = new User();
             $user->setFirstname($_POST["firstname"]);
@@ -86,7 +86,7 @@ class Auth
             unset($_SESSION["token"]);
             unset($_SESSION["firstname"]);
         }
-
+      
         // Redirigez l'utilisateur vers la page de connexion ou une autre page appropriée
         header('Location: /login');
         exit;
