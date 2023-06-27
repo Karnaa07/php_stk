@@ -1,0 +1,15 @@
+$bg-color: #10181b;
+$white: #FFF;
+$blue: #214c4e;
+$light-green-dark: #084144;
+$color-green-light: #379c8b;
+$color-green-light2:#3c6e68;
+$color-cyan: #21D4FD;
+
+:root{
+	--bg-color: #{$bg-color};
+	--text-color: #{$white};
+	--main-color: #{$blue};
+	--hover-color: #{$color-green-light};
+	--hover-color2: #{$color-green-light2};
+}

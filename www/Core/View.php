@@ -6,12 +6,25 @@ class View {
     private String $view;
     private String $template;
     private $data = [];
+    private string $pageTitle = '';
+    private string $h1Title = '';
 
     public function __construct(String $view, String $template = "back") {
         $this->setView($view);
         $this->setTemplate($template);
 
     }
+
+    public function setH1Title(string $title): void
+    {
+        $this->h1Title = $title;
+    }
+
+    public function setPageTitle(string $title): void
+    {
+        $this->pageTitle = $title;
+    }
+
 
     public function assign(String $key, $value): void
     {
@@ -51,7 +64,9 @@ class View {
     public function __destruct(){
         extract($this->data);
         include $this->template;
+       
     }
 
 
+    
 }

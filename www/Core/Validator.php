@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+
 class Validator
 {
     private array $data = [];

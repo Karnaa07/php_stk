@@ -1,6 +1,10 @@
 default:
-  controller: Main
-  action: home
+  controller: Auth
+  action: login
+
+dashboard:
+  controller: Dashboard
+  action: board
 
 a-propos:
   controller: Main
@@ -22,6 +26,10 @@ logout:
   controller: Auth
   action: logout
 
-s-inscrire:
+register:
   controller: Auth
   action: register
+
+accueil:
+  controller: Main
+  action: home
