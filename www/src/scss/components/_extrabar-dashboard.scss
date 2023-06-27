@@ -1,0 +1,40 @@
+/*=================== EXTRA BAR =====================*/
+
+.extrabar {
+    grid-area: extrabar;
+    padding: 20px 40px 20px 0;
+    // box-shadow: 0 8px 12px -4px rgba(247, 244, 244, 0.2);
+  
+  }
+  
+  .extrabar .header-menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 3rem;
+   
+  }
+  
+  .header-menu .toggle-menu-btn {
+    display: none;
+  }
+  
+  
+  .header-menu .profile .profile-info {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+      font-size: 16px;
+  }
+  
+  .profile-image{
+    width: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    border-radius: 28px;
+    overflow: hidden;
+  }

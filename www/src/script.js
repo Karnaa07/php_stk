@@ -1,7 +1,7 @@
 // --------- CHARTS ---------
 
 
-// CHART 
+/* CHART 
 
 var barChartOptions = {
     series: [{
@@ -49,4 +49,4 @@ var barChartOptions = {
   };
 
   var barChart = new ApexCharts(document.querySelector("#bar-chart"), barChartOptions);
-  barChart.render();
+  barChart.render();*/

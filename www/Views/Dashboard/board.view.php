@@ -319,10 +319,11 @@
                 <div class="profile-info">
                     <p>Salut, <strong> <?= $pseudo?> </strong></p>
                     <small>Admin</small>
-                </div>
-                <div class="profile-image">
+                    <div class="profile-image">
                     <img src="../Assets/img/mirio.jpg" alt="" width="100%">
                 </div>
+                </div>
+            
             </div>
         </div>
     </div>
