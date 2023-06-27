@@ -3,13 +3,16 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Controller\Auth;
 
 class dashboard
 {
     public function board(): void
     {
-
-        $view = new View("Dashboard/board", "front");
+        $pseudo = $_SESSION["firstname"];
+        $view = new View("Dashboard/board", "back");
+        $view->assign("pseudo", $pseudo);
+        $view->assign("titleseo", "supernouvellepage");
 
         // Assigner des données à afficher dans la vue
 

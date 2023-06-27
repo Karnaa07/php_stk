@@ -37,7 +37,7 @@ class Auth
                 $user->save();
                 
                 // Redirigez l'utilisateur vers la page d'accueil ou une autre page appropriée
-                header('Location: /dashboard_1');
+                header('Location: /dashboard');
                 exit;
             } else {
                 // Les informations d'identification sont incorrectes
