@@ -9,6 +9,9 @@ class UserCrud
 {
     public function index(): void
     {
+        
+        
+
         $userModel = new User();
         $limit = 20; // Nombre d'utilisateurs à afficher par page
         $page = $_GET['page'] ?? 1; // Récupérer le numéro de page à partir de la requête, par exemple, à l'aide de la superglobale $_GET
@@ -17,8 +20,10 @@ class UserCrud
         $users = $userModel->all($limit, $offset);
     
         $action = "index";
-        
+
+        $pseudo = $_SESSION["firstname"];
         $view = new View("user", "back");
+        $view->assign("pseudo", $pseudo);
         $view->assign("users", $users);
         $view->assign("action", $action);
         $view->render();
