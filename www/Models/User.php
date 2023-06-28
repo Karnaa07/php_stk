@@ -203,25 +203,24 @@ class User extends SQL
      *
      * @return array
      */
+
     // public function all(): array
     // {
     //     $query = "SELECT * FROM " . $this->table;
     //     $statement = $this->pdo->query($query);
-    //     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-    //     // Convertir les dates au format DateTime
-    //     foreach ($users as &$user) {
-    //         $user['date_inserted'] = ($user['date_inserted'] !== null) ? new \DateTime($user['date_inserted']) : null;
-    //         $user['date_updated'] = ($user['date_updated'] !== null) ? new \DateTime($user['date_updated']) : null;
-    //     }
-
-    //     return $users;
+    //     return $statement->fetchAll(PDO::FETCH_CLASS, User::class);
     // }
-    public function all(): array
-    {
-        $query = "SELECT * FROM " . $this->table;
-        $statement = $this->pdo->query($query);
-        return $statement->fetchAll(PDO::FETCH_CLASS, User::class);
-    }
+
+    public function all($limit = 100, $offset = 0): array
+        {
+            $query = "SELECT * FROM " . $this->table . " LIMIT :limit OFFSET :offset";
+            $statement = $this->pdo->prepare($query);
+            $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $statement->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $statement->execute();
+
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+
 
 }

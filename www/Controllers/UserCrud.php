@@ -10,15 +10,20 @@ class UserCrud
     public function index(): void
     {
         $userModel = new User();
-        $users = $userModel->all();
-
-        $action = "index"; // Définissez la variable $action
-
+        $limit = 20; // Nombre d'utilisateurs à afficher par page
+        $page = $_GET['page'] ?? 1; // Récupérer le numéro de page à partir de la requête, par exemple, à l'aide de la superglobale $_GET
+        $offset = ($page - 1) * $limit; // Calculer le décalage en fonction du numéro de page
+    
+        $users = $userModel->all($limit, $offset);
+    
+        $action = "index";
+        
         $view = new View("user", "back");
         $view->assign("users", $users);
-        $view->assign("action", $action); // Passez la variable $action à la vue
+        $view->assign("action", $action);
         $view->render();
     }
+    
 
 
     public function create()
