@@ -1,0 +1,153 @@
+/*================= MAIN ===================*/
+
+.main-container {
+    grid-area: main;
+    padding: 20px 0;
+  }
+  
+  
+  .main-title {
+    margin-bottom: 2rem;
+  
+  }
+  
+  .insights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 2rem;
+  }
+
+/*================ CARD ==============*/
+
+.insights .card {
+    padding: 28px;
+    border-radius: 28px;
+    box-shadow: 0 0 10px rgba(43, 215, 77, 0.2); /* Remplacez par votre valeur de box-shadow souhaitée */
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .insights .card:hover {
+    box-shadow: 0 0 10px rgba(15, 188, 3, 0.566); /* Remplacez par votre valeur de box-shadow hover souhaitée */
+  }
+  
+  .card .card-header span {
+    padding: 12px;
+    border-radius: 10px; /* Remplacez par votre valeur de border-radius souhaitée */
+    font-size: 28px;
+  }
+  
+  .insights .card:nth-child(1) .card-header span {
+    color: #FF0080;
+    border-radius: 1px solid #FF0080;
+  }
+  
+  .insights .card:nth-child(2) .card-header span {
+    color: #21D4FD;
+    border-radius: 1px solid #21D4FD;
+  }
+  
+  .insights .card:nth-child(3) .card-header span {
+    color: #FF0080;
+    border-radius: 1px solid #FF0080;
+  }
+
+  // contour couleur majenta
+.stroke-majenta {
+    stroke:#FF0080;
+  }
+  
+  .stroke-cyan {
+    stroke:#21D4FD;
+  }
+  
+  .bg-majenta {
+    background-color: #FF0080;
+  }
+  
+  .bg-cyan {
+    background-color: #21D4FD;
+  }
+  
+  
+  .card-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .card-body .card-progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 96px;
+    height: 96px;
+    border-radius: 28 px;
+  }
+  
+  .card-body svg circle {
+    fill: none;
+    stroke-width: 16px;
+    stroke-dasharray: 226.2;
+    stroke-dashoffset: 100;
+    transform: translate(10px, 10px);
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease-in;
+  }
+  
+  .card-body .percentage {
+    position: absolute;
+    font-weight: 700;
+  }
+  
+  .card-footer {
+  
+    font-size: 16px;
+    color: #67748E;
+    font-weight: 600;
+  }
+  
+  .recent-reservation {
+    margin-top: 4rem;
+  
+    .reserv-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+  }
+      a {
+        font-size: 16px;
+        font-weight: 600;
+        transition: 0.3s ease-in;
+        padding: 28px;
+      }
+        a:hover{
+          color: var(--hover-color);
+        }
+      
+        .recent-reservation table {
+          width: 100%;
+          background-color: white;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(43, 215, 77, 0.2);
+          text-align: center;
+          transition: box-shadow 0.3s ease-in-out;
+          overflow: hidden;
+          border-spacing: 0;
+  
+        }
+  
+  .recent-reservation table:hover {
+    box-shadow: 0 0 10px rgba(43, 215, 77, 0.2);
+  }
+  
+        .recent-reservation  tbody td,
+        .recent-reservation  thead th {
+          padding: 12px 24px;
+          background-color: var(--hover-color2);
+        }
+  

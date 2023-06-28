@@ -110,6 +110,29 @@ body {
   height: 100%;
 }
 
+/*=============== CHARTS =============*/
+.charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.charts-card {
+  background-color: var(#3c6e68);
+  margin-bottom: 20px;
+  padding: 25px;
+  box-sizing: border-box;
+  border: 1px solid rgb(17, 79, 6);
+  border-radius: 5px;
+}
+
+.charts-title {
+  display: flex;
+  justify-content: center;
+  font-size: 27px;
+  font-weight: 6000;
+}
+
 .main-sidebar {
   grid-area: sidebar;
   height: 100%;
@@ -119,7 +142,7 @@ body {
 
 .main-sidebar .aside-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -180,7 +203,7 @@ a {
   transition: color 0.3s ease-in-out;
 }
 
-/* ------- MAIN ------------*/
+/*================= MAIN ===================*/
 .main-container {
   grid-area: main;
   padding: 20px 0;
@@ -197,7 +220,7 @@ a {
   margin-bottom: 2rem;
 }
 
-/*-- CARD --*/
+/*================ CARD ==============*/
 .insights .card {
   padding: 28px;
   border-radius: 28px;
@@ -228,6 +251,22 @@ a {
 .insights .card:nth-child(3) .card-header span {
   color: #FF0080;
   border-radius: 1px solid #FF0080;
+}
+
+.stroke-majenta {
+  stroke: #FF0080;
+}
+
+.stroke-cyan {
+  stroke: #21D4FD;
+}
+
+.bg-majenta {
+  background-color: #FF0080;
+}
+
+.bg-cyan {
+  background-color: #21D4FD;
 }
 
 .card-body {
@@ -310,11 +349,10 @@ a:hover {
   background-color: var(--hover-color2);
 }
 
-/* ----EXTRA BAR ---------*/
+/*=================== EXTRA BAR =====================*/
 .extrabar {
   grid-area: extrabar;
   padding: 20px 40px 20px 0;
-  box-shadow: 0 8px 12px -4px rgba(247, 244, 244, 0.2);
 }
 
 .extrabar .header-menu {
@@ -327,10 +365,6 @@ a:hover {
 
 .header-menu .toggle-menu-btn {
   display: none;
-}
-
-.stroke-majenta {
-  stroke: #FF0080;
 }
 
 .header-menu .profile .profile-info {
@@ -349,48 +383,6 @@ a:hover {
   margin-right: 16px;
   border-radius: 28px;
   overflow: hidden;
-}
-
-.stroke-cyan {
-  stroke: #21D4FD;
-}
-
-.text-majenta {
-  color: #FF0080;
-}
-
-.text-cyan {
-  color: #21D4FD;
-}
-
-.bg-majenta {
-  background-color: #FF0080;
-}
-
-.bg-cyan {
-  background-color: #21D4FD;
-}
-
-.charts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.charts-card {
-  background-color: var(#3c6e68);
-  margin-bottom: 20px;
-  padding: 25px;
-  box-sizing: border-box;
-  border: 1px solid black;
-  border-radius: 5px;
-}
-
-.charts-title {
-  display: flex;
-  justify-content: center;
-  font-size: 27px;
-  font-weight: 6000;
 }
 
 /*# sourceMappingURL=style.css.map */

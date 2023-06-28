@@ -99,4 +99,29 @@
 
              </div>
  </div>
+
+<!--- BAR NAV --->
+
+
+    <div class="extrabar">
+        <div class="header-menu">
+            <button class="toggle-menu-btn" id="open-menu">
+            <span class="material-icons-sharp">
+                    menu
+            </span>
+            </button>
+            <div class="profile">
+                <div class="profile-info">
+                    <p>Salut, <strong> <?= $pseudo?> </strong></p>
+                    <small>Admin</small>
+                    <div class="profile-image">
+                    <img src="../Assets/img/mirio.jpg" alt="" width="100%">
+                </div>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+
+
 </div>
