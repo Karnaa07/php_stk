@@ -7,27 +7,27 @@ use PDO;
 
 class User extends SQL
 {
-    private Int $id = 0;
-    protected String $firstname;
-    protected String $lastname;
-    protected String $email;
-    protected String $pwd;
-    protected String $country;
-    protected Int $status = 0;
-    private ?String $date_inserted;
-    private ?String $date_updated;
-    protected ?String $token;
+    private int $id = 0;
+    protected string $firstname;
+    protected string $lastname;
+    protected string $email;
+    protected string $pwd;
+    protected string $country;
+    protected int $status = 0;
+    private ?string $date_inserted;
+    private ?string $date_updated;
+    protected ?string $token;
 
     protected $table = "esgi_user";
 
-    //Connexion with singleton
+    // Connexion with singleton
     public function __construct()
     {
         $this->pdo = SQL::getInstance()->getConnection();
     }
 
     /**
-     * @return Int
+     * @return int
      */
     public function getId(): int
     {
@@ -35,7 +35,7 @@ class User extends SQL
     }
 
     /**
-     * @param Int $id
+     * @param int $id
      */
     public function setId(int $id): void
     {
@@ -43,7 +43,7 @@ class User extends SQL
     }
 
     /**
-     * @return String
+     * @return string
      */
     public function getFirstname(): string
     {
@@ -51,7 +51,7 @@ class User extends SQL
     }
 
     /**
-     * @param String $firstname
+     * @param string $firstname
      */
     public function setFirstname(string $firstname): void
     {
@@ -59,7 +59,7 @@ class User extends SQL
     }
 
     /**
-     * @return String
+     * @return string
      */
     public function getLastname(): string
     {
@@ -67,7 +67,7 @@ class User extends SQL
     }
 
     /**
-     * @param String $lastname
+     * @param string $lastname
      */
     public function setLastname(string $lastname): void
     {
@@ -75,7 +75,7 @@ class User extends SQL
     }
 
     /**
-     * @return String
+     * @return string
      */
     public function getEmail(): string
     {
@@ -83,7 +83,7 @@ class User extends SQL
     }
 
     /**
-     * @param String $email
+     * @param string $email
      */
     public function setEmail(string $email): void
     {
@@ -91,7 +91,7 @@ class User extends SQL
     }
 
     /**
-     * @return String
+     * @return string
      */
     public function getPwd(): string
     {
@@ -99,7 +99,7 @@ class User extends SQL
     }
 
     /**
-     * @param String $pwd
+     * @param string $pwd
      */
     public function setPwd(string $pwd): void
     {
@@ -107,7 +107,7 @@ class User extends SQL
     }
 
     /**
-     * @return String
+     * @return string
      */
     public function getCountry(): string
     {
@@ -115,7 +115,7 @@ class User extends SQL
     }
 
     /**
-     * @param String $country
+     * @param string $country
      */
     public function setCountry(string $country): void
     {
@@ -123,7 +123,7 @@ class User extends SQL
     }
 
     /**
-     * @return Int
+     * @return int
      */
     public function getStatus(): int
     {
@@ -131,7 +131,7 @@ class User extends SQL
     }
 
     /**
-     * @param Int $status
+     * @param int $status
      */
     public function setStatus(int $status): void
     {
@@ -139,50 +139,89 @@ class User extends SQL
     }
 
     /**
-     * @return \DateTime
+     * @return string|null
      */
-    public function getDateInserted(): \DateTime
+    public function getDateInserted(): ?string
     {
         return $this->date_inserted;
     }
 
     /**
-     * @param \DateTime $date_inserted
+     * @param string|null $date_inserted
      */
-    public function setDateInserted(\DateTime $date_inserted): void
+    public function setDateInserted(?string $date_inserted): void
     {
         $this->date_inserted = $date_inserted;
     }
 
     /**
-     * @return \DateTime
+     * @return string|null
      */
-    public function getDateUpdated(): \DateTime
+    public function getDateUpdated(): ?string
     {
         return $this->date_updated;
     }
 
     /**
-     * @param \DateTime $date_updated
+     * @param string|null $date_updated
      */
-    public function setDateUpdated(\DateTime $date_updated): void
+    public function setDateUpdated(?string $date_updated): void
     {
         $this->date_updated = $date_updated;
     }
 
+    /**
+     * Generate a token.
+     */
     public function generateToken(): void
     {
         $this->setToken(bin2hex(random_bytes(16)));
     }
 
-    public function getToken(): string
+    /**
+     * Get the token.
+     *
+     * @return string|null
+     */
+    public function getToken(): ?string
     {
         return $this->token;
     }
 
-    public function setToken(?String $token): void
+    /**
+     * Set the token.
+     *
+     * @param string|null $token
+     */
+    public function setToken(?string $token): void
     {
         $this->token = $token;
+    }
+
+    /**
+     * Get all users.
+     *
+     * @return array
+     */
+    // public function all(): array
+    // {
+    //     $query = "SELECT * FROM " . $this->table;
+    //     $statement = $this->pdo->query($query);
+    //     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    //     // Convertir les dates au format DateTime
+    //     foreach ($users as &$user) {
+    //         $user['date_inserted'] = ($user['date_inserted'] !== null) ? new \DateTime($user['date_inserted']) : null;
+    //         $user['date_updated'] = ($user['date_updated'] !== null) ? new \DateTime($user['date_updated']) : null;
+    //     }
+
+    //     return $users;
+    // }
+    public function all(): array
+    {
+        $query = "SELECT * FROM " . $this->table;
+        $statement = $this->pdo->query($query);
+        return $statement->fetchAll(PDO::FETCH_CLASS, User::class);
     }
 
 }

@@ -30,6 +30,14 @@ register:
   controller: Auth
   action: register
 
+new_pass:
+  controller: Auth
+  action: change
+
 accueil:
   controller: Main
   action: home
+
+users:
+  controller: UserCrud
+  action: index
