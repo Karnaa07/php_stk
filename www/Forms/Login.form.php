@@ -22,6 +22,7 @@ class Login extends Validator
             "inputs" => [
                 "email" => [
                     "id" => "register-form-email",
+                    "label" => "Email", 
                     "class" => "form-input",
                     "placeholder" => "Votre email",
                     "type" => "email",
@@ -30,12 +31,13 @@ class Login extends Validator
                 ],
                 "pwd" => [
                     "id" => "register-form-pwd",
+                    "label" => "Mot de passe",
                     "class" => "form-input",
                     "placeholder" => "Votre mot de passe",
                     "type" => "password",
                     "error" => "Votre mot de passe doit faire au minimum 8 caractères avec minuscules, majuscules et chiffres",
                     "required" => true
-                ]
+                ]                
             ]
         ];
         return $this->config;        

@@ -21,6 +21,7 @@ class Register extends Validator
                 "inputs"=>[
                     "firstname"=>[
                         "id"=>"register-form-firstname",
+                        "label"=>"Prénom",
                         "class"=>"form-input",
                         "placeholder"=>"Votre prénom",
                         "type"=>"text",
@@ -31,6 +32,7 @@ class Register extends Validator
                     ],
                     "lastname"=>[
                         "id"=>"register-form-lastname",
+                        "label"=>"Nom",
                         "class"=>"form-input",
                         "placeholder"=>"Votre nom",
                         "type"=>"text",
@@ -41,6 +43,7 @@ class Register extends Validator
                     ],
                     "email"=>[
                         "id"=>"register-form-email",
+                        "label"=>"Email",
                         "class"=>"form-input",
                         "placeholder"=>"Votre email",
                         "type"=>"email",
@@ -49,6 +52,7 @@ class Register extends Validator
                     ],
                     "pwd"=>[
                         "id"=>"register-form-pwd",
+                        "label"=>"Mot de passe",
                         "class"=>"form-input",
                         "placeholder"=>"Votre mot de passe",
                         "type"=>"password",
@@ -57,6 +61,7 @@ class Register extends Validator
                     ],
                     "pwdConfirm"=>[
                         "id"=>"register-form-pwd-confirm",
+                        "label"=>"Confirmation",
                         "class"=>"form-input",
                         "placeholder"=>"Confirmation",
                         "type"=>"password",

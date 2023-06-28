@@ -29,6 +29,14 @@
                             </a>
                         </li>
                         <li class="item">
+                            <a href="/accueil">
+                            <span class="material-icons-sharp">
+                                home
+                            </span>
+                                <span>Mon site</span>
+                            </a>
+                        </li>
+                        <li class="item">
                             <a href="#">
                                 <span class="material-icons-sharp">
                                     perm_media

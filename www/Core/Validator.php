@@ -69,4 +69,10 @@ class Validator
             ;
     }
 
+    public static function checkEmail($email): bool
+    {
+       return filter_var($email, FILTER_VALIDATE_EMAIL); // On vérifie si le champ mail contient une valeur d'email
+    }
+
+
 }

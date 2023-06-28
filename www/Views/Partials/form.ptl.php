@@ -1,7 +1,6 @@
-<?php if(!empty($errors)): ?>
-<?php print_r($errors);?>
-<?php endif;?>
-
+<?php if (!empty($errors)): ?>
+    <?php print_r($errors); ?>
+<?php endif; ?>
 
 <form method="<?= $config["config"]["method"] ?>"
       action="<?= $config["config"]["action"] ?>"
@@ -9,22 +8,19 @@
       id="<?= $config["config"]["id"] ?>"
       class="<?= $config["config"]["class"] ?>">
 
-    <?php foreach ($config["inputs"] as $name=>$configInput): ?>
+    <?php foreach ($config["inputs"] as $name => $configInput): ?>
 
-        <input
-                name="<?= $name ?>"
-                placeholder="<?= $configInput["placeholder"] ?>"
-                class="<?= $configInput["class"] ?>"
-                id="<?= $configInput["placeholder"] ?>"
-                type="<?= $configInput["type"] ?>"
-                <?= $configInput["required"]?"required":"" ?>
-         ><br>
+        <label for="<?= $name ?>"><?= $configInput["label"] ?></label>
+        <input name="<?= $name ?>"
+               placeholder="<?= $configInput["placeholder"] ?>"
+               class="<?= $configInput["class"] ?>"
+               id="<?= $name ?>"
+               type="<?= $configInput["type"] ?>"
+               <?= $configInput["required"] ? "required" : "" ?>><br>
 
-    <?php endforeach;?>
+    <?php endforeach; ?>
 
     <input type="submit" name="submit" class="form-submit" value="<?= $config["config"]["submit"] ?>">
     <input type="reset" class="form-reset" value="<?= $config["config"]["reset"] ?>">
-
-
 
 </form>

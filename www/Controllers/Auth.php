@@ -14,7 +14,11 @@ class Auth
    
     public function login(): void
     {
-        
+        if (isset($_SESSION["user"])) {
+            // Redirigez l'utilisateur vers le tableau de bord
+            header('Location: /dashboard');
+            exit;
+        }
 
         $form = new Login();
         $view = new View("Auth/login", "front");
@@ -70,18 +74,29 @@ class Auth
             $email = $_POST["email"];
             $existingUser = $user->getOneWhere(["email" => $email]);
 
-            if (!Validator::checkPassword($_POST["pwd"])) {
-                echo "Votre mot de passe doit faire au minimum 8 caractères avec des minuscules, des majuscules et des chiffres.";
+            if (!Validator::checkEmail($_POST["email"])) {
+                echo "L'adresse email n'est pas valide.";
                 return;
             }
 
             if ($existingUser) {
                 echo "Cet email est déjà utilisé !";
+                return;
+
+            if (!Validator::checkPassword($_POST["pwd"])) {
+                echo "Votre mot de passe doit faire au minimum 8 caractères avec des minuscules, des majuscules et des chiffres.";
+                return;
+            }
+
+            if ($_POST["pwd"] !== $_POST["pwdConfirm"]) {
+                echo "Les mots de passe ne correspondent pas.";
+                return;
+            }
+
             } else {
-                var_dump($user);
                 $user->save();
-                echo "Votre compte a bien été créé !";
-                header('Location: /login');
+                echo("Votre compte à bien été créé, vous allez être redirigé vers la page de connexion");
+                header('Refresh: 2; URL=/login');
             }
         }
         
@@ -144,10 +159,8 @@ class Auth
             // Modification du mot de passe
             $user->setPwd($newPassword);
             $user->save();
-            header('Location: /login');
-
-            echo "Votre mot de passe a été modifié avec succès.";
-            return;
+            echo"Votre mot de passe à bien été modifié, vous allez être redirigé vers la page de connexion";
+            header('Refresh: 2; URL=/login');
         }
 
         $view->assign("formErrors", $form->errors);
