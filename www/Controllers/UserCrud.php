@@ -13,13 +13,13 @@ class UserCrud
         $users = $userModel->all();
 
         $action = "index"; // Définissez la variable $action
-        $data['action'] = 'index';
 
         $view = new View("user", "back");
         $view->assign("users", $users);
         $view->assign("action", $action); // Passez la variable $action à la vue
         $view->render();
     }
+
 
     public function create()
     {

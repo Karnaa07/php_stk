@@ -15,6 +15,17 @@ class View {
 
     }
 
+    public function render(): void
+    {
+        extract($this->data);
+
+        ob_start();
+        include $this->view;
+        $content = ob_get_clean();
+
+        include $this->template;
+    }
+    
     public function setH1Title(string $title): void
     {
         $this->h1Title = $title;

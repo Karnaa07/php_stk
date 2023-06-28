@@ -15,5 +15,8 @@
 
     <script src= "../src/script.js"></script>
 
+    <!-- Utilisation de la variable $action -->
+    <p>Action: <?= $action; ?></p>
+
 </body>
 </html>
