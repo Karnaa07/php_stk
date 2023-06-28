@@ -21,6 +21,7 @@ class Change extends Validator
         'inputs'=>[
             "passwordOld"=>[
                 "id"=>"pwdConfirmForm",
+                "label" => "Votre ancien mot de passe", 
                 "class"=>"inputForm",
                 "placeholder"=>"Votre ancien mot de passe ...",
                 "type"=>"password",
@@ -29,6 +30,7 @@ class Change extends Validator
             ],
             "password"=>[
                 "id"=>"pwdForm",
+                "label" => "Votre nouveau mot de passe",
                 "class"=>"inputForm",
                 "placeholder"=>"Votre mot de passe ...",
                 "type"=>"password",

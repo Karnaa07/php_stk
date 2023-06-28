@@ -28,4 +28,4 @@
   </defs>
 </svg>
 
-<h2>Page Not Found</h2>
+<a href="/login"><h2>Redirigez-vous</h2></a>
