@@ -42,8 +42,9 @@ if(!file_exists("routes.yml")){
 
 $routes = yaml_parse_file("routes.yml");
 
-if(empty($routes[$uri])){
-    die("Page 404");
+if (empty($routes[$uri])) {
+    include('404.php');
+    exit; // Assurez-vous de terminer l'exécution du script après avoir affiché la page 404
 }
 
 if(empty($routes[$uri]["controller"]) || empty($routes[$uri]["action"]) ){
