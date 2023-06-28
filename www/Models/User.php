@@ -250,5 +250,4 @@ class User extends SQL
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         }
 
-
 }
