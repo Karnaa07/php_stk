@@ -69,7 +69,11 @@ class Auth
             // Vérifier si l'email existe déjà dans la base de données
             $email = $_POST["email"];
             $existingUser = $user->getOneWhere(["email" => $email]);
-            var_dump($existingUser);
+
+            if (!Validator::checkPassword($_POST["pwd"])) {
+                echo "Votre mot de passe doit faire au minimum 8 caractères avec des minuscules, des majuscules et des chiffres.";
+                return;
+            }
 
             if ($existingUser) {
                 echo "Cet email est déjà utilisé !";
@@ -148,5 +152,4 @@ class Auth
 
         $view->assign("formErrors", $form->errors);
     }
-
 }
