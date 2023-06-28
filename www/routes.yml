@@ -33,3 +33,7 @@ register:
 accueil:
   controller: Main
   action: home
+
+users:
+  controller: UserCrud
+  action: index

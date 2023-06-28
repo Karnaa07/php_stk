@@ -185,4 +185,11 @@ class User extends SQL
         $this->token = $token;
     }
 
+    public function all(): array
+    {
+        $query = "SELECT * FROM " . $this->table;
+        $statement = $this->pdo->query($query);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
