@@ -21,7 +21,7 @@
                 <td><?= $user['email']; ?></td>
                 <td><?= $user['country']; ?></td>
                 <td>
-                    <a href="/users/edit/<?= $user['id']; ?>">Modifier</a>
+                    <a href="/users-edit/<?= $user['id']; ?>">Modifier</a>
                     <a href="/users/delete/<?= $user['id']; ?>">Supprimer</a>
                 </td>
             </tr>
@@ -29,7 +29,7 @@
         </tbody>
     </table>
 
-    <a href="/users/create">Créer un utilisateur</a>
+    <a href="/register">Créer un utilisateur</a>
 
 <?php elseif ($action === 'create'): ?>
     <h1>Créer un utilisateur</h1>

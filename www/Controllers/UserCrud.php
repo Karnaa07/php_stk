@@ -9,9 +9,6 @@ class UserCrud
 {
     public function index(): void
     {
-        
-        
-
         $userModel = new User();
         $limit = 20; // Nombre d'utilisateurs à afficher par page
         $page = $_GET['page'] ?? 1; // Récupérer le numéro de page à partir de la requête, par exemple, à l'aide de la superglobale $_GET
@@ -26,7 +23,7 @@ class UserCrud
         $view->assign("pseudo", $pseudo);
         $view->assign("users", $users);
         $view->assign("action", $action);
-        $view->render();
+        //$view->render();
     }
     
 
@@ -34,7 +31,7 @@ class UserCrud
     public function create()
     {
         // Afficher le formulaire de création d'utilisateur
-        $view = new View("users/create", "back");
+        $view = new View("Auth/register", "front");
         $view->render();
     }
 
@@ -73,7 +70,7 @@ class UserCrud
         }
 
         // Afficher le formulaire de modification d'utilisateur avec les données de l'utilisateur
-        $view = new View("users/edit", "back");
+        $view = new View("users-edit", "back");
         $view->assign("user", $user);
         $view->render();
     }

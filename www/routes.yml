@@ -41,3 +41,7 @@ accueil:
 users:
   controller: UserCrud
   action: index
+
+users-edit :
+controller: UserCrud
+action: edit

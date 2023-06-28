@@ -25,6 +25,34 @@ class User extends SQL
     {
         $this->pdo = SQL::getInstance()->getConnection();
     }
+    public static function find($id)
+    {
+        // Établir la connexion à la base de données (remplacez les informations appropriées)
+        $connection = new PDO('mysql:host=localhost;dbname=nom_de_la_base_de_donnees', 'nom_utilisateur', 'mot_de_passe');
+
+        // Préparer la requête SQL
+        $statement = $connection->prepare('SELECT * FROM users WHERE id = :id');
+
+        // Exécuter la requête avec les valeurs des paramètres
+        $statement->execute(['id' => $id]);
+
+        // Récupérer le résultat de la requête (premier enregistrement)
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        // Vérifier si un enregistrement a été trouvé
+        if ($result) {
+            // Créer une instance de la classe User et attribuer les valeurs des colonnes
+            $user = new User();
+            $user->setId($result['id']);
+            $user->setFirstname($result['firstname']);
+            $user->setLastname($result['lastname']);
+            // Assigner les autres propriétés de l'utilisateur
+
+            return $user;
+        }
+
+        return null; // Aucun enregistrement trouvé avec l'ID spécifié
+    }
 
     /**
      * @return int
