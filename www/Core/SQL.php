@@ -40,7 +40,7 @@ class SQL{
         return $objet->getOneWhere(["id"=>$id]);
     }
 
-    public function getOneWhere(array $where): object
+    public function getOneWhere(array $where): object|bool
     {
         $sqlWhere = [];
         foreach ($where as $column=>$value) {
