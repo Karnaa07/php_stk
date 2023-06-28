@@ -9,7 +9,7 @@
         <script src= "../src/script.js"></script>
     </head>
     <body>
-        <h1>Template Back</h1>
+        <h1>Template Back test rebase</h1>
         <div class="dashboard-container">
             <div class="main-sidebar">
                 <div class="aside-header">
