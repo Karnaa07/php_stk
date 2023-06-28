@@ -68,4 +68,5 @@ class Register extends Validator
         ];
         return $this->config;
     }
+    
 }

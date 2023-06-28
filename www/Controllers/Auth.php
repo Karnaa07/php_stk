@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Forms\Register;
 use App\Forms\Login;
+use App\Forms\Change;
 use App\Models\User;
 
 class Auth
@@ -51,26 +52,37 @@ class Auth
 
     public function register(): void
     {
-        
-
         $form = new Register();
         $view = new View("Auth/register", "front");
         $view->assign("form", $form->getConfig());
 
-        //Form validé ? et correctx ?
-        if($form->isSubmited() && $form->isValid()){
+        // Formulaire soumis et valide ?
+        if ($form->isSubmited() && $form->isValid()) {
             $user = new User();
             $user->setFirstname($_POST["firstname"]);
             $user->setLastname($_POST["lastname"]);
             $user->setEmail($_POST["email"]);
             $user->setPwd($_POST["pwd"]);
             $user->setCountry("FR");
-            $user->save();
+
+            // Vérifier si l'email existe déjà dans la base de données
+            $email = $_POST["email"];
+            $existingUser = $user->getOneWhere(["email" => $email]);
+            var_dump($existingUser);
+
+            if ($existingUser) {
+                echo "Cet email est déjà utilisé !";
+            } else {
+                var_dump($user);
+                $user->save();
+                echo "Votre compte a bien été créé !";
+                header('Location: /login');
+            }
         }
+        
         $view->assign("formErrors", $form->errors);
-
-
     }
+
 
     public function logout(): void
     {
@@ -90,5 +102,43 @@ class Auth
         // Redirigez l'utilisateur vers la page de connexion ou une autre page appropriée
         header('Location: /login');
         exit;
+    }
+
+    public function change(): void
+    {
+        // Vérifiez si l'utilisateur est connecté
+        if (!isset($_SESSION["user"])) {
+            echo "Vous devez être connecté pour changer votre mot de passe.";
+            return;
+        }
+
+        $form = new Change();
+        $view = new View("Auth/change_password", "front");
+        $view->assign("form", $form->getConfig());
+
+        // Formulaire soumis et valide ?
+        if ($form->isSubmited() && $form->isValid()) {
+            $user = new User();
+            $userId = $_SESSION["user"];
+            $user = $user->getOneWhere(["id" => $userId]);
+
+            // Vérification de l'ancien mot de passe
+            $oldPassword = $_POST["passwordOld"];
+            if (!password_verify($oldPassword, $user->getPwd())) {
+                echo "L'ancien mot de passe est incorrect.";
+                return;
+            }
+
+            // Modification du mot de passe
+            $newPassword = $_POST["password"];
+            $user->setPwd($newPassword);
+            $user->save();
+            header('Location: /login');
+
+            echo "Votre mot de passe a été modifié avec succès.";
+            return;
+        }
+
+        $view->assign("formErrors", $form->errors);
     }
 }
