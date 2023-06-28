@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Core\Validator;
 use App\Forms\Register;
 use App\Forms\Login;
 use App\Forms\Change;
@@ -129,8 +130,14 @@ class Auth
                 return;
             }
 
-            // Modification du mot de passe
+            // Vérification du nouveau mot de passe sécurisé
             $newPassword = $_POST["password"];
+            if (!Validator::checkPassword($newPassword)) {
+                echo "Le nouveau mot de passe ne respecte pas les critères de sécurité.";
+                return;
+            }
+
+            // Modification du mot de passe
             $user->setPwd($newPassword);
             $user->save();
             header('Location: /login');
@@ -141,4 +148,5 @@ class Auth
 
         $view->assign("formErrors", $form->errors);
     }
+
 }

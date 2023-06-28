@@ -59,4 +59,14 @@ class Validator
         return strlen(trim($string))<=$length;
     }
 
+    public static function checkPassword($password): bool // On vérifie le champ password
+    {
+
+        return strlen($password)>=8
+            && preg_match("/[0-9]/", $password, $match)
+            && preg_match("/[a-z]/", $password, $match)
+            && preg_match("/[A-Z]/", $password, $match)
+            ;
+    }
+
 }
