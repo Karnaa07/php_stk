@@ -11,8 +11,11 @@ class Page{
   {
     $pageModel = new ModelPage();
     $pages = $pageModel->getAll();
+    $pseudo = $_SESSION["firstname"];
+    
 
-    $view = new View("Page/index", "front");
+    $view = new View("Page/index", "back");
+    $view->assign("pseudo", $pseudo);
     $view->assign("titleseo", "supernouvellepage");
     $view->assign("title", "Liste des pages");
     $view->assign("pages", $pages);

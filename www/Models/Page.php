@@ -88,14 +88,4 @@ class Page extends SQL
   {
       $this->slug = strtolower(trim($slug));
   }
-
-  public function getAllPages(): array
-  {
-    $sql = "SELECT * FROM esgi_page";
-    $query = $this->pdo->prepare($sql);
-    $query->execute();
-    $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    return $result;
-  }
-  
 }
