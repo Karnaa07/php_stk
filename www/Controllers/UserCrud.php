@@ -89,49 +89,61 @@ class UserCrud
         exit();
     }
 
-    public function edit($id)
+    public function edit()
     {
+        $id = $_GET['id'];
         // Récupérer l'utilisateur à modifier depuis la base de données
         $user = User::find($id);
-
+    
         // Vérifier si l'utilisateur existe
         if (!$user) {
             // Gérer l'erreur, utilisateur non trouvé
         }
-
+    
         // Afficher le formulaire de modification d'utilisateur avec les données de l'utilisateur
-        $view = new View("users-edit", "back");
+        $view = new View("UserCrud/edit", "back");
         $view->assign("user", $user);
         $view->render();
     }
-
+    
+    
     public function update($id)
     {
         // Récupérer l'utilisateur à mettre à jour depuis la base de données
         $user = User::find($id);
-
+    
         // Vérifier si l'utilisateur existe
         if (!$user) {
             // Gérer l'erreur, utilisateur non trouvé
+            echo "Utilisateur non trouvé.";
+            exit();
         }
-
+    
         // Récupérer les données du formulaire
         $data = $_POST;
-
+    
+        // Valider les données du formulaire
+        if (empty($data['firstname']) || empty($data['lastname']) || empty($data['email']) || empty($data['password']) || empty($data['country'])) {
+            // Gérer l'erreur, données du formulaire invalides
+            echo "Veuillez remplir tous les champs du formulaire.";
+            exit();
+        }
+    
         // Mettre à jour les propriétés de l'utilisateur à partir des données reçues
         $user->setFirstname($data['firstname']);
         $user->setLastname($data['lastname']);
         $user->setEmail($data['email']);
         $user->setPwd($data['password']);
         $user->setCountry($data['country']);
-
+    
         // Enregistrer les modifications de l'utilisateur dans la base de données
         $user->save();
-
+    
         // Rediriger vers la liste des utilisateurs ou afficher un message de succès
         header('Location: /users');
         exit();
     }
+    
 
     public function delete($id)
     {

@@ -45,3 +45,8 @@ users:
 users-create:
   controller: UserCrud
   action: create
+
+users-update:
+  path: users-update
+  controller: UserCrud
+  action: edit
