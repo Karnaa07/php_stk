@@ -16,8 +16,8 @@ class Login extends Validator
                 "class" => "form",
                 "enctype" => "",
                 "submit" => "Se connecter",
-                "reset" => "Annuler",
-                "not-register" => "Pas encore inscrit ?"
+                "not-register" => "Inscription",
+                "reset" => "Annuler"
             ],
             "inputs" => [
                 "email" => [
