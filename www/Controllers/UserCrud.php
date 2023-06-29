@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Models\User;
+use App\Forms\Register;
+
 
 class UserCrud
 {
@@ -14,7 +16,7 @@ class UserCrud
         $page = $_GET['page'] ?? 1; // Récupérer le numéro de page à partir de la requête, par exemple, à l'aide de la superglobale $_GET
         $offset = ($page - 1) * $limit; // Calculer le décalage en fonction du numéro de page
     
-        $users = $userModel->all($limit, $offset);
+        $users = $userModel->all($limit, $offset); 
     
         $action = "index";
 
@@ -29,14 +31,42 @@ class UserCrud
 
 
     public function create()
-    {
-        // Afficher le formulaire de création d'utilisateur
+    { 
+        $form = new Register();
         $view = new View("Auth/register", "front");
-        $view->render();
+        $view->assign("form", $form->getConfig());
+    
+        // Formulaire soumis et valide ?
+        if ($form->isSubmited() && $form->isValid()) {
+            $user = new User();
+            $user->setFirstname($_POST["firstname"]);
+            $user->setLastname($_POST["lastname"]);
+            $user->setEmail($_POST["email"]);
+            $user->setPwd($_POST["pwd"]);
+            $user->setCountry("FR");
+    
+            // Vérifier si l'email existe déjà dans la base de données
+            $email = $_POST["email"];
+            $existingUser = $user->getOneWhere(["email" => $email]);
+    
+            if ($existingUser) {
+                echo "Cet email est déjà utilisé !";
+            } else {
+                $user->save();
+                echo "Votre compte a bien été créé !";
+                header('Location: /users');
+                exit();
+            }
+        }
+        
+        $view->assign("formErrors", $form->errors);
     }
+    
+
 
     public function store()
     {
+        $form = new Register();
         // Récupérer les données du formulaire
         $data = $_POST;
 

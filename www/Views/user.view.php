@@ -28,42 +28,16 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-
-    <a href="/register">Créer un utilisateur</a>
+    
+    <a href="/users-create">Créer un utilisateur</a>
 
 <?php elseif ($action === 'create'): ?>
     <h1>Créer un utilisateur</h1>
 
-    <form action="/users/store" method="POST">
-        <div>
-            <label for="firstname">Prénom</label>
-            <input type="text" name="firstname" id="firstname">
-        </div>
-        <div>
-            <label for="lastname">Nom</label>
-            <input type="text" name="lastname" id="lastname">
-        </div>
-        <div>
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email">
-        </div>
-        <div>
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password">
-        </div>
-        <div>
-            <label for="country">Pays</label>
-            <input type="text" name="country" id="country">
-        </div>
-        <div>
-            <button type="submit">Créer</button>
-        </div>
-    </form>
-
-    <a href="/users">Retour à la liste des utilisateurs</a>
+    <?php echo $form->render(); ?>
 
 <?php elseif ($action === 'edit'): ?>
-    <h1>Modifier un utilisateur</h1>
+    <!-- <a href="/users-create">Créer un utilisateur</a> -->
 
     <form action="/users/update/<?= $user['id']; ?>" method="POST">
         <div>
@@ -94,4 +68,3 @@
     <a href="/users">Retour à la liste des utilisateurs</a>
 
 <?php endif; ?>
-

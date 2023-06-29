@@ -42,6 +42,6 @@ users:
   controller: UserCrud
   action: index
 
-users-edit :
-controller: UserCrud
-action: edit
+users-create:
+  controller: UserCrud
+  action: create
