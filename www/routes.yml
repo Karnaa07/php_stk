@@ -42,3 +42,7 @@ page:
   controller: Page
   action: index
 
+article:
+  controller: Article
+  action: index
+
