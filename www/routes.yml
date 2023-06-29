@@ -37,3 +37,8 @@ new_pass:
 accueil:
   controller: Main
   action: home
+
+page:
+  controller: Page
+  action: index
+

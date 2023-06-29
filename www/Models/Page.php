@@ -2,63 +2,100 @@
 
 namespace App\Models;
 
-class Page
+use App\Core\SQL;
+use PDO;
+
+class Page extends SQL
 {
-    protected $id;
-    protected $title;
-    protected $content;
 
-    public function getId()
-    {
-        return $this->id;
-    }
+  private Int $id = 0;
+  protected String $title;
+  protected String $content;
+  protected String $slug;
 
-    public function getTitle()
-    {
-        return $this->title;
-    }
+  //Connexion with singleton
+  public function __construct()
+  {
+      $this->pdo = SQL::getInstance()->getConnection();
+      $classExploded = explode("\\", get_called_class());
+      $this->table = "esgi_".end($classExploded);
+  }
 
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
+  /**
+   * @return Int
+   */
+  public function getId(): int
+  {
+      return $this->id;
+  }
 
-    public function getContent()
-    {
-        return $this->content;
-    }
+  /**
+   * @param Int $id
+   */
+  public function setId(int $id): void
+  {
+      $this->id = $id;
+  }
 
-    public function setContent($content)
-    {
-        $this->content = $content;
-    }
+  /**
+   * @return String
+   */
+  public function getTitle(): string
+  {
+      return $this->title;
+  }
 
-    // Méthodes pour les opérations CRUD sur les pages
+  /**
+   * @param String $title
+   */
+  public function setTitle(string $title): void
+  {
+      $this->title = ucwords(strtolower(trim($title)));
+  }
 
-    public function getAllPages()
-    {
-        // Code pour récupérer toutes les pages depuis la source de données (par exemple, une base de données)
-        // Retourner les pages récupérées
-    }
+  /**
+   * @return String
+   */
+  
+  public function getContent(): string
+  {
+      return $this->content;
+  }
 
-    public function getPageById($id)
-    {
-        // Code pour récupérer une page spécifique en utilisant son ID depuis la source de données
-        // Retourner la page récupérée
-    }
+  /**
+   * @param String $content
+   */
+  public function setContent(string $content): void
+  {
+      $this->content = strtoupper(trim($content));
+  }
 
-    public function createPage()
-    {
-        // Code pour créer une nouvelle page dans la source de données
-    }
+  /**
+   * @return String
+   */
 
-    public function updatePage($id)
-    {
-        // Code pour mettre à jour une page existante dans la source de données en utilisant son ID
-    }
+  public function getSlug(): string
 
-    public function deletePage($id)
-    {
-        // Code pour supprimer une page existante de la source de données en utilisant son ID
-    }
+  {
+      return $this->slug;
+  }
+
+  /**
+   * @param String $slug
+   */
+
+  public function setSlug(string $slug): void
+  {
+      $this->slug = strtolower(trim($slug));
+  }
+
+  public function getAllPages(): array
+  {
+    $sql = "SELECT * FROM esgi_page";
+    $query = $this->pdo->prepare($sql);
+    $query->execute();
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+  }
+  
 }
