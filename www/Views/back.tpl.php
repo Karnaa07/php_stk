@@ -9,7 +9,6 @@
         <script src= "../src/script.js"></script>
     </head>
     <body>
-        <h1>Template Back</h1>
         <div class="dashboard-container">
             <div class="main-sidebar">
                 <div class="aside-header">
@@ -21,7 +20,7 @@
                 <div class="sidebar">
                     <ul class="list-items">
                         <li class="item">
-                            <a href="#">
+                            <a href="/dashboard">
                                 <span class="material-icons-sharp">
                                     dashboard
                                 </span>
@@ -53,7 +52,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="#">
+                            <a href="/page">
                                 <span class="material-icons-sharp">
                                     pages
                                 </span>
@@ -61,7 +60,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="#">
+                            <a href="/article">
                                 <span class="material-icons-sharp">
                                     border_color
                                 </span>

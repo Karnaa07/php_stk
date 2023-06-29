@@ -62,18 +62,6 @@ input{
   margin-bottom: 20px;
 }
 
-/* Champ de saisie */
-/* .form-input {
-  width: 95%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: none;
-  background-color: #222;
-  color: #fff;
-  border-radius: 3px;
-} */
-
-/* Placeholder (texte d'indication) */
 .form-input::placeholder{
   color: #e5e5e5;
 }

@@ -22,7 +22,7 @@ class Change extends Validator
             "passwordOld"=>[
                 "id"=>"pwdConfirmForm",
                 "label" => "Votre ancien mot de passe", 
-                "class"=>"inputForm",
+                "class"=>"form-input",
                 "placeholder"=>"Votre ancien mot de passe ...",
                 "type"=>"password",
                 "error"=>"Mauvais mot de passe",
@@ -31,7 +31,7 @@ class Change extends Validator
             "password"=>[
                 "id"=>"pwdForm",
                 "label" => "Votre nouveau mot de passe",
-                "class"=>"inputForm",
+                "class"=>"form-input",
                 "placeholder"=>"Votre mot de passe ...",
                 "type"=>"password",
                 "error"=>"Votre mot de passe doit faire au min 8 caractères avec majuscule, minuscules et des chiffres",
