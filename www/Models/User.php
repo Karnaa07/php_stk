@@ -18,12 +18,12 @@ class User extends SQL
     private ?String $date_updated;
     protected ?String $token;
 
-    protected $table = "esgi_user";
-
     //Connexion with singleton
     public function __construct()
     {
         $this->pdo = SQL::getInstance()->getConnection();
+        $classExploded = explode("\\", get_called_class());
+        $this->table = "esgi_".end($classExploded);
     }
 
     /**

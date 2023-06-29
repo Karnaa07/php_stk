@@ -5,7 +5,7 @@ class SQL{
 
     private static $instance;
     protected $pdo;
-    private $table = "esgi_user";
+    protected $table;
 
     private function __construct()
     {
@@ -50,6 +50,14 @@ class SQL{
         $queryPrepared->setFetchMode( \PDO::FETCH_CLASS, get_called_class());
         $queryPrepared->execute($where);
         return $queryPrepared->fetch();
+    }
+
+    public function getAll(): array|bool
+    {
+        $queryPrepared = $this->pdo->prepare("SELECT * FROM ".$this->table);
+        $queryPrepared->setFetchMode( \PDO::FETCH_CLASS, get_called_class());
+        $queryPrepared->execute();
+        return $queryPrepared->fetchAll();
     }
 
 
