@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Models\User;
 use App\Forms\Register;
+use App\Forms\UpdateForm;
+
 
 
 class UserCrud
@@ -12,7 +14,7 @@ class UserCrud
     public function index(): void
     {
         $userModel = new User();
-        $limit = 20; // Nombre d'utilisateurs à afficher par page
+        $limit = 20; // Nombre d'utilisateurs à afficher par page 
         $page = $_GET['page'] ?? 1; // Récupérer le numéro de page à partir de la requête, par exemple, à l'aide de la superglobale $_GET
         $offset = ($page - 1) * $limit; // Calculer le décalage en fonction du numéro de page
     
@@ -92,53 +94,64 @@ class UserCrud
     public function edit()
     {
         $id = $_GET['id'];
+
         // Récupérer l'utilisateur à modifier depuis la base de données
         $user = User::find($id);
-    
+
         // Vérifier si l'utilisateur existe
         if (!$user) {
             // Gérer l'erreur, utilisateur non trouvé
         }
-    
-        // Afficher le formulaire de modification d'utilisateur avec les données de l'utilisateur
-        $view = new View("UserCrud/edit", "back");
+
+        // Instanciation de la classe UpdateForm
+        $updateForm = new UpdateForm();
+
+        // Obtention de la configuration du formulaire
+        $config = $updateForm->getConfig();
+        
+        // Charger la vue avec le formulaire d'UDAPE et les données de l'utilisateur
+        $view = new View("user", "back");
         $view->assign("user", $user);
+        $view->assign("updateForm", $updateForm);
+        $view->assign("action", "edit"); // Ajouter cette ligne pour définir la valeur de $action
         $view->render();
     }
-    
-    
+
     public function update($id)
     {
         // Récupérer l'utilisateur à mettre à jour depuis la base de données
         $user = User::find($id);
-    
+
         // Vérifier si l'utilisateur existe
         if (!$user) {
             // Gérer l'erreur, utilisateur non trouvé
             echo "Utilisateur non trouvé.";
             exit();
         }
-    
+
         // Récupérer les données du formulaire
         $data = $_POST;
-    
+
         // Valider les données du formulaire
-        if (empty($data['firstname']) || empty($data['lastname']) || empty($data['email']) || empty($data['password']) || empty($data['country'])) {
-            // Gérer l'erreur, données du formulaire invalides
-            echo "Veuillez remplir tous les champs du formulaire.";
+        $updateForm = new UpdateForm();
+        $validationResult = $updateForm->validate($data);
+
+        if (!$validationResult['isValid']) {
+            // Gérer l'erreur de validation du formulaire
+            echo "Erreur de validation du formulaire.";
             exit();
         }
-    
+
         // Mettre à jour les propriétés de l'utilisateur à partir des données reçues
         $user->setFirstname($data['firstname']);
         $user->setLastname($data['lastname']);
         $user->setEmail($data['email']);
-        $user->setPwd($data['password']);
+        $user->setPwd($data['pwd']);
         $user->setCountry($data['country']);
-    
+
         // Enregistrer les modifications de l'utilisateur dans la base de données
         $user->save();
-    
+
         // Rediriger vers la liste des utilisateurs ou afficher un message de succès
         header('Location: /users');
         exit();

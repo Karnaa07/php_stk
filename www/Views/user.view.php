@@ -37,37 +37,16 @@
 
     <?php echo $form->render(); ?>
 
+
 <?php elseif ($action === 'edit'): ?>
-    <!-- <a href="/users-create">Créer un utilisateur</a> -->
 
-    <h1>Modifier un utilisateur</h1>
-
-    <form action="/users-update/<?= $user['id']; ?>" method="POST">
-    <div>
-        <label for="firstname">Prénom</label>
-        <input type="text" name="firstname" id="firstname" value="<?= $user['firstname']; ?>">
-    </div>
-    <div>
-        <label for="lastname">Nom</label>
-        <input type="text" name="lastname" id="lastname" value="<?= $user['lastname']; ?>">
-    </div>
-    <div>
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="<?= $user['email']; ?>">
-    </div>
-    <div>
-        <label for="password">Mot de passe</label>
-        <input type="password" name="password" id="password">
-    </div>
-    <div>
-        <label for="country">Pays</label>
-        <input type="text" name="country" id="country" value="<?= $user['country']; ?>">
-    </div>
-    <div>
-        <button type="submit">Modifier</button>
-    </div>
-</form>
+<h1>Modifier un utilisateur</h1>
 
 <a href="/users" class="btn btn-primary">Retour à la liste des utilisateurs</a>
 
+<!-- Afficher le formulaire -->
+<?php $updateForm->renderForm(); ?>
+
 <?php endif; ?>
+
+<a href="/users" class="btn btn-primary">Retour à la liste des utilisateurs</a>
