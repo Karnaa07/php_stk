@@ -8,7 +8,7 @@
       <title>Register</title>
     </head>
     <body>
-      <h2>S'inscrire</h2>
+      <h6>S'inscrire</h6>
       <div class="container">
         <?php $this->partial("form", $form, $formErrors) ?>
       </div>

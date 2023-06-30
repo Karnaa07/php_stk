@@ -1,10 +1,16 @@
 default:
   controller: Auth
   action: login
-
+  
+# Page du dashboard
 dashboard:
   controller: Dashboard
   action: board
+
+# Page utilisateur du dashboard
+utilisateur:
+  controller: Dashboard
+  action: users
 
 a-propos:
   controller: Main
@@ -33,6 +39,8 @@ register:
 new_pass:
   controller: Auth
   action: change
+
+#Accueil 
 
 accueil:
   controller: Main

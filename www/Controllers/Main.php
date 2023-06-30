@@ -10,7 +10,7 @@ class Main
     public function home(): void
     {
         $pseudo = $_SESSION["firstname"];
-        $view = new View("Main/home", "front");
+        $view = new View("adventure-master/index", "front"); //le path du fichier , et la vue assigné (back ou front)
         $view->assign("pseudo", $pseudo);
         $view->assign("age", 30);
         $view->assign("titleseo", "supernouvellepage");
@@ -25,5 +25,6 @@ class Main
     {
         echo "Page à propos";
     }
+
 
 }

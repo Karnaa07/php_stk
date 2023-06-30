@@ -14,18 +14,34 @@
             <div class="main-sidebar">
                 <div class="aside-header">
                     <div class="brand">
-                        <img src="../Assets/img/KC.png" alt="">
+                        <div class="profile-image">
+                            <img src="../Assets/img/mirio.jpg" alt="" width="100%">
+                        </div>
+                        <div class="profile">
+                        <div class="profile-info">
+                            <p>Salut, <strong> <?= $pseudo?> </strong></p> 
+                            <small>Admin</small>
+                        </div>
+                    </div>
                     </div>
                 </div>
-
+    <div class="close" id="closeSidebar"></div>
                 <div class="sidebar">
                     <ul class="list-items">
                         <li class="item">
-                            <a href="#">
+                            <a href="dashboard">
                                 <span class="material-icons-sharp">
                                     dashboard
                                 </span>
                                 <span>Tableau de Bord</span>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="accueil">
+                                <span class="material-icons-sharp">
+                                    home
+                                </span>
+                                <span>Accueil</span>
                             </a>
                         </li>
                         <li class="item">
@@ -69,7 +85,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="#">
+                            <a href="/utilisateur">
                                 <span class="material-icons-sharp">
                                     person
                                 </span>
@@ -106,23 +122,14 @@
             <div class="main-container">
                 <?php include $this->view;?>
             </div>
-            <div class="extrabar">
+          <!--  <div class="extrabar">
                 <div class="header-menu">
                     <button class="toggle-menu-btn" id="open-menu">
                     <span class="material-icons-sharp">
                             menu
                     </span>
                     </button>
-                    <div class="profile">
-                        <div class="profile-info">
-                            <p>Salut, <strong> <?= $pseudo?> </strong></p>
-                            <small>Admin</small>
-                        </div>
-                        <div class="profile-image">
-                            <img src="../Assets/img/mirio.jpg" alt="" width="100%">
-                        </div>
-                    </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </body>
