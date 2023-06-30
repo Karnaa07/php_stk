@@ -22,7 +22,7 @@ class Auth
         }
 
         $form = new Login();
-        $view = new View("Auth/login", "front");
+        $view = new View("Auth/login", "auth");
         $view->assign("form", $form->getConfig());
 
         // Formulaire soumis et valide
@@ -59,7 +59,7 @@ class Auth
     public function register(): void
     {
         $form = new Register();
-        $view = new View("Auth/register", "front");
+        $view = new View("Auth/register", "auth");
         $view->assign("form", $form->getConfig());
 
         // Formulaire soumis et valide ?
@@ -135,7 +135,7 @@ class Auth
         }
 
         $form = new Change();
-        $view = new View("Auth/change_password", "front");
+        $view = new View("Auth/change_password", "auth");
         $view->assign("form", $form->getConfig());
 
         // Formulaire soumis et valide ?
