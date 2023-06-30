@@ -9,7 +9,10 @@ class Validator
     public array $errors = [];
     public function isSubmited(): bool
     {
+        echo "isSubmited";
+        var_dump($this->method);
         $this->data = ($this->method == "POST")?$_POST:$_GET;
+        var_dump($this->data);
         if(isset($this->data["submit"])){
             return true;
         }
@@ -17,6 +20,7 @@ class Validator
     }
     public function isValid(): bool
     {
+        echo "isValid"; 
         //La bonne method ?
         if($_SERVER["REQUEST_METHOD"] != $this->method){
             die("Tentative de Hack");

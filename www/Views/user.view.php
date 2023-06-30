@@ -21,6 +21,7 @@
                 <td><?= $user['email']; ?></td>
                 <td><?= $user['country']; ?></td>
                 <td>
+                
                 <a href="/users-update/?id=<?= $user['id']; ?>">Modifier</a>
 
                 <a href="/users/delete/?id=<?= $user['id']; ?>">Supprimer</a>
@@ -39,14 +40,16 @@
 
 
 <?php elseif ($action === 'edit'): ?>
+    <link rel="stylesheet" type="text/css" href="../css/register.css">
+    <h1>Modifier un utilisateur</h1>
 
-<h1>Modifier un utilisateur</h1>
+    <!-- <a href="/users" class="btn btn-primary">Retour à la liste des utilisateurs</a> -->
 
-<a href="/users" class="btn btn-primary">Retour à la liste des utilisateurs</a>
-
-<!-- Afficher le formulaire -->
-<?php $updateForm->renderForm(); ?>
-
+    <!-- Afficher le formulaire -->
+<?php //$updateForm->renderForm(); ?>
+<?php $this->partial('form', $updateForm); ?>
 <?php endif; ?>
 
 <a href="/users" class="btn btn-primary">Retour à la liste des utilisateurs</a>
+
+

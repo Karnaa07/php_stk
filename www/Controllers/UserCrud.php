@@ -97,6 +97,7 @@ class UserCrud
 
         // Récupérer l'utilisateur à modifier depuis la base de données
         $user = User::find($id);
+        var_dump($user);
 
         // Vérifier si l'utilisateur existe
         if (!$user) {
@@ -105,57 +106,77 @@ class UserCrud
 
         // Instanciation de la classe UpdateForm
         $updateForm = new UpdateForm();
+        
 
         // Obtention de la configuration du formulaire
-        $config = $updateForm->getConfig();
+        
         
         // Charger la vue avec le formulaire d'UDAPE et les données de l'utilisateur
         $view = new View("user", "back");
         $view->assign("user", $user);
-        $view->assign("updateForm", $updateForm);
+        $view->assign("updateForm", $updateForm->getConfig());
         $view->assign("action", "edit"); // Ajouter cette ligne pour définir la valeur de $action
-        $view->render();
+       // $view->render();
+        if ($updateForm->isSubmited() && $updateForm->isValid()) {
+            echo "Le formulaire est valide.";
+            $user = new User();
+            $user= $user->populate($id);
+            $user->setFirstname($_POST["firstname"]);
+            $user->setLastname($_POST["lastname"]);
+            $user->setEmail($_POST["email"]);
+            $user->setPwd($_POST["pwd"]);
+            $user->setCountry("FR");
+            $user->save();
+    
+        }
+        else{
+            echo "Le formulaire est invalide.";
+        }
     }
 
-    public function update($id)
-    {
-        // Récupérer l'utilisateur à mettre à jour depuis la base de données
-        $user = User::find($id);
+    // public function update($id)
+    // {
+    //     // Récupérer l'utilisateur à mettre à jour depuis la base de données
+    //     $user = User::find($id);
 
-        // Vérifier si l'utilisateur existe
-        if (!$user) {
-            // Gérer l'erreur, utilisateur non trouvé
-            echo "Utilisateur non trouvé.";
-            exit();
-        }
+    //     // Vérifier si l'utilisateur existe
+    //     if (!$user) {
+    //         // Gérer l'erreur, utilisateur non trouvé
+    //         echo "Utilisateur non trouvé.";
+    //         exit();
+    //     }
 
-        // Récupérer les données du formulaire
-        $data = $_POST;
+    //     // Récupérer les données du formulaire
+    //     $data = $_POST;
 
-        // Valider les données du formulaire
-        $updateForm = new UpdateForm();
-        $validationResult = $updateForm->validate($data);
+    //     // Valider les données du formulaire
+    //     $updateForm = new UpdateForm();
+    //     $validationResult = $updateForm->validate($data);
 
-        if (!$validationResult['isValid']) {
-            // Gérer l'erreur de validation du formulaire
-            echo "Erreur de validation du formulaire.";
-            exit();
-        }
+    //     if (!$validationResult['isValid']) {
+    //         // Gérer l'erreur de validation du formulaire
+    //         echo "Erreur de validation du formulaire.";
+    //         exit();
+    //     }
 
-        // Mettre à jour les propriétés de l'utilisateur à partir des données reçues
-        $user->setFirstname($data['firstname']);
-        $user->setLastname($data['lastname']);
-        $user->setEmail($data['email']);
-        $user->setPwd($data['pwd']);
-        $user->setCountry($data['country']);
+    //     // Mettre à jour les propriétés de l'utilisateur à partir des données reçues
+    //     $user->setFirstname($data['firstname']);
+    //     $user->setLastname($data['lastname']);
+    //     $user->setEmail($data['email']);
+    //     $user->setPwd($data['pwd']);
+    //     $user->setCountry($data['country']);
 
-        // Enregistrer les modifications de l'utilisateur dans la base de données
-        $user->save();
+    //     // Enregistrer les modifications de l'utilisateur dans la base de données
+    //     $user->save();
 
-        // Rediriger vers la liste des utilisateurs ou afficher un message de succès
-        header('Location: /users');
-        exit();
-    }
+    //     // Afficher le formulaire de mise à jour dans la vue
+    //     $updateForm->renderForm();
+
+    //     // Rediriger vers la liste des utilisateurs ou afficher un message de succès
+    //     header('Location: /users');
+    //     exit();
+        
+    // }
     
 
     public function delete($id)

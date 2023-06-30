@@ -65,19 +65,19 @@ class UpdateForm extends Validator
                     "required" => true,
                     "confirm" => "pwd"
                 ],
-                "country" => [
-                    "id" => "udape-form-country",
-                    "class" => "form-select",
-                    "placeholder" => "Votre pays",
-                    "options" => [
-                        "FR" => "France",
-                        "US" => "United States",
-                        "CA" => "Canada",
-                        // Ajoutez d'autres options de pays si nécessaire
-                    ],
-                    "error" => "Veuillez sélectionner votre pays",
-                    "required" => true
-                ],
+                // "country" => [
+                //     "id" => "udape-form-country",
+                //     "class" => "form-select",
+                //     "placeholder" => "Votre pays",
+                //     "options" => [
+                //         "FR" => "France",
+                //         "US" => "United States",
+                //         "CA" => "Canada",
+                //         // Ajoutez d'autres options de pays si nécessaire
+                //     ],
+                //     "error" => "Veuillez sélectionner votre pays",
+                //     "required" => true
+                // ],
             ]
         ];
 
@@ -116,8 +116,11 @@ class UpdateForm extends Validator
         foreach ($config['inputs'] as $name => $input) {
             echo '<div class="form-group">';
             echo '<label for="' . $input['id'] . '">' . ucfirst($name) . '</label>';
+            if (isset($input['type'])) {
             echo '<input type="' . $input['type'] . '" id="' . $input['id'] . '" class="' . $input['class'] . '" placeholder="' . $input['placeholder'] . '" name="' . $name . '" value="' . $this->getValue($name) . '" ' . ($input['required'] ? 'required' : '') . '>';
-            echo '</div>';
+            } else {
+                // Gérer le cas où la clé 'type' n'est pas définie
+            }echo '</div>';
         }
 
         echo '<button type="submit">' . $config['config']['submit'] . '</button>';
