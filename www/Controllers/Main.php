@@ -9,6 +9,7 @@ class Main
 {
     public function home(): void
     {
+
         $view = new View("Main/home", "front");
         
         if (isset($_SESSION["user"])) {
@@ -16,6 +17,10 @@ class Main
             $view->assign("pseudo", $pseudo);
         }
 
+        $pseudo = $_SESSION["firstname"];
+        $view = new View("adventure-master/index", "front"); //le path du fichier , et la vue assigné (back ou front)
+        $view->assign("pseudo", $pseudo);
+        $view->assign("age", 30);
         $view->assign("titleseo", "supernouvellepage");
     }
 
@@ -28,5 +33,6 @@ class Main
     {
         echo "Page à propos";
     }
+
 
 }

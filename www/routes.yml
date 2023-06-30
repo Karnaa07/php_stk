@@ -2,10 +2,23 @@
 default:
   controller: Auth
   action: login
-
+  
+# Page du dashboard
 dashboard:
   controller: Dashboard
   action: board
+
+a-propos:
+  controller: Main
+  action: aboutUs
+
+about-us:
+  controller: Main
+  action: aboutUs
+
+contact:
+  controller: Main
+  action: contact
 
 login:
   controller: Auth
@@ -23,9 +36,9 @@ new_pass:
   controller: Auth
   action: change
 
+#Accueil 
 
-# // Routes du Front
-home:
+accueil:
   controller: Main
   action: home
 
