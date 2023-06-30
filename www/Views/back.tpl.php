@@ -28,7 +28,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="/accueil">
+                            <a href="/home">
                             <span class="material-icons-sharp">
                                 home
                             </span>

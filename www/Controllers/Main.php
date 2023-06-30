@@ -9,12 +9,13 @@ class Main
 {
     public function home(): void
     {
-        $pseudo = $_SESSION["firstname"];
-        // $estConnecte = isset($_SESSION["user"]);
         $view = new View("Main/home", "front");
-        $view->assign("pseudo", $pseudo);
-        // $view->assign("estConnecte", $estConnecte);
-        $view->assign("age", 30);
+        
+        if (isset($_SESSION["user"])) {
+            $pseudo = $_SESSION["firstname"];
+            $view->assign("pseudo", $pseudo);
+        }
+
         $view->assign("titleseo", "supernouvellepage");
     }
 

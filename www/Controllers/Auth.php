@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Core\Validator;
+use App\Core\AuthMiddleware;
 use App\Forms\Register;
 use App\Forms\Login;
 use App\Forms\Change;
@@ -15,7 +16,7 @@ class Auth
     public function login(): void
     {
         if (isset($_SESSION["user"])) {
-            // Redirigez l'utilisateur vers le tableau de bord
+            // Redirigez l'utilisateur vers le tableau de bord 
             header('Location: /dashboard');
             exit;
         }
@@ -106,8 +107,9 @@ class Auth
 
     public function logout(): void
     {
-        var_dump($_SESSION);
-    
+
+        AuthMiddleware::checkAuthenticated();
+
         // Supprimez le token de l'utilisateur de la session
         if (isset($_SESSION["user"])) {
             $user = new User();
@@ -120,7 +122,7 @@ class Auth
         }
       
         // Redirigez l'utilisateur vers la page de connexion ou une autre page appropriée
-        header('Location: /login');
+        header('Location: /home');
         exit;
     }
 
@@ -165,4 +167,7 @@ class Auth
 
         $view->assign("formErrors", $form->errors);
     }
+
+    
+
 }

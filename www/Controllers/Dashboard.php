@@ -3,12 +3,15 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Core\AuthMiddleware;
 use App\Controller\Auth;
 
 class dashboard
 {
     public function board(): void
     {
+        AuthMiddleware::checkAuthenticated();
+
         $pseudo = $_SESSION["firstname"];
         $view = new View("Dashboard/board", "back");
         $view->assign("pseudo", $pseudo);

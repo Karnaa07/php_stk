@@ -1,3 +1,4 @@
+# // Route du back
 default:
   controller: Auth
   action: login
@@ -5,18 +6,6 @@ default:
 dashboard:
   controller: Dashboard
   action: board
-
-a-propos:
-  controller: Main
-  action: aboutUs
-
-about-us:
-  controller: Main
-  action: aboutUs
-
-contact:
-  controller: Main
-  action: contact
 
 login:
   controller: Auth
@@ -34,9 +23,19 @@ new_pass:
   controller: Auth
   action: change
 
-accueil:
+
+# // Routes du Front
+home:
   controller: Main
   action: home
+
+about-us:
+  controller: Main
+  action: aboutUs
+
+contact:
+  controller: Main
+  action: contact
 
 page:
   controller: Page
