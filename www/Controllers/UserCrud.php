@@ -97,7 +97,7 @@ class UserCrud
 
         // Récupérer l'utilisateur à modifier depuis la base de données
         $user = User::find($id);
-        var_dump($user);
+        //var_dump($user);
 
         // Vérifier si l'utilisateur existe
         if (!$user) {
@@ -134,6 +134,32 @@ class UserCrud
         }
     }
 
+
+    public function delete()
+    {
+        $id = $_GET['id'];
+    
+        // Récupérer l'utilisateur à supprimer depuis la base de données
+        $user = \App\Core\SQL::getInstance()->populate($id);
+    
+        if (!$user) {
+            echo "Utilisateur non trouvé.";
+            exit();
+        }
+    
+        // Supprimer l'utilisateur de la base de données en utilisant la fonction deleteWhere()
+        \App\Core\SQL::getInstance()->deleteWhere(["id" => $id]);
+    
+        // Rediriger vers la liste des utilisateurs ou afficher un message de succès
+        header('Location: /users');
+        exit();
+    }
+    
+
+
+
+
+}
     // public function update($id)
     // {
     //     // Récupérer l'utilisateur à mettre à jour depuis la base de données
@@ -178,22 +204,3 @@ class UserCrud
         
     // }
     
-
-    public function delete($id)
-    {
-        // Récupérer l'utilisateur à supprimer depuis la base de données
-        $user = User::find($id);
-
-        // Vérifier si l'utilisateur existe
-        if (!$user) {
-            // Gérer l'erreur, utilisateur non trouvé
-        }
-
-        // Supprimer l'utilisateur de la base de données
-        $user->delete();
-
-        // Rediriger vers la liste des utilisateurs ou afficher un message de succès
-        header('Location: /users');
-        exit();
-    }
-}

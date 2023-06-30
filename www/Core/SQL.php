@@ -52,6 +52,15 @@ class SQL{
         return $queryPrepared->fetch();
     }
 
+    public function deleteWhere(array $where): void
+    {
+        $sqlWhere = [];
+        foreach ($where as $column => $value) {
+            $sqlWhere[] = $column . "=:" . $column;
+        }
+        $queryPrepared = $this->pdo->prepare("DELETE FROM " . $this->table . " WHERE " . implode(" AND ", $sqlWhere));
+        $queryPrepared->execute($where);
+    }
 
     public function save(): void
     {

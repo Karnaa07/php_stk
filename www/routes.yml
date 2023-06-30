@@ -50,3 +50,8 @@ users-update:
   path: users-update
   controller: UserCrud
   action: edit
+
+users-delete:
+  path: /users-delete
+  controller: UserCrud
+  action: delete

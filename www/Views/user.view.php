@@ -24,7 +24,8 @@
                 
                 <a href="/users-update/?id=<?= $user['id']; ?>">Modifier</a>
 
-                <a href="/users/delete/?id=<?= $user['id']; ?>">Supprimer</a>
+                <a href="/users-delete?id=<?= $user['id']; ?>">Supprimer</a>
+
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -48,6 +49,16 @@
     <!-- Afficher le formulaire -->
 <?php //$updateForm->renderForm(); ?>
 <?php $this->partial('form', $updateForm); ?>
+
+<?php elseif ($action === 'delete'): ?>
+    <h1>Supprimer un utilisateur</h1>
+
+    <p>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</p>
+
+    <form method="POST" action="/users-delete">
+        <input type="hidden" name="id" value="<?= $user['id']; ?>">
+        <button type="submit">Supprimer</button>
+    </form>
 <?php endif; ?>
 
 <a href="/users" class="btn btn-primary">Retour à la liste des utilisateurs</a>
