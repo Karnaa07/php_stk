@@ -2,63 +2,126 @@
 
 namespace App\Models;
 
-class Page
-{
-    protected $id;
-    protected $title;
-    protected $content;
+use App\Core\SQL;
+use PDO;
 
-    public function getId()
+class Page extends SQL
+{
+    private int $id = 0;
+    protected string $author;
+    protected string $date;
+    protected string $title;
+    protected string $theme;
+    protected string $color;
+    protected string $content;
+
+    protected $table = "esgi_pages";
+
+    public function __construct()
+    {
+        $this->pdo = SQL::getInstance()->getConnection();
+    }
+
+    public static function find($id)
+    {
+        $pdo = SQL::getInstance()->getConnection();
+
+        $statement = $pdo->prepare('SELECT * FROM pages WHERE id = :id');
+        $statement->bindValue(':id', $id);
+        $statement->execute();
+
+        $page = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($page) {
+            return $page;
+        }
+
+        return null;
+    }
+
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getTitle()
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(string $author): void
+    {
+        $this->author = $author;
+    }
+
+    public function getDate(): string
+    {
+        return $this->date;
+    }
+
+    public function setDate(string $date): void
+    {
+        $this->date = $date;
+    }
+
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function setTitle($title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
-    public function getContent()
+    public function getTheme(): string
+    {
+        return $this->theme;
+    }
+
+    public function setTheme(string $theme): void
+    {
+        $this->theme = $theme;
+    }
+
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): void
+    {
+        $this->color = $color;
+    }
+
+    public function getContent(): string
     {
         return $this->content;
     }
 
-    public function setContent($content)
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }
 
-    // Méthodes pour les opérations CRUD sur les pages
-
-    public function getAllPages()
+    public function all($limit = 100, $offset = 0): array
     {
-        // Code pour récupérer toutes les pages depuis la source de données (par exemple, une base de données)
-        // Retourner les pages récupérées
+        $query = "SELECT * FROM " . $this->table . " LIMIT :limit OFFSET :offset";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $statement->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getPageById($id)
+    public function delete()
     {
-        // Code pour récupérer une page spécifique en utilisant son ID depuis la source de données
-        // Retourner la page récupérée
-    }
-
-    public function createPage()
-    {
-        // Code pour créer une nouvelle page dans la source de données
-    }
-
-    public function updatePage($id)
-    {
-        // Code pour mettre à jour une page existante dans la source de données en utilisant son ID
-    }
-
-    public function deletePage($id)
-    {
-        // Code pour supprimer une page existante de la source de données en utilisant son ID
+        $this->deleteWhere(['id' => $this->id]);
     }
 }

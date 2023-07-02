@@ -2,7 +2,7 @@
 
 <?php if ($action === 'index'): ?>
     <h1>Liste des utilisateurs</h1>
-
+    <link rel="stylesheet" type="text/css" href="/css/formCrud.css">
     <table>
         <thead>
             <tr>
@@ -32,7 +32,7 @@
         </tbody>
     </table>
     
-    <a href="/users-create">Créer un utilisateur</a>
+    <a href="/users-create"class="btn btn-primary">Créer un utilisateur</a>
 
 <?php elseif ($action === 'create'): ?>
     <h1>Créer un utilisateur</h1>
@@ -49,18 +49,8 @@
     <!-- Afficher le formulaire -->
 <?php //$updateForm->renderForm(); ?>
 <?php $this->partial('form', $updateForm); ?>
-
+<a href="/users" class="btn btn-primary">Retour à la liste des utilisateurs</a>
 <?php elseif ($action === 'delete'): ?>
     <h1>Supprimer un utilisateur</h1>
 
-    <p>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</p>
-
-    <form method="POST" action="/users-delete">
-        <input type="hidden" name="id" value="<?= $user['id']; ?>">
-        <button type="submit">Supprimer</button>
-    </form>
 <?php endif; ?>
-
-<a href="/users" class="btn btn-primary">Retour à la liste des utilisateurs</a>
-
-

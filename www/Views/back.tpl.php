@@ -22,7 +22,7 @@
                 <div class="sidebar">
                     <ul class="list-items">
                         <li class="item">
-                            <a href="#">
+                            <a href="/dashboard">
                                 <span class="material-icons-sharp">
                                     dashboard
                                 </span>
@@ -30,7 +30,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="#">
+                            <a href="/média">
                                 <span class="material-icons-sharp">
                                     perm_media
                                 </span>
@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="#">
+                            <a href="/pages">
                                 <span class="material-icons-sharp">
                                     pages
                                 </span>
@@ -54,7 +54,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="#">
+                            <a href="/articles">
                                 <span class="material-icons-sharp">
                                     border_color
                                 </span>
@@ -62,7 +62,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="#">
+                            <a href="/catégories">
                                 <span class="material-icons-sharp">
                                     category
                                 </span>
@@ -70,7 +70,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="#">
+                            <a href="/users">
                                 <span class="material-icons-sharp">
                                     person
                                 </span>
@@ -78,7 +78,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="#">
+                            <a href="/assistances">
                                 <span class="material-icons-sharp">
                                     support_agent
                                 </span>
@@ -86,7 +86,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="#">
+                            <a href="/setting">
                                 <span class="material-icons-sharp">
                                     support
                                 </span>

@@ -55,3 +55,24 @@ users-delete:
   path: /users-delete
   controller: UserCrud
   action: delete
+
+pages:
+  path: /pages
+  controller: PageController
+  action: index
+
+create_page:
+  path: /pages/create
+  controller: PageController
+  action: create
+
+update_page:
+  path: /pages/update
+  controller: PageController
+  action: edit
+
+delete_page:
+  path: /pages/delete
+  controller: PageController
+  action: delete
+  
