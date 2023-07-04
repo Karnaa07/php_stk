@@ -3,22 +3,36 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Core\AuthMiddleware;
 use App\Models\Article as ModelArticle;
+use App\Forms\Article as FormArticle;
+
 
 class Article{
 
   public function index(): void
   {
-    $pseudo = $_SESSION["firstname"];
-    
-    $articleModel = new ModelArticle();
-    $articles = $articleModel->getAll();
+      $view = new View("Article/index", "front");
+      AuthMiddleware::assignPseudoToView($view);
+      $view->assign("titleseo", "supernouvellepage");
+      $view->assign("title", "Liste des articles");
 
-    $view = new View("Article/index", "back");
-    $view->assign("pseudo", $pseudo);
-    $view->assign("titleseo", "supernouvellepage");
-    $view->assign("title", "Liste des articles");
-    $view->assign("articles", $articles);
+      $articleModel = new ModelArticle();
+      $articles = $articleModel->getAll();
+      $view->assign("articles", $articles);
+  }
+
+
+  public function create(): void
+  {
+      // Instancier le formulaire de création de page
+      $form = new FormArticle();
+
+      // Afficher le formulaire de création de page
+      $view = new View("Page/create", "back");
+      AuthMiddleware::assignPseudoToView($view);
+      $view->assign("form", $form->getConfig());
+      $view->render();
   }
 
 }

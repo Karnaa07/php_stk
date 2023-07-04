@@ -27,6 +27,7 @@
 			<link rel="stylesheet" href="../css/bootstrap/animate.min.css">
 			<link rel="stylesheet" href="../css/bootstrap/owl.carousel.css">
 			<link rel="stylesheet" href="../css/bootstrap/main.css">
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
 		</head>
 
 		<section class="banner-area" id="home">
@@ -51,24 +52,14 @@
 									<li><a href="/about-us">Qui nous sommes ?</a></li>									
 									<li><a href="/page">Pages</a></li>
 									<li><a href="/article">Articles</a></li>
-                                    
-                                    <!-- Dropdown -->
-								    <li class="dropdown">
-								      <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-								        Pages
-								      </a>
-								      <div class="dropdown-menu">
-								        <a class="dropdown-item" href="generic.html">Generic</a>
-								        <a class="dropdown-item" href="elements.html">Elements</a>
-								      </div>
-								    </li>
-
-                                    <?php if (!isset($_SESSION["user"])): ?>
-                                        <li><a href="/login">Connexion</a></li>
-                                        <li><a href="/register">Inscription</a></li>
-                                    <?php endif; ?>
-
-									
+                                  
+									<?php if (!isset($_SESSION["user"])): ?>
+											<li><a href="/login">Connexion</a></li>
+											<li><a href="/register">Inscription</a></li>
+									<?php endif; ?>
+									<?php if (isset($_SESSION["user"])): ?>
+    								<li><a href="#" onclick="confirmLogout()">Déconnexion</a></li>
+									<?php endif; ?>
 							    </ul>
 							  </div>						
 						</div>
@@ -149,7 +140,10 @@
 			<script src="../js/jquery.counterup.min.js"></script>
 			<script src="../js/waypoints.min.js"></script>		
 			<script src="../js/main.js"></script>	
+			<script src="../js/auth.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 			<!--script js end -->
 			
 </body>
 </html>
+

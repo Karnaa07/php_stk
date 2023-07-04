@@ -5,8 +5,11 @@
         <title>Super site</title>
         <meta name="description" content="ceci est un super site">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
         <link rel="stylesheet" type="text/css" href="../src/style.css">
         <script src= "../src/script.js"></script>
+        <script src="../js/auth.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
     </head>
     <body>
         <div class="dashboard-container">
@@ -52,7 +55,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="/page">
+                            <a href="/create-page">
                                 <span class="material-icons-sharp">
                                     pages
                                 </span>
@@ -60,7 +63,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="/article">
+                            <a href="/create-article">
                                 <span class="material-icons-sharp">
                                     border_color
                                 </span>
@@ -100,7 +103,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="/logout">
+                            <a href="#" onclick="confirmLogout()">
                                 <span class="material-icons-sharp">
                                     logout
                                 </span>

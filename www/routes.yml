@@ -41,7 +41,15 @@ page:
   controller: Page
   action: index
 
+create-page:
+  controller: Page
+  action: create
+
 article:
   controller: Article
   action: index
+
+create-article:
+  controller: Article
+  action: create
 

@@ -3,19 +3,16 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Core\AuthMiddleware;
 use App\Controller\Auth;
+
 
 class Main
 {
     public function home(): void
     {
         $view = new View("Main/home", "front");
-        
-        if (isset($_SESSION["user"])) {
-            $pseudo = $_SESSION["firstname"];
-            $view->assign("pseudo", $pseudo);
-        }
-
+        AuthMiddleware::assignPseudoToView($view);
         $view->assign("titleseo", "supernouvellepage");
     }
 

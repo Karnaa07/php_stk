@@ -12,4 +12,13 @@ class AuthMiddleware
             exit;
         }
     }
+
+    public static function assignPseudoToView(View $view)
+    {
+        if (isset($_SESSION["firstname"])) {
+            $pseudo = $_SESSION["firstname"];
+            $view->assign("pseudo", $pseudo);
+        }
+    }
+
 }
