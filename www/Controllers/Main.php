@@ -24,7 +24,7 @@ class Main
     public function aboutUs(): void
     {
         $view = new View("Main/aboutUs", "front");
-        echo "Page à propos";
+        AuthMiddleware::assignPseudoToView($view);
     }
 
 }

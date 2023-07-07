@@ -32,7 +32,5 @@ class Page{
         $view = new View("Page/create", "back");
         AuthMiddleware::assignPseudoToView($view);
         $view->assign("form", $form->getConfig());
-        $view->render();
     }
 }
-

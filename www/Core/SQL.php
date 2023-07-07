@@ -60,7 +60,6 @@ class SQL{
         return $queryPrepared->fetchAll();
     }
 
-
     public function save(): void
     {
         $columns = get_object_vars($this);
@@ -76,7 +75,7 @@ class SQL{
                 " SET " . implode(",", $sqlUpdate) . " WHERE id=" . $this->getId());
         } else {
             $queryPrepared = $this->pdo->prepare("INSERT INTO " . $this->table .
-                " (" . implode(",", array_keys($columns)) . ") 
+                " (" . implode(",", array_keys($columns)) . ")
                 VALUES
                 (:" . implode(",:", array_keys($columns)) . ")");
         }

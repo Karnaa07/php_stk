@@ -1,7 +1,7 @@
 # // Route du back
 default:
-  controller: Auth
-  action: login
+  controller: Main
+  action: home
 
 dashboard:
   controller: Dashboard
@@ -52,4 +52,3 @@ article:
 create-article:
   controller: Article
   action: create
-

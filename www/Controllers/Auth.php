@@ -12,11 +12,11 @@ use App\Models\User;
 
 class Auth
 {
-   
+
     public function login(): void
     {
         if (isset($_SESSION["user"])) {
-            // Redirigez l'utilisateur vers le tableau de bord 
+            // Redirigez l'utilisateur vers le tableau de bord
             header('Location: /dashboard');
             exit;
         }
@@ -33,7 +33,7 @@ class Auth
             $email = $_POST["email"];
             $password = $_POST["pwd"];
             $user = $user->getOneWhere(["email" => $email]);
-            
+
             if ($user && password_verify($password, $user->getPwd())) {
                 // L'utilisateur est authentifié avec succès
                 // Créez un token et enregistrez-le dans la session
@@ -42,7 +42,7 @@ class Auth
                 $_SESSION["firstname"] = $user->getFirstname();
                 $_SESSION["token"] = $user->getToken();
                 $user->save();
-                
+
                 // Redirigez l'utilisateur vers la page d'accueil ou une autre page appropriée
                 header('Location: /dashboard');
                 exit;
@@ -100,7 +100,7 @@ class Auth
                 header('Refresh: 2; URL=/login');
             }
         }
-        
+
         $view->assign("formErrors", $form->errors);
     }
 
@@ -120,9 +120,9 @@ class Auth
             unset($_SESSION["token"]);
             unset($_SESSION["firstname"]);
         }
-      
+
         // Redirigez l'utilisateur vers la page de connexion ou une autre page appropriée
-        header('Location: /home');
+        header('Location: /');
         exit;
     }
 
@@ -168,6 +168,6 @@ class Auth
         $view->assign("formErrors", $form->errors);
     }
 
-    
+
 
 }
