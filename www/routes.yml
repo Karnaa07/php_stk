@@ -61,17 +61,16 @@ pages:
   controller: PageController
   action: index
 
-create_page:
+create-page:
   path: /pages/create
   controller: PageController
   action: create
 
-update_page:
-  path: /pages/update
+update-page:
   controller: PageController
   action: edit
 
-delete_page:
+delete-page:
   path: /pages/delete
   controller: PageController
   action: delete
