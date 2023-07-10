@@ -6,7 +6,6 @@ class Article extends Validator
 {
     public $method = "POST";
     protected array $config = [];
-
     public function getConfig(): array
     {
         $this->config = [
@@ -43,14 +42,22 @@ class Article extends Validator
                     "label" => "Contenu",
                     "class" => "form-textarea",
                     "placeholder" => "Entrez le contenu de l'article",
+                    "type" => "text",
+                    "error" => "",
+                    "required" => false
+                ],
+                "imageUrl" => [
+                    "id" => "create-article-form-imageUrl",
+                    "label" => "URL de l'image",
+                    "class" => "form-input",
+                    "placeholder" => "Entrez l'URL de l'image de l'article",
+                    "type" => "text",
                     "error" => "",
                     "required" => false
                 ]
             ]
         ];
 
-        return $this->config;        
+        return $this->config;
     }
 }
-
-?>

@@ -11,7 +11,7 @@
             </div>
             <div class="card-body">
                 <div class="card-info">
-                    <h3>Voyages totales</h3>
+                    <h3>Nombre de page</h3>
                     <h1>2.85k</h1>
                 </div>
                 <div class="card-progress">
@@ -35,8 +35,8 @@
             </div>
             <div class="card-body">
                 <div class="card-info">
-                    <h3>Voyages totales</h3>
-                    <h1>2.85k</h1>
+                    <h3>Nombre d'article</h3>
+                    <h1><?php echo $articleCount; ?></h1>
                 </div>
                 <div class="card-progress">
                     <svg width="96" height="96" class="stroke-cyan">
@@ -59,7 +59,7 @@
             </div>
             <div class="card-body">
                 <div class="card-info">
-                    <h3>Voyages totales</h3>
+                    <h3>Nombre d'utilisateur</h3>
                     <h1>2.85k</h1>
                 </div>
                 <div class="card-progress">

@@ -32,7 +32,7 @@ class SQL{
         return $this->pdo;
     }
 
-
+    // Méthode pour obtenir le nom de la table
     public static function populate(Int $id): object
     {
         $class = get_called_class();
@@ -40,6 +40,7 @@ class SQL{
         return $objet->getOneWhere(["id"=>$id]);
     }
 
+    // Méthode pour obtenir un élément d'une table en fonction de son id
     public function getOneWhere(array $where): object|bool
     {
         $sqlWhere = [];
@@ -52,6 +53,7 @@ class SQL{
         return $queryPrepared->fetch();
     }
 
+    // Méthode pour obtenir tous les éléments d'une table
     public function getAll(): array|bool
     {
         $queryPrepared = $this->pdo->prepare("SELECT * FROM ".$this->table);
@@ -59,6 +61,15 @@ class SQL{
         $queryPrepared->execute();
         return $queryPrepared->fetchAll();
     }
+
+    // Méthode pour compter tous les éléments d'une table
+    public function countAll(): int
+    {
+        $query = "SELECT COUNT(*) FROM " . $this->table;
+        $statement = $this->pdo->query($query);
+        return $statement->fetchColumn();
+    }
+
 
     public function save(): void
     {

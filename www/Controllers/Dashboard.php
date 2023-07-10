@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Core\AuthMiddleware;
 use App\Controller\Auth;
+use App\Models\Article as ModelArticle;
 
 class dashboard
 {
@@ -18,9 +19,10 @@ class dashboard
 
         $view->assign("titleseo", "supernouvellepage");
 
-        // Assigner des données à afficher dans la vue
-        $view->setPageTitle('Tableau de bord');
-        $view->setH1Title('Bienvenue sur le tableau de bord');
+        $articleModel = new ModelArticle();
+        $articleCount = $articleModel->countAll();
+
+        $view->assign("articleCount", $articleCount);
 
         // Ajoutez d'autres données spécifiques au tableau de bord ici
     }
