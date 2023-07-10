@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Core\SQL;
-use App\Core\Mail;
 
+use DateTime;
 use PDO;
 
 class User extends SQL
@@ -138,22 +138,6 @@ class User extends SQL
     public function setStatus(int $status): void
     {
         $this->status = $status;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getDateInserted(): \DateTime
-    {
-        return $this->date_inserted;
-    }
-
-    /**
-     * @param \DateTime $date_inserted
-     */
-    public function setDateInserted(\DateTime $date_inserted): void
-    {
-        $this->date_inserted = $date_inserted;
     }
 
     /**

@@ -4,6 +4,9 @@ namespace App\Core;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+use App\Controllers\Auth;   
+
+require_once __DIR__ . '/../vendor/autoload.php';
 
 class Mail {
     public $mail;
@@ -22,8 +25,8 @@ class Mail {
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $mail->Username   = 'waveflow278@gmail.com';              //SMTP username
             $mail->Password   = 'waveflow1234';                        //SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;             //Enable implicit TLS encryption
-            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;             //Enable implicit TLS encryption
+            $mail->Port       = 587;                        //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
             $mail->setFrom('waveflow278@gmail.com', 'Waveflow');
@@ -34,7 +37,7 @@ class Mail {
 
             
             $mail->Subject = 'Email verification code';
-            $mail->Body    = 'Your verification code is: ' . $verifation_code;
+            $mail->Body    = 'Your verification code is: ' . '123456';
 
             //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

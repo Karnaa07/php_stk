@@ -68,9 +68,9 @@ class Auth
         // Formulaire soumis et valide ?
         if ($form->isSubmited() && $form->isValid()) {
             $user = new User();
-            $mail = new Mail();
+            // $mail = new Mail();
             $verif_code = substr(number_format(time() * rand(),0,'',''),0,6);
-            $mail->send_mail("waveflow278@gmail.com", $verif_code);
+            // $mail->send_mail("waveflow278@gmail.com", $verif_code);
             $user->setFirstname($_POST["firstname"]);
             $user->setLastname($_POST["lastname"]);
             $user->setEmail($_POST["email"]);
