@@ -62,17 +62,19 @@ class CreatePageForm extends Validator
                 ],
                 "content" => [
                     "id" => "create-page-form-content",
-                    "class" => "form-input",
+                    "class" => "form-input wysiwyg", // Ajout de la classe wysiwyg
                     "placeholder" => "Contenu",
                     "type" => "textarea",
                     "error" => "Le champ 'Contenu' est requis",
                     "required" => true
+                    
                 ]
             ]
         ];
 
         return $this->config;
     }
+    
     public function renderForm()
     {
         $config = $this->getConfig();
@@ -83,10 +85,10 @@ class CreatePageForm extends Validator
             $html .= '<div class="form-group">';
             $html .= '<label for="' . $input['id'] . '">' . ucfirst($name) . '</label>';
     
-            if (isset($input['type'])) {
-                $html .= '<input type="' . $input['type'] . '" id="' . $input['id'] . '" class="' . $input['class'] . '" placeholder="' . $input['placeholder'] . '" name="' . $name . '" value="' . $this->getValue($name) . '" ' . ($input['required'] ? 'required' : '') . '>';
+            if ($name === 'content') {
+                $html .= '<textarea id="' . $input['id'] . '" class="' . $input['class'] . '" placeholder="' . $input['placeholder'] . '" name="' . $name . '" ' . ($input['required'] ? 'required' : '') . '></textarea>';
             } else {
-                // Gérer le cas où la clé 'type' n'est pas définie
+                $html .= '<input type="' . $input['type'] . '" id="' . $input['id'] . '" class="' . $input['class'] . '" placeholder="' . $input['placeholder'] . '" name="' . $name . '" value="' . $this->getValue($name) . '" ' . ($input['required'] ? 'required' : '') . '>';
             }
     
             $html .= '</div>';
@@ -95,17 +97,30 @@ class CreatePageForm extends Validator
         $html .= '<button type="submit">' . $config['config']['submit'] . '</button>';
         $html .= '<button type="reset">' . $config['config']['reset'] . '</button>';
         $html .= '</form>';
+        $html .= '<script src="https://cdn.tiny.cloud/1/9i4ty3dj7s5dyw4g2xbzg2u7udwf4mliqo7r71asossk42gb/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>';
+        $html .= '<link rel="stylesheet" href="https://cdn.tiny.cloud/1/9i4ty3dj7s5dyw4g2xbzg2u7udwf4mliqo7r71asossk42gb/tinymce/5/skins/ui/oxide/content.min.css">';
+        $html .= '<link rel="stylesheet" href="https://cdn.tiny.cloud/1/9i4ty3dj7s5dyw4g2xbzg2u7udwf4mliqo7r71asossk42gb/tinymce/5/skins/ui/oxide/skin.min.css">';
+        $html .= '<script>
+            window.addEventListener("DOMContentLoaded", function() {
+                tinymce.init({
+                    selector: ".wysiwyg",
+                    plugins: "link image lists",
+                    toolbar: "undo redo | formatselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | image link | removeformat",
+                });
+            });
+        </script>';
+        
     
         return $html;
     }
+    
     public function getValue($name)
     {
         // Vérifier si la valeur existe dans les données soumises
         if (isset($_POST[$name])) {
             return $_POST[$name];
         }
-
+    
         return '';
     }
- 
 }
