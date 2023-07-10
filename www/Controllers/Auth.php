@@ -78,6 +78,7 @@ class Auth
             $user->setRoleId(2);
             $user->setCountry("FR");
             $user->setVerifCode($verif_code);
+            $user->setDateInserted(date('Y-m-d H:i:s'));
 
             // Vérifier si l'email existe déjà dans la base de données
             $email = $_POST["email"];

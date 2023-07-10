@@ -16,8 +16,8 @@ class User extends SQL
     protected String $pwd;
     protected String $country;
     protected Int $status = 0;
-    private ?String $date_inserted;
-    private ?String $date_updated;
+    protected ?String $date_inserted;
+    protected ?String $date_updated;
     protected ?String $token;
 
     //Connexion with singleton
@@ -140,18 +140,22 @@ class User extends SQL
         $this->status = $status;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getDateUpdated(): \DateTime
+    public function getDateInserted(): ?string
+    {
+        return $this->date_inserted;
+    }
+
+    public function setDateInserted(?string $date_inserted): void
+    {
+        $this->date_inserted = $date_inserted;
+    }
+
+    public function getDateUpdated(): ?string
     {
         return $this->date_updated;
     }
 
-    /**
-     * @param \DateTime $date_updated
-     */
-    public function setDateUpdated(\DateTime $date_updated): void
+    public function setDateUpdated(?string $date_updated): void
     {
         $this->date_updated = $date_updated;
     }

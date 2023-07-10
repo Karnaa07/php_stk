@@ -48,6 +48,7 @@ class UserCrud
         $user->setPwd($_POST["pwd"]);
         $user->setRoleId(2);
         $user->setCountry("FR");
+        $user->setDateInserted(date('Y-m-d H:i:s'));
 
         // Vérifier si l'email existe déjà dans la base de données
         $email = $_POST["email"];
@@ -76,7 +77,7 @@ class UserCrud
         // Si toutes les conditions sont vérifiées, enregistrez l'utilisateur et affichez un message de succès
         $user->save();
         echo "Votre compte a bien été créé. Vous allez être redirigé vers la page de connexion.";
-        header('Refresh: 2; URL=/login');
+        header('Refresh: 2; URL=/users');
     }
 
     $view->assign("formErrors", $form->errors);
@@ -144,15 +145,28 @@ class UserCrud
           $user->setEmail($_POST["email"]);
           $user->setPwd($_POST["pwd"]);
           $user->setCountry("FR");
+          $user->setDateUpdated(date('Y-m-d H:i:s'));
+          
+          // Si toutes les conditions sont vérifiées, enregistrez l'utilisateur et affichez un message de succès
           $user->save();
-  
+          echo "Le compte a bien été modifié. Vous allez être redirigé vers la page des users.";
+          header('Refresh: 2; URL=/users');
       }
   }
 
 
-  public function delete()
+    public function delete()
     {
         $id = $_GET['id'];
+
+        // Vérifier si la session est active avec un token
+        $currentUserId = $_SESSION["user"];
+
+        if ($id == $currentUserId) {
+            echo "Vous ne pouvez pas supprimer votre propre compte.";
+            header('Refresh: 2; URL=/users');
+            exit();
+        }
 
         // Récupérer l'utilisateur à supprimer depuis la base de données
         $user = \App\Models\User::populate($id);
@@ -169,4 +183,5 @@ class UserCrud
         header('Location: /users');
         exit();
     }
+
 }
