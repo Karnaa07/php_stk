@@ -15,16 +15,16 @@ class View {
 
     }
 
-    public function setH1Title(string $title): void
+    public function render(): void
     {
-        $this->h1Title = $title;
-    }
+        extract($this->data);
 
-    public function setPageTitle(string $title): void
-    {
-        $this->pageTitle = $title;
-    }
+        ob_start();
+        include $this->view;
+        $content = ob_get_clean();
 
+        include $this->template;
+    }
 
     public function assign(String $key, $value): void
     {
@@ -66,7 +66,4 @@ class View {
         include $this->template;
        
     }
-
-
-    
 }

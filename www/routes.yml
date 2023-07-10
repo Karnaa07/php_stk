@@ -23,6 +23,14 @@ new_pass:
   controller: Auth
   action: change
 
+create-page:
+  controller: Page
+  action: create
+
+create-article:
+  controller: Article
+  action: create
+
 
 # // Routes du Front
 home:
@@ -41,14 +49,28 @@ page:
   controller: Page
   action: index
 
-create-page:
-  controller: Page
-  action: create
-
 article:
   controller: Article
   action: index
 
-create-article:
-  controller: Article
+
+users:
+  controller: UserCrud
+  action: index
+
+users-create:
+  controller: UserCrud
   action: create
+
+users-update:
+  path: users-update
+  controller: UserCrud
+  action: edit
+
+users-delete:
+  path: /users-delete
+  controller: UserCrud
+  action: delete
+
+
+

@@ -79,7 +79,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="#">
+                            <a href="/users">
                                 <span class="material-icons-sharp">
                                     person
                                 </span>
