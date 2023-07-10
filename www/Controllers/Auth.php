@@ -5,10 +5,12 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Core\Validator;
 use App\Core\AuthMiddleware;
+use App\Core\Mail;
 use App\Forms\Register;
 use App\Forms\Login;
 use App\Forms\Change;
 use App\Models\User;
+
 
 class Auth
 {
@@ -66,12 +68,16 @@ class Auth
         // Formulaire soumis et valide ?
         if ($form->isSubmited() && $form->isValid()) {
             $user = new User();
+            $mail = new Mail();
+            $verif_code = substr(number_format(time() * rand(),0,'',''),0,6);
+            $mail->send_mail("waveflow278@gmail.com", $verif_code);
             $user->setFirstname($_POST["firstname"]);
             $user->setLastname($_POST["lastname"]);
             $user->setEmail($_POST["email"]);
             $user->setPwd($_POST["pwd"]);
             $user->setRoleId(2);
             $user->setCountry("FR");
+            $user->setVerifCode($verif_code);
 
             // Vérifier si l'email existe déjà dans la base de données
             $email = $_POST["email"];
@@ -98,6 +104,7 @@ class Auth
             }
             
             // Si toutes les conditions sont vérifiées, enregistrez l'utilisateur et affichez un message de succès
+
             $user->save();
             echo "Votre compte a bien été créé. Vous allez être redirigé vers la page de connexion.";
             header('Refresh: 2; URL=/login');

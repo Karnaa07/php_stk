@@ -20,23 +20,22 @@ class Mail {
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'waveflow.cjq@gmail.com';              //SMTP username
-            $mail->Password   = 'WLS-85srmEv!q:T!';                        //SMTP password
+            $mail->Username   = 'waveflow278@gmail.com';              //SMTP username
+            $mail->Password   = 'waveflow1234';                        //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;             //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom('waveflow.cjq@gmail.com', 'Reinitialisation de votre mot de passe');
-            $mail->addAddress('cyvars@myges.fr', 'clem user');     //DESTINATAIRE
+            $mail->setFrom('waveflow278@gmail.com', 'Waveflow');
+            $mail->addAddress('waveflow278@gmail.com', 'Salut mec');     //DESTINATAIRE
 
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = 'Salut le boss';
-            $mail->Body    = 
-            '
-                <b> Mot de passe ou<blié ?/b> <br>
-                <a href="http://localhost/forget"> cliquez sur ce lien pour réinitialiser votre mot de passe </a>
-            ';// href a
+
+            
+            $mail->Subject = 'Email verification code';
+            $mail->Body    = 'Your verification code is: ' . $verifation_code;
+
             //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();

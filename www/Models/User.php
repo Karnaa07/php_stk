@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Core\SQL;
+use App\Core\Mail;
+
 use PDO;
 
 class User extends SQL
@@ -193,6 +195,16 @@ class User extends SQL
     public function setRoleId(int $role_id): void
     {
         $this->role_id = $role_id;
+    }
+
+    public function getVerifCode(): int|null
+    {
+        return $this->verif_code;
+    }
+
+    public function setVerifCode(int $verif_code): void
+    {
+        $this->verif_code = $verif_code;
     }
 
 
