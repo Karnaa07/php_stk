@@ -118,7 +118,7 @@ class UserCrud
         $view->assign("action", "edit"); // Ajouter cette ligne pour définir la valeur de $action
        // $view->render();
         if ($updateForm->isSubmited() && $updateForm->isValid()) {
-            echo "Le formulaire est valide.";
+            //echo "Le formulaire est valide.";
             $user = new User();
             $user= $user->populate($id);
             $user->setFirstname($_POST["firstname"]);
@@ -130,7 +130,7 @@ class UserCrud
     
         }
         else{
-            echo "Le formulaire est invalide.";
+           // echo "Le formulaire est invalide.";
         }
     }
 
@@ -160,47 +160,4 @@ class UserCrud
 
 
 }
-    // public function update($id)
-    // {
-    //     // Récupérer l'utilisateur à mettre à jour depuis la base de données
-    //     $user = User::find($id);
-
-    //     // Vérifier si l'utilisateur existe
-    //     if (!$user) {
-    //         // Gérer l'erreur, utilisateur non trouvé
-    //         echo "Utilisateur non trouvé.";
-    //         exit();
-    //     }
-
-    //     // Récupérer les données du formulaire
-    //     $data = $_POST;
-
-    //     // Valider les données du formulaire
-    //     $updateForm = new UpdateForm();
-    //     $validationResult = $updateForm->validate($data);
-
-    //     if (!$validationResult['isValid']) {
-    //         // Gérer l'erreur de validation du formulaire
-    //         echo "Erreur de validation du formulaire.";
-    //         exit();
-    //     }
-
-    //     // Mettre à jour les propriétés de l'utilisateur à partir des données reçues
-    //     $user->setFirstname($data['firstname']);
-    //     $user->setLastname($data['lastname']);
-    //     $user->setEmail($data['email']);
-    //     $user->setPwd($data['pwd']);
-    //     $user->setCountry($data['country']);
-
-    //     // Enregistrer les modifications de l'utilisateur dans la base de données
-    //     $user->save();
-
-    //     // Afficher le formulaire de mise à jour dans la vue
-    //     $updateForm->renderForm();
-
-    //     // Rediriger vers la liste des utilisateurs ou afficher un message de succès
-    //     header('Location: /users');
-    //     exit();
-        
-    // }
-    
+   

@@ -26,21 +26,21 @@ class User extends SQL
         $this->pdo = SQL::getInstance()->getConnection();
     }
     public static function find($id)
-{
-    $pdo = SQL::getInstance()->getConnection();
+    {
+        $pdo = SQL::getInstance()->getConnection();
 
-    $statement = $pdo->prepare('SELECT * FROM esgi_user WHERE id = :id');
-    $statement->bindValue(':id', $id);
-    $statement->execute();
+        $statement = $pdo->prepare('SELECT * FROM esgi_user WHERE id = :id');
+        $statement->bindValue(':id', $id);
+        $statement->execute();
 
-    $user = $statement->fetch(PDO::FETCH_ASSOC);
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-    if ($user) {
-        return $user;
+        if ($user) {
+            return $user;
+        }
+
+        return null; // Aucun enregistrement trouvé avec l'ID spécifié
     }
-
-    return null; // Aucun enregistrement trouvé avec l'ID spécifié
-}
 
     /**
      * @return int

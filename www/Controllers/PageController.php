@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Models\Page;
 use App\Forms\CreatePageForm;
-use App\Forms\Register;
 
 class PageController
 {

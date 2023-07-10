@@ -83,51 +83,51 @@ class UpdateForm extends Validator
 
         return $this->config;
     }
-    public function validate(array $data): array
-    {
-        $errors = [];
+    // public function validate(array $data): array
+    // {
+    //     $errors = [];
 
-        // Valider les champs du formulaire
-        // Par exemple, valider le champ "firstname"
-        if (empty($data['firstname'])) {
-            $errors['firstname'] = "Le prénom est requis.";
-        } elseif (strlen($data['firstname']) < 2 || strlen($data['firstname']) > 60) {
-            $errors['firstname'] = "Le prénom doit faire entre 2 et 60 caractères.";
-        }
+    //     // Valider les champs du formulaire
+    //     // Par exemple, valider le champ "firstname"
+    //     if (empty($data['firstname'])) {
+    //         $errors['firstname'] = "Le prénom est requis.";
+    //     } elseif (strlen($data['firstname']) < 2 || strlen($data['firstname']) > 60) {
+    //         $errors['firstname'] = "Le prénom doit faire entre 2 et 60 caractères.";
+    //     }
 
-        // Valider les autres champs du formulaire de la même manière
+    //     // Valider les autres champs du formulaire de la même manière
 
-        $isValid = empty($errors);
+    //     $isValid = empty($errors);
 
-        return [
-            'isValid' => $isValid,
-            'errors' => $errors
-        ];
-    }
+    //     return [
+    //         'isValid' => $isValid,
+    //         'errors' => $errors
+    //     ];
+    // }
 
-    public function renderForm()
-    {
-        $config = $this->getConfig();
+    // public function renderForm()
+    // {
+    //     $config = $this->getConfig();
 
-        // Afficher le formulaire avec les champs et les attributs configurés
-        echo '<form method="' . $config['config']['method'] . '" action="' . $config['config']['action'] . '" id="' . $config['config']['id'] . '" class="' . $config['config']['class'] . '">';
+    //     // Afficher le formulaire avec les champs et les attributs configurés
+    //     echo '<form method="' . $config['config']['method'] . '" action="' . $config['config']['action'] . '" id="' . $config['config']['id'] . '" class="' . $config['config']['class'] . '">';
 
-        // Afficher les champs du formulaire
-        foreach ($config['inputs'] as $name => $input) {
-            echo '<div class="form-group">';
-            echo '<label for="' . $input['id'] . '">' . ucfirst($name) . '</label>';
-            if (isset($input['type'])) {
-            echo '<input type="' . $input['type'] . '" id="' . $input['id'] . '" class="' . $input['class'] . '" placeholder="' . $input['placeholder'] . '" name="' . $name . '" value="' . $this->getValue($name) . '" ' . ($input['required'] ? 'required' : '') . '>';
-            } else {
-                // Gérer le cas où la clé 'type' n'est pas définie
-            }echo '</div>';
-        }
+    //     // Afficher les champs du formulaire
+    //     foreach ($config['inputs'] as $name => $input) {
+    //         echo '<div class="form-group">';
+    //         echo '<label for="' . $input['id'] . '">' . ucfirst($name) . '</label>';
+    //         if (isset($input['type'])) {
+    //         echo '<input type="' . $input['type'] . '" id="' . $input['id'] . '" class="' . $input['class'] . '" placeholder="' . $input['placeholder'] . '" name="' . $name . '" value="' . $this->getValue($name) . '" ' . ($input['required'] ? 'required' : '') . '>';
+    //         } else {
+    //             // Gérer le cas où la clé 'type' n'est pas définie
+    //         }echo '</div>';
+    //     }
 
-        echo '<button type="submit">' . $config['config']['submit'] . '</button>';
-        echo '<button type="reset">' . $config['config']['reset'] . '</button>';
+    //     echo '<button type="submit">' . $config['config']['submit'] . '</button>';
+    //     echo '<button type="reset">' . $config['config']['reset'] . '</button>';
 
-        echo '</form>';
-    }
+    //     echo '</form>';
+    // }
     public function getValue($name)
     {
         // Vérifier si la valeur existe dans les données soumises

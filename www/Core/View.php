@@ -6,8 +6,8 @@ class View {
     private String $view;
     private String $template;
     private $data = [];
-    private string $pageTitle = '';
-    private string $h1Title = '';
+    //private string $pageTitle = '';
+    //private string $h1Title = '';
 
     public function __construct(String $view, String $template = "back") {
         $this->setView($view);

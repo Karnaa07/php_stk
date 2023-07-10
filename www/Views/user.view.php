@@ -50,6 +50,7 @@
 <?php //$updateForm->renderForm(); ?>
 <?php $this->partial('form', $updateForm); ?>
 <a href="/users" class="btn btn-primary">Retour à la liste des utilisateurs</a>
+
 <?php elseif ($action === 'delete'): ?>
     <h1>Supprimer un utilisateur</h1>
 
