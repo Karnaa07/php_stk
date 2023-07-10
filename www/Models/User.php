@@ -26,23 +26,6 @@ class User extends SQL
         $this->table = "esgi_".end($classExploded);
     }
 
-    public static function find($id)
-    {
-        $pdo = SQL::getInstance()->getConnection();
-
-        $statement = $pdo->prepare('SELECT * FROM esgi_user WHERE id = :id');
-        $statement->bindValue(':id', $id);
-        $statement->execute();
-
-        $user = $statement->fetch(PDO::FETCH_ASSOC);
-
-        if ($user) {
-            return $user;
-        }
-
-        return null; // Aucun enregistrement trouvé avec l'ID spécifié
-    }
-
     /**
      * @return Int
      */
@@ -202,16 +185,16 @@ class User extends SQL
         $this->token = $token;
     }
 
-    public function all($limit = 100, $offset = 0): array
+    public function getRoleId(): int|null
     {
-        $query = "SELECT * FROM " . $this->table . " LIMIT :limit OFFSET :offset";
-        $statement = $this->pdo->prepare($query);
-        $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
-        $statement->bindValue(':offset', $offset, PDO::PARAM_INT);
-        $statement->execute();
+        return $this->role_id;
+    }  
 
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    public function setRoleId(int $role_id): void
+    {
+        $this->role_id = $role_id;
     }
+
 
     public function delete()
     {

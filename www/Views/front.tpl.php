@@ -53,9 +53,11 @@
 
 							  <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 							    <ul class="navbar-nav">
-									<?php if (isset($_SESSION["user"])): ?>
+									<?php if (isset($_SESSION["role_id"]) && $_SESSION["role_id"] == 1): ?>
 											<li><a href="/dashboard">Dashboard</a></li>
 									<?php endif; ?>
+
+
 									<li><a href="/">Accueil</a></li>
 									<li><a href="/about-us">Qui nous sommes ?</a></li>
 									<li><a href="/page">Pages</a></li>

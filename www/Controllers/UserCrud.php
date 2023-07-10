@@ -3,10 +3,11 @@
 namespace App\Controllers;
 
 use App\Core\View;
-use App\Models\User;
+use App\Core\Validator;
+use App\Core\AuthMiddleware;
 use App\Forms\Register;
 use App\Forms\UpdateForm;
-
+use App\Models\User;
 
 
 class UserCrud
@@ -34,35 +35,52 @@ class UserCrud
 
   public function create()
   { 
-      $form = new Register();
-      $view = new View("Auth/register", "auth");
-      $view->assign("form", $form->getConfig());
-  
-      // Formulaire soumis et valide ?
-      if ($form->isSubmited() && $form->isValid()) {
-          $user = new User();
-          $user->setFirstname($_POST["firstname"]);
-          $user->setLastname($_POST["lastname"]);
-          $user->setEmail($_POST["email"]);
-          $user->setPwd($_POST["pwd"]);
-          $user->setCountry("FR");
-  
-          // Vérifier si l'email existe déjà dans la base de données
-          $email = $_POST["email"];
-          $existingUser = $user->getOneWhere(["email" => $email]);
-  
-          if ($existingUser) {
-              echo "Cet email est déjà utilisé !";
-          } else {
-              $user->save();
-              echo "Votre compte a bien été créé !";
-              header('Location: /users');
-              exit();
-          }
-      }
-      
-      $view->assign("formErrors", $form->errors);
-  }
+    $form = new Register();
+    $view = new View("Auth/register", "auth");
+    $view->assign("form", $form->getConfig());
+
+    // Formulaire soumis et valide ?
+    if ($form->isSubmited() && $form->isValid()) {
+        $user = new User();
+        $user->setFirstname($_POST["firstname"]);
+        $user->setLastname($_POST["lastname"]);
+        $user->setEmail($_POST["email"]);
+        $user->setPwd($_POST["pwd"]);
+        $user->setRoleId(2);
+        $user->setCountry("FR");
+
+        // Vérifier si l'email existe déjà dans la base de données
+        $email = $_POST["email"];
+        $existingUser = $user->getOneWhere(["email" => $email]);
+
+        if (!Validator::checkEmail($_POST["email"])) {
+            echo "L'adresse email n'est pas valide.";
+            return;
+        }
+
+        if ($existingUser) {
+            echo "Cet email est déjà utilisé !";
+            return;
+
+        if (!Validator::checkPassword($_POST["pwd"])) {
+            echo "Votre mot de passe doit faire au minimum 8 caractères avec des minuscules, des majuscules et des chiffres.";
+            return;
+        }
+
+        if ($_POST["pwd"] !== $_POST["pwdConfirm"]) {
+            echo "Les mots de passe ne correspondent pas.";
+            return;
+        }
+
+        } else {
+            $user->save();
+            echo("Votre compte à bien été créé, vous allez être redirigé vers la page de connexion");
+            header('Refresh: 2; URL=/login');
+        }
+    }
+
+    $view->assign("formErrors", $form->errors);
+    }
   
 
 
@@ -96,7 +114,8 @@ class UserCrud
       $id = $_GET['id'];
 
       // Récupérer l'utilisateur à modifier depuis la base de données
-      $user = User::find($id);
+      $userModel = new User();
+      $user = $userModel->find($id);
       //var_dump($user);
 
       // Vérifier si l'utilisateur existe

@@ -41,10 +41,11 @@ class Auth
                 $_SESSION["user"] = $user->getId();
                 $_SESSION["firstname"] = $user->getFirstname();
                 $_SESSION["token"] = $user->getToken();
+                $_SESSION["role_id"] = $user->getRoleId();
                 $user->save();
 
                 // Redirigez l'utilisateur vers la page d'accueil ou une autre page appropriée
-                header('Location: /dashboard');
+                header('Location: /');
                 exit;
             } else {
                 // Les informations d'identification sont incorrectes
@@ -69,6 +70,7 @@ class Auth
             $user->setLastname($_POST["lastname"]);
             $user->setEmail($_POST["email"]);
             $user->setPwd($_POST["pwd"]);
+            $user->setRoleId(2);
             $user->setCountry("FR");
 
             // Vérifier si l'email existe déjà dans la base de données
@@ -119,6 +121,7 @@ class Auth
             unset($_SESSION["user"]);
             unset($_SESSION["token"]);
             unset($_SESSION["firstname"]);
+            unset($_SESSION["role_id"]);
         }
 
         // Redirigez l'utilisateur vers la page de connexion ou une autre page appropriée
