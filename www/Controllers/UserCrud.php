@@ -57,26 +57,26 @@ class UserCrud
             echo "L'adresse email n'est pas valide.";
             return;
         }
-
+        
         if ($existingUser) {
             echo "Cet email est déjà utilisé !";
             return;
-
+        }
+        
         if (!Validator::checkPassword($_POST["pwd"])) {
             echo "Votre mot de passe doit faire au minimum 8 caractères avec des minuscules, des majuscules et des chiffres.";
             return;
         }
-
+        
         if ($_POST["pwd"] !== $_POST["pwdConfirm"]) {
             echo "Les mots de passe ne correspondent pas.";
             return;
         }
-
-        } else {
-            $user->save();
-            echo("Votre compte à bien été créé, vous allez être redirigé vers la page de connexion");
-            header('Refresh: 2; URL=/login');
-        }
+        
+        // Si toutes les conditions sont vérifiées, enregistrez l'utilisateur et affichez un message de succès
+        $user->save();
+        echo "Votre compte a bien été créé. Vous allez être redirigé vers la page de connexion.";
+        header('Refresh: 2; URL=/login');
     }
 
     $view->assign("formErrors", $form->errors);
