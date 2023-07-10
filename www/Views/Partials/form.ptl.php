@@ -22,7 +22,7 @@
 
     <input type="submit" name="submit" class="form-submit" value="<?= $config["config"]["submit"] ?>">
 
-    <?php if ($_SERVER['REQUEST_URI'] === '/l'): ?>
+    <?php if ($_SERVER['REQUEST_URI'] === '/login'): ?>
         <input type="button" class="form-submit" value="<?= $config["config"]["not-register"] ?>" onclick="window.location.href = '/register'">
     <?php endif; ?>
 
