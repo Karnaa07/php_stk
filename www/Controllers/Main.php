@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Core\AuthMiddleware;
-use App\Controller\Auth;
 
 
 class Main
@@ -26,5 +25,4 @@ class Main
         $view = new View("Main/aboutUs", "front");
         AuthMiddleware::assignPseudoToView($view);
     }
-
 }

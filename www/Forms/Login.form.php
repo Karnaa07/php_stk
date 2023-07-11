@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Forms;
+
 use App\Core\Validator;
 
 class Login extends Validator
@@ -22,7 +24,7 @@ class Login extends Validator
             "inputs" => [
                 "email" => [
                     "id" => "register-form-email",
-                    "label" => "Email", 
+                    "label" => "Email",
                     "class" => "form-input",
                     "placeholder" => "Votre email",
                     "type" => "email",
@@ -37,9 +39,9 @@ class Login extends Validator
                     "type" => "password",
                     "error" => "Votre mot de passe doit faire au minimum 8 caractères avec minuscules, majuscules et chiffres",
                     "required" => true
-                ]                
+                ]
             ]
         ];
-        return $this->config;        
+        return $this->config;
     }
 }

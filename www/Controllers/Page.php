@@ -8,22 +8,22 @@ use App\Models\Page as ModelPage;
 use App\Forms\Page as FormPage;
 
 
-class Page{
+class Page
+{
+    public function index(): void
+    {
+        $pageModel = new ModelPage();
+        $pages = $pageModel->getAll();
 
-  public function index(): void
-  {
-      $pageModel = new ModelPage();
-      $pages = $pageModel->getAll();
-
-      $view = new View("Page/index", "front");
-      AuthMiddleware::assignPseudoToView($view);
-      $view->assign("titleseo", "supernouvellepage");
-      $view->assign("title", "Liste des pages");
-      $view->assign("pages", $pages);
-  }
+        $view = new View("Page/index", "front");
+        AuthMiddleware::assignPseudoToView($view);
+        $view->assign("titleseo", "supernouvellepage");
+        $view->assign("title", "Liste des pages");
+        $view->assign("pages", $pages);
+    }
 
 
-  public function create(): void
+    public function create(): void
     {
         // Instancier le formulaire de création de page
         $form = new FormPage();

@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Core\Validator;
-use App\Core\AuthMiddleware;
 use App\Forms\Register;
 use App\Forms\UpdateForm;
 use App\Models\User;

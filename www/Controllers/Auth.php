@@ -15,7 +15,6 @@ use App\Models\User;
 
 class Auth
 {
-
     public function login(): void
     {
         if (isset($_SESSION["user"])) { //Si je suis déja connecté je suis redirigé vers la page d'accueil

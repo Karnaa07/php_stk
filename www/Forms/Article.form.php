@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Forms;
+
 use App\Core\Validator;
 
 class Article extends Validator

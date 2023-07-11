@@ -23,7 +23,8 @@
 .crud-actions {
   display: flex;
   gap: 10px;
-  justify-content: center; /* Ajout de l'alignement horizontal centré */
+  justify-content: center;
+  /* Ajout de l'alignement horizontal centré */
 }
 
 .crud-actions a {
@@ -83,6 +84,7 @@
 .crud-back a:hover {
   background-color: #111;
 }
+
 .crud-container {
   margin: 20px;
   font-family: Arial, sans-serif;

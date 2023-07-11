@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Core\SQL;
 
-use DateTime;
 use PDO;
 
 class User extends SQL
@@ -26,7 +25,7 @@ class User extends SQL
     {
         $this->pdo = SQL::getInstance()->getConnection();
         $classExploded = explode("\\", get_called_class());
-        $this->table = "esgi_".end($classExploded);
+        $this->table = "esgi_" . end($classExploded);
     }
 
     /**
@@ -179,7 +178,7 @@ class User extends SQL
     public function getRoleId(): int|null
     {
         return $this->role_id;
-    }  
+    }
 
     public function setRoleId(int $role_id): void
     {

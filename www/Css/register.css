@@ -1,52 +1,53 @@
 *,
 *:before,
-*:after{
+*:after {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     background-image: url(../assets/background_register.svg);
     background-size: cover;
     color: white;
 }
 
 /* Formulaire */
-form{
+form {
     height: 630px;
     width: 400px;
-    background-color: rgba(255,255,255,0.13);
+    background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 50px 35px;
 }
 
-form *{
-    font-family: 'Poppins',sans-serif;
+form * {
+    font-family: 'Poppins', sans-serif;
     color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
 }
 
-label{
+label {
     display: block;
     font-size: 16px;
     font-weight: 500;
 }
 
-input{
+input {
     display: block;
-    height: 40px; /* Ajuster la hauteur */
+    height: 40px;
+    /* Ajuster la hauteur */
     width: 100%;
-    background-color: rgba(255,255,255,0.07);
+    background-color: rgba(255, 255, 255, 0.07);
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;
@@ -61,7 +62,7 @@ input{
     margin-bottom: 20px;
 }
 
-.form-input::placeholder{
+.form-input::placeholder {
     color: #e5e5e5;
 }
 
@@ -71,7 +72,7 @@ input{
     display: inline-block;
     padding: 10px 20px;
     margin-right: 10px;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     color: black;
     border: none;
     border-radius: 3px;

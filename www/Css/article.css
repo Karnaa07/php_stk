@@ -18,8 +18,10 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1200px; /* Ajuster la largeur maximale selon vos besoins */
-  margin: 0 auto; /* Centrer l'ensemble des cartes horizontalement */
+  max-width: 1200px;
+  /* Ajuster la largeur maximale selon vos besoins */
+  margin: 0 auto;
+  /* Centrer l'ensemble des cartes horizontalement */
 }
 
 .article-card {

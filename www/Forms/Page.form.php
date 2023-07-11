@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Forms;
+
 use App\Core\Validator;
 
 class Page extends Validator
@@ -49,8 +51,6 @@ class Page extends Validator
             ]
         ];
 
-        return $this->config;        
+        return $this->config;
     }
 }
-
-?>

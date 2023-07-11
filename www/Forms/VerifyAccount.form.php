@@ -46,4 +46,3 @@ class VerifyAccount extends Validator
         return $this->config;
     }
 }
-

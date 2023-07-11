@@ -1,9 +1,11 @@
 <?php
+
 namespace App\Core;
 
 use PDO;
 
-class SQL{
+class SQL
+{
 
     private static $instance;
     protected $pdo;
@@ -39,18 +41,18 @@ class SQL{
     {
         $class = get_called_class();
         $objet = new $class();
-        return $objet->getOneWhere(["id"=>$id]);
+        return $objet->getOneWhere(["id" => $id]);
     }
 
     // Méthode pour obtenir un élément d'une table en fonction de son id
     public function getOneWhere(array $where): object|bool
     {
         $sqlWhere = [];
-        foreach ($where as $column=>$value) {
-            $sqlWhere[] = $column."=:".$column;
+        foreach ($where as $column => $value) {
+            $sqlWhere[] = $column . "=:" . $column;
         }
-        $queryPrepared = $this->pdo->prepare("SELECT * FROM ".$this->table." WHERE ".implode(" AND ", $sqlWhere));
-        $queryPrepared->setFetchMode( \PDO::FETCH_CLASS, get_called_class());
+        $queryPrepared = $this->pdo->prepare("SELECT * FROM " . $this->table . " WHERE " . implode(" AND ", $sqlWhere));
+        $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
         $queryPrepared->execute($where);
         return $queryPrepared->fetch();
     }
@@ -68,8 +70,8 @@ class SQL{
     // Méthode pour obtenir tous les éléments d'une table
     public function getAll(): array|bool
     {
-        $queryPrepared = $this->pdo->prepare("SELECT * FROM ".$this->table);
-        $queryPrepared->setFetchMode( \PDO::FETCH_CLASS, get_called_class());
+        $queryPrepared = $this->pdo->prepare("SELECT * FROM " . $this->table);
+        $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
         $queryPrepared->execute();
         return $queryPrepared->fetchAll();
     }

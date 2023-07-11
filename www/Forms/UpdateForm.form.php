@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Forms;
+
 use App\Core\Validator;
 
 class UpdateForm extends Validator
@@ -22,7 +24,7 @@ class UpdateForm extends Validator
             "inputs" => [
                 "firstname" => [
                     "id" => "udape-form-firstname",
-                    "label" => "Prénom", 
+                    "label" => "Prénom",
                     "class" => "form-input",
                     "placeholder" => "Votre prénom",
                     "type" => "text",
@@ -33,7 +35,7 @@ class UpdateForm extends Validator
                 ],
                 "lastname" => [
                     "id" => "udape-form-lastname",
-                    "label" => "Nom", 
+                    "label" => "Nom",
                     "class" => "form-input",
                     "placeholder" => "Votre nom",
                     "type" => "text",
@@ -75,7 +77,7 @@ class UpdateForm extends Validator
 
         return $this->config;
     }
-  
+
     public function getValue($name)
     {
         // Vérifier si la valeur existe dans les données soumises
