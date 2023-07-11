@@ -28,4 +28,4 @@
   </defs>
 </svg>
 
-<a href="/login"><h2>Redirigez-vous</h2></a>
+<a href="/"><h2>Redirigez-vous</h2></a>

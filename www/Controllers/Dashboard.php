@@ -19,8 +19,6 @@ class dashboard
 
         AuthMiddleware::assignPseudoToView($view);
 
-        $view->assign("titleseo", "supernouvellepage");
-
         $articleModel = new ModelArticle();
         $articleCount = $articleModel->countAll();
         $view->assign("articleCount", $articleCount);

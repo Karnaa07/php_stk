@@ -6,9 +6,9 @@
 								<div class="col-md-10 col-12">
 									<div class="banner-content text-center">
 										<h4 class="text-white mb-20 text-uppercase">Discover the Colorful World</h4>
-										<h1 class="text-uppercase text-white">New Adventure</h1>
-										<p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp <br>
-										or incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</p>
+										<h1 class="text-uppercase text-white">Nouvelle aventure</h1>
+										<p class="text-white">Explorez des destinations exotiques, plongez dans des cultures fascinantes et créez des souvenirs inoubliables lors de nos voyages extraordinaires. 
+											Détendez-vous sur des plages de sable blanc, admirez des paysages spectaculaires et découvrez des merveilles naturelles. Rejoignez-nous pour une expérience unique qui restera gravée dans votre mémoire.</p>
 										<a href="#" class="text-uppercase header-btn">Discover Now</a>
 									</div>
 								</div>
@@ -23,9 +23,9 @@
 								<div class="col-md-10 col-12">
 									<div class="banner-content text-center">
 										<h4 class="text-white mb-20 text-uppercase">Discover the Colorful World</h4>
-										<h1 class="text-uppercase text-white">New Trip</h1>
-										<p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp <br>
-										or incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</p>
+										<h1 class="text-uppercase text-white">Nouveau voyage</h1>
+										<p class="text-white">Laissez-vous tenter par de nouvelles aventures et partez à la découverte de destinations captivantes. De la montagne à la mer, en passant par les grandes villes cosmopolites, 
+										nos voyages vous offrent des expériences uniques et des moments magiques. Plongez dans la richesse culturelle des pays que vous visiterez et laissez-vous émerveiller par la beauté du monde qui vous entoure.</p>
 										<a href="#" class="text-uppercase header-btn">Discover Now</a>
 									</div>
 								</div>
@@ -39,9 +39,9 @@
 								<div class="col-md-10 col-12">
 									<div class="banner-content text-center">
 										<h4 class="text-white mb-20 text-uppercase">Discover the Colorful World</h4>
-										<h1 class="text-uppercase text-white">New Experience</h1>
-										<p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp <br>
-										or incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</p>
+										<h1 class="text-uppercase text-white">Nouvelle expérience</h1>
+										<p class="text-white">Vivez des expériences uniques et mémorables lors de nos voyages extraordinaires. Explorez des endroits insolites, goûtez à de délicieuses spécialités culinaires et immergez-vous dans la culture locale. Que vous souhaitiez vous détendre, vous aventurer ou découvrir de nouvelles passions, 
+										nos voyages vous offrent une expérience complète qui éveillera tous vos sens et vous laissera des souvenirs inoubliables.</p>
 										<a href="#" class="text-uppercase header-btn">Discover Now</a>
 									</div>
 								</div>
@@ -56,8 +56,8 @@
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-40 col-lg-8">
 							<div class="title text-center">
-								<h1 class="mb-10">Why Choose Us Your Fitness Builder</h1>
-								<p>Who are in extremely love with eco friendly system.</p>
+								<h1 class="mb-10">Pourquoi choisir WaveFlow ?</h1>
+								<p>Nous sommes profondément attachés à un système respectueux de l'environnement.</p>
 							</div>
 						</div>
 					</div>					
