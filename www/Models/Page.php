@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Core\SQL;
-use PDO;
 
 class Page extends SQL
 {

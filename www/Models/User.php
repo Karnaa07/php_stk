@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Core\SQL;
 
-use PDO;
 
 class User extends SQL
 {
@@ -19,6 +18,7 @@ class User extends SQL
     protected ?String $date_updated;
     protected ?String $token;
     protected String $verif_code;
+    protected String $role_id;
 
     //Connexion with singleton
     public function __construct()

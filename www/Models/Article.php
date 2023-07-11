@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Core\SQL;
-use PDO;
 
 class Article extends SQL
 {
@@ -12,6 +11,7 @@ class Article extends SQL
     protected String $content;
     protected String $slug;
     protected String $createdAt; // Nouvelle propriété pour la date de création
+    protected String $imageUrl; // Nouvelle propriété pour l'URL de l'image
 
 
     //Connexion with singleton
