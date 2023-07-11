@@ -19,6 +19,7 @@ class User extends SQL
     protected ?String $date_inserted;
     protected ?String $date_updated;
     protected ?String $token;
+    protected String $verif_code;
 
     //Connexion with singleton
     public function __construct()
@@ -185,12 +186,12 @@ class User extends SQL
         $this->role_id = $role_id;
     }
 
-    public function getVerifCode(): int|null
+    public function getVerifCode(): string|null
     {
         return $this->verif_code;
     }
 
-    public function setVerifCode(int $verif_code): void
+    public function setVerifCode(string $verif_code): void
     {
         $this->verif_code = $verif_code;
     }
@@ -200,5 +201,4 @@ class User extends SQL
     {
         $this->deleteWhere(['id' => $this->id]);
     }
-
 }

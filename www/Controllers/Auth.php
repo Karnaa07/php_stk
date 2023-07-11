@@ -9,6 +9,7 @@ use App\Core\Mail;
 use App\Forms\Register;
 use App\Forms\Login;
 use App\Forms\Change;
+use App\Forms\VerifyAccount;
 use App\Models\User;
 
 
@@ -17,9 +18,8 @@ class Auth
 
     public function login(): void
     {
-        if (isset($_SESSION["user"])) {
-            // Redirigez l'utilisateur vers le tableau de bord
-            header('Location: /dashboard');
+        if (isset($_SESSION["user"])) { //Si je suis déja connecté je suis redirigé vers la page d'accueil
+            header('Location: /');
             exit;
         }
 
@@ -37,27 +37,31 @@ class Auth
             $user = $user->getOneWhere(["email" => $email]);
 
             if ($user && password_verify($password, $user->getPwd())) {
-                // L'utilisateur est authentifié avec succès
-                // Créez un token et enregistrez-le dans la session
-                $user->generateToken();
-                $_SESSION["user"] = $user->getId();
-                $_SESSION["firstname"] = $user->getFirstname();
-                $_SESSION["token"] = $user->getToken();
-                $_SESSION["role_id"] = $user->getRoleId();
-                $user->save();
+                // Vérification du statut de l'utilisateur
+                if ($user->getStatus() == 1) {
+                    // L'utilisateur est authentifié avec succès
+                    // Créez un token et enregistrez-le dans la session
+                    $user->generateToken();
+                    $_SESSION["user"] = $user->getId();
+                    $_SESSION["firstname"] = $user->getFirstname();
+                    $_SESSION["token"] = $user->getToken();
+                    $_SESSION["role_id"] = $user->getRoleId();
+                    $user->save();
 
-                // Redirigez l'utilisateur vers la page d'accueil ou une autre page appropriée
-                header('Location: /');
-                exit;
+                    // Redirigez l'utilisateur vers la page d'accueil ou une autre page appropriée
+                    header('Location: /');
+                    exit;
+                } else {
+                    // Le statut de l'utilisateur n'est pas activé
+                    echo "Votre compte n'est pas activé. Veuillez vérifier votre e-mail pour activer votre compte.";
+                }
             } else {
                 // Les informations d'identification sont incorrectes
-                echo("Mot de passe ou email incorrect");
+                echo "Mot de passe ou e-mail incorrect";
             }
         }
         $view->assign("formErrors", $form->errors);
     }
-
-
 
     public function register(): void
     {
@@ -68,9 +72,8 @@ class Auth
         // Formulaire soumis et valide ?
         if ($form->isSubmited() && $form->isValid()) {
             $user = new User();
-            // $mail = new Mail();
-            $verif_code = substr(number_format(time() * rand(),0,'',''),0,6);
-            // $mail->send_mail("waveflow278@gmail.com", $verif_code);
+            $mail = new Mail();
+            $verif_code = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
             $user->setFirstname($_POST["firstname"]);
             $user->setLastname($_POST["lastname"]);
             $user->setEmail($_POST["email"]);
@@ -88,32 +91,31 @@ class Auth
                 echo "L'adresse email n'est pas valide.";
                 return;
             }
-            
+
             if ($existingUser) {
                 echo "Cet email est déjà utilisé !";
                 return;
             }
-            
+
             if (!Validator::checkPassword($_POST["pwd"])) {
                 echo "Votre mot de passe doit faire au minimum 8 caractères avec des minuscules, des majuscules et des chiffres.";
                 return;
             }
-            
+
             if ($_POST["pwd"] !== $_POST["pwdConfirm"]) {
                 echo "Les mots de passe ne correspondent pas.";
                 return;
             }
-            
+
             // Si toutes les conditions sont vérifiées, enregistrez l'utilisateur et affichez un message de succès
-
             $user->save();
-            echo "Votre compte a bien été créé. Vous allez être redirigé vers la page de connexion.";
-            header('Refresh: 2; URL=/login');
-            
+            $mail->verif_account($email, $verif_code);
+            echo "Votre compte a bien été créé. Veuillez vérifier votre email pour activer votre compte.";
+            // header('Refresh: 2; URL=/login');
         }
-
         $view->assign("formErrors", $form->errors);
     }
+
 
 
     public function logout(): void
@@ -173,13 +175,40 @@ class Auth
             // Modification du mot de passe
             $user->setPwd($newPassword);
             $user->save();
-            echo"Votre mot de passe à bien été modifié, vous allez être redirigé vers la page de connexion";
+            echo "Votre mot de passe à bien été modifié, vous allez être redirigé vers la page de connexion";
             header('Refresh: 2; URL=/login');
         }
 
         $view->assign("formErrors", $form->errors);
     }
 
+    public function verifyAccount(): void
+    {
+        $form = new VerifyAccount();
+        $view = new View("Auth/verify_account", "auth");
+        $view->assign("form", $form->getConfig());
 
+        // Traitement du formulaire soumis
+        if ($form->isSubmited() && $form->isValid()) {
+            $verificationCode = $_POST["verification_code"];
+            $email = $_POST["email"]; // Récupérez l'e-mail de l'utilisateur à partir de la session ou de toute autre source
 
+            $user = new User();
+            $existingUser = $user->getOneWhere(["email" => $email]);
+
+            if ($existingUser && $existingUser->getVerifCode() === $verificationCode) {
+                // Mettez à jour le statut du compte
+                $existingUser->setStatus(1);
+                $existingUser->save();
+
+                echo "Votre compte a été vérifié avec succès. Vous pouvez maintenant vous connecter.";
+                // Redirigez l'utilisateur vers la page de connexion ou une autre page appropriée
+                header('Refresh: 2; URL=/login');
+            } else {
+                echo "La vérification du compte a échoué. Veuillez vérifier le code de vérification que vous avez fourni.";
+            }
+        }
+
+        $view->assign("formErrors", $form->errors);
+    }
 }

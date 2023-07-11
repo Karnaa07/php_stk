@@ -76,7 +76,7 @@ class UserCrud
         
         // Si toutes les conditions sont vérifiées, enregistrez l'utilisateur et affichez un message de succès
         $user->save();
-        echo "Votre compte a bien été créé. Vous allez être redirigé vers la page de connexion.";
+        echo "Le compte a bien été créé. Vous allez être redirigé vers la gestion des users.";
         header('Refresh: 2; URL=/users');
     }
 
@@ -149,7 +149,7 @@ class UserCrud
           
           // Si toutes les conditions sont vérifiées, enregistrez l'utilisateur et affichez un message de succès
           $user->save();
-          echo "Le compte a bien été modifié. Vous allez être redirigé vers la page des users.";
+          echo "Le compte a bien été modifié. Vous allez être redirigé vers la gestion des users.";
           header('Refresh: 2; URL=/users');
       }
   }

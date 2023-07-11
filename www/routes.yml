@@ -23,6 +23,10 @@ new_pass:
   controller: Auth
   action: change
 
+verify_account:
+  controller: Auth
+  action: verifyAccount
+
 create-page:
   controller: Page
   action: create
