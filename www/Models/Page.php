@@ -7,85 +7,121 @@ use PDO;
 
 class Page extends SQL
 {
+    private int $id = 0;
+    protected string $author;
+    protected string $date;
+    protected string $title;
+    protected string $theme;
+    protected string $color;
+    protected string $content;
 
-  private Int $id = 0;
-  protected String $title;
-  protected String $content;
-  protected String $slug;
+    protected $table = "esgi_pages";
+    
+    public function __construct()
+    {
+        $this->pdo = SQL::getInstance()->getConnection();
+    }
 
-  //Connexion with singleton
-  public function __construct()
-  {
-      $this->pdo = SQL::getInstance()->getConnection();
-      $classExploded = explode("\\", get_called_class());
-      $this->table = "esgi_".end($classExploded);
-  }
+    public static function find($id)
+    {
+        $pdo = SQL::getInstance()->getConnection();
 
-  /**
-   * @return Int
-   */
-  public function getId(): int
-  {
-      return $this->id;
-  }
+        $statement = $pdo->prepare('SELECT * FROM pages WHERE id = :id');
+        $statement->bindValue(':id', $id);
+        $statement->execute();
 
-  /**
-   * @param Int $id
-   */
-  public function setId(int $id): void
-  {
-      $this->id = $id;
-  }
+        $page = $statement->fetch(PDO::FETCH_ASSOC);
 
-  /**
-   * @return String
-   */
-  public function getTitle(): string
-  {
-      return $this->title;
-  }
+        if ($page) {
+            return $page;
+        }
 
-  /**
-   * @param String $title
-   */
-  public function setTitle(string $title): void
-  {
-      $this->title = ucwords(strtolower(trim($title)));
-  }
+        return null;
+    }
 
-  /**
-   * @return String
-   */
-  
-  public function getContent(): string
-  {
-      return $this->content;
-  }
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
-  /**
-   * @param String $content
-   */
-  public function setContent(string $content): void
-  {
-      $this->content = strtoupper(trim($content));
-  }
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
 
-  /**
-   * @return String
-   */
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
 
-  public function getSlug(): string
+    public function setAuthor(string $author): void
+    {
+        $this->author = $author;
+    }
 
-  {
-      return $this->slug;
-  }
+    public function getDate(): string
+    {
+        return $this->date;
+    }
 
-  /**
-   * @param String $slug
-   */
+    public function setDate(string $date): void
+    {
+        $this->date = $date;
+    }
 
-  public function setSlug(string $slug): void
-  {
-      $this->slug = strtolower(trim($slug));
-  }
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
+    public function getTheme(): string
+    {
+        return $this->theme;
+    }
+
+    public function setTheme(string $theme): void
+    {
+        $this->theme = $theme;
+    }
+
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): void
+    {
+        $this->color = $color;
+    }
+
+    public function getContent(): string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): void
+    {
+        $this->content = $content;
+    }
+
+    public function all($limit = 100, $offset = 0): array
+    {
+        $query = "SELECT * FROM " . $this->table . " LIMIT :limit OFFSET :offset";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $statement->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function delete()
+    {
+        $this->deleteWhere(['id' => $this->id]);
+    }
 }

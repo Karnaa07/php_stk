@@ -7,7 +7,7 @@
 		<meta name="description" content="">
 		<meta name="keywords" content="">
 		<meta charset="UTF-8">
-		<title>Adventure</title>
+		<title>WaveFlow</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
 		<!--
@@ -84,9 +84,9 @@
 					<div class="row">
 						<div class="col-lg-5 col-md-6 col-sm-6">
 							<div class="single-footer-widget">
-								<h6>About Us</h6>
+								<h6>À propos de nous</h6>
 								<p>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.
+								Nous sommes un groupe de trois étudiants passionnés d'informatique, composé de Joël, Clément et Quentin. Actuellement en Bachelor en Ingénierie du Web, nous avons créé ce CMS (Système de Gestion de Contenu) dans le cadre de notre projet de fin d'année.
 								</p>
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             		<p class="footer-text">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
@@ -96,7 +96,7 @@
 						<div class="col-lg-5  col-md-6 col-sm-6">
 							<div class="single-footer-widget">
 								<h6>Newsletter</h6>
-								<p>Stay update with our latest</p>
+								<p>Restez à jour </p>
 								<div class="" id="mc_embed_signup">
 
 										<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
@@ -122,8 +122,8 @@
 						</div>
 						<div class="col-lg-2 col-md-6 col-sm-6 social-widget">
 							<div class="single-footer-widget">
-								<h6>Follow Us</h6>
-								<p>Let us be social</p>
+								<h6>Suivez-nous</h6>
+								<p>Rejoignez-nous</p>
 								<div class="footer-social d-flex align-items-center">
 									<a href="#"><i class="fa fa-facebook"></i></a>
 									<a href="#"><i class="fa fa-twitter"></i></a>

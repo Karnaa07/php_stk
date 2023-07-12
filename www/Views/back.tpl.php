@@ -55,7 +55,7 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="/create-page">
+                            <a href="/pages">
                                 <span class="material-icons-sharp">
                                     pages
                                 </span>

@@ -45,10 +45,6 @@ contact:
   controller: Main
   action: contact
 
-page:
-  controller: Page
-  action: index
-
 article:
   controller: Article
   action: index
@@ -72,5 +68,21 @@ users-delete:
   controller: UserCrud
   action: delete
 
+pages:
+  path: /pages
+  controller: PageController
+  action: index
 
+create-page:
+  path: /pages/create
+  controller: PageController
+  action: create
 
+update-page:
+  controller: PageController
+  action: edit
+
+delete-page:
+  path: /pages/delete
+  controller: PageController
+  action: delete
