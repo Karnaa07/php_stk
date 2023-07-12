@@ -1,64 +1,46 @@
 # // Route du back
-default:
-  controller: Main
-  action: home
 
 dashboard:
   controller: Dashboard
   action: board
 
-login:
-  controller: Auth
-  action: login
-
-logout:
-  controller: Auth
-  action: logout
-
+# // Routes de l'authentification
 register:
   controller: Auth
   action: register
-
-new_pass:
-  controller: Auth
-  action: change
 
 verify_account:
   controller: Auth
   action: verifyAccount
 
+login:
+  controller: Auth
+  action: login
+
+forgot_password:
+  controller: Auth
+  action: pwdforgot
+
+new_pass:
+  controller: Auth
+  action: change
+
+logout:
+  controller: Auth
+  action: logout
+
+# // Routes Pages
 create-page:
   controller: Page
   action: create
 
+# // Routes Articles
 create-article:
   controller: Article
   action: create
 
-
-# // Routes du Front
-home:
-  controller: Main
-  action: home
-
-about-us:
-  controller: Main
-  action: aboutUs
-
-contact:
-  controller: Main
-  action: contact
-
-page:
-  controller: Page
-  action: index
-
-article:
-  controller: Article
-  action: index
-
-
-users:
+# // Routes Users
+  users:
   controller: UserCrud
   action: index
 
@@ -75,6 +57,29 @@ users-delete:
   path: /users-delete
   controller: UserCrud
   action: delete
+
+
+# // Routes du Front
+
+default:
+  controller: Main
+  action: home
+
+home:
+  controller: Main
+  action: home
+
+about-us:
+  controller: Main
+  action: aboutUs
+
+page:
+  controller: Page
+  action: index
+
+article:
+  controller: Article
+  action: index
 
 
 

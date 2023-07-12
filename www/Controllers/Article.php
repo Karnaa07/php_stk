@@ -30,7 +30,7 @@ class Article
   public function create(): void
   {
     $form = new FormArticle();
-    $view = new View("Page/create", "back");
+    $view = new View("Article/create", "back");
     AuthMiddleware::assignPseudoToView($view);
     $view->assign("form", $form->getConfig());
 

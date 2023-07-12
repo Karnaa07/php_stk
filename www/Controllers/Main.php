@@ -14,12 +14,7 @@ class Main
         AuthMiddleware::assignPseudoToView($view);
         $view->assign("titleseo", "supernouvellepage");
     }
-
-    public function contact(): void
-    {
-        echo "Page de contact";
-    }
-
+    
     public function aboutUs(): void
     {
         $view = new View("Main/aboutUs", "front");

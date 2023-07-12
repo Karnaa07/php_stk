@@ -10,6 +10,7 @@ class Login extends Validator
     protected array $config = [];
     public function getConfig(): array
     {
+
         $this->config = [
             "config" => [
                 "method" => $this->method,

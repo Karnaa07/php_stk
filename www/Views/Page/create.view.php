@@ -1,1 +1,1 @@
-<?php $this->partial("form", $form)
+<?php $this->partial("form", $form);
