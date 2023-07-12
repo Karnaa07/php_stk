@@ -48,7 +48,7 @@ class Mail
         }
     }
 
-    public function pwd_forget_mail(string $email, string $pwd)
+    public function pwd_forgot(string $email, string $pwd)
     {
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
@@ -57,19 +57,17 @@ class Mail
         $mail->setLanguage('fr', '/optional/path/to/language/directory/');
 
         try {
-            //Server settings
-            // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                   //Enable verbose debug output
+            //Server settings               //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'smtp.gmail.com';                   //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'waveflow.cjq@gmail.com';              //SMTP username
-            $mail->Password   = 'WLS-85srmEv!q:T';                       //SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->Host = 'sandbox.smtp.mailtrap.io';
+            $mail->SMTPAuth = true;
+            $mail->Port = 2525;
+            $mail->Username = 'e2fb6f6d81487d';
+            $mail->Password = 'c51b837de4f1c3';               //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom('waveflow.cjq@gmail.com', SITENAME);
-            $mail->addAddress($email, '');     //DESTINATAIRE
+            $mail->setFrom('waveflow278@gmail.com', 'Waveflow');
+            $mail->addAddress($email, 'Salut mec');     //DESTINATAIRE
 
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML

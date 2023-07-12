@@ -10,6 +10,7 @@ use App\Forms\Register;
 use App\Forms\Login;
 use App\Forms\Change;
 use App\Forms\VerifyAccount;
+use App\Forms\ForgotPassword;
 use App\Models\User;
 
 
@@ -25,6 +26,7 @@ class Auth
         $form = new Login();
         $view = new View("Auth/login", "auth");
         $view->assign("form", $form->getConfig());
+        
 
         // Formulaire soumis et valide
         if ($form->isSubmited() && $form->isValid()) {
@@ -110,7 +112,7 @@ class Auth
             $user->save();
             $mail->verif_account($email, $verif_code);
             echo "Votre compte a bien été créé. Veuillez vérifier votre email pour activer votre compte.";
-            // header('Refresh: 2; URL=/login');
+            header('Refresh: 2; URL=/login');
         }
         $view->assign("formErrors", $form->errors);
     }
@@ -205,6 +207,53 @@ class Auth
                 header('Refresh: 2; URL=/login');
             } else {
                 echo "La vérification du compte a échoué. Veuillez vérifier le code de vérification que vous avez fourni.";
+            }
+        }
+
+        $view->assign("formErrors", $form->errors);
+    }
+
+    public function pwdforgot(): void
+    {
+        $form = new ForgotPassword();
+        $view = new View("Auth/forgot_password", "auth");
+        $view->assign("form", $form->getConfig());
+
+        // Formulaire soumis et valide
+        if ($form->isSubmited() && $form->isValid()) {
+            $email = $_POST["email"];
+
+            // Vérifier si l'utilisateur existe dans la base de données
+            $user = new User();
+            $existingUser = $user->getOneWhere(["email" => $email]);
+
+            if ($existingUser) {
+                // Récupérer les nouveaux mots de passe
+                
+                $newPassword = $_POST["new_password"];
+                $confirmPassword = $_POST["confirm_password"];
+
+                if (!Validator::checkPassword($_POST["new_password"])) {
+                    echo "Votre mot de passe doit faire au minimum 8 caractères avec des minuscules, des majuscules et des chiffres.";
+                    return;
+                }
+
+                // Vérifier la correspondance des mots de passe
+                if ($newPassword !== $confirmPassword) {
+                    echo "Les mots de passe ne correspondent pas.";
+                    return;
+                }
+
+                // Mettre à jour le mot de passe de l'utilisateur dans la base de données
+                $existingUser->setPwd($newPassword);
+                $existingUser->save();
+
+                echo "Votre mot de passe a été réinitialisé avec succès.";
+
+                // Rediriger l'utilisateur vers la page de connexion ou une autre page appropriée
+                header('Refresh: 2; URL=/login');
+            } else {
+                echo "Aucun utilisateur n'est associé à cet e-mail.";
             }
         }
 

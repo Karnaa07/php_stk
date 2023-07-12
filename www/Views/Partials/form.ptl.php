@@ -9,7 +9,6 @@
       class="<?= $config["config"]["class"] ?>">
 
     <?php foreach ($config["inputs"] as $name => $configInput): ?>
-
         <label for="<?= $name ?>"><?= $configInput["label"] ?></label>
         <input name="<?= $name ?>"
                placeholder="<?= $configInput["placeholder"] ?>"
@@ -17,8 +16,13 @@
                id="<?= $name ?>"
                type="<?= $configInput["type"] ?>"
                <?= $configInput["required"] ? "required" : "" ?>><br>
-
     <?php endforeach; ?>
+
+    <?php if ($_SERVER['REQUEST_URI'] === '/login'): ?>
+        <a href="/forgot_password" class="forgot-password-link">
+            Mot de passe oublié ?
+        </a>
+    <?php endif; ?>
 
     <input type="submit" name="submit" class="form-submit" value="<?= $config["config"]["submit"] ?>">
 
