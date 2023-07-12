@@ -73,13 +73,53 @@ about-us:
   controller: Main
   action: aboutUs
 
-page:
-  controller: Page
-  action: index
+contact:
+  controller: Main
+  action: contact
+
+# page:
+#   controller: Page
+#   action: index
 
 article:
   controller: Article
   action: index
 
 
+users:
+  controller: UserCrud
+  action: index
 
+users-create:
+  controller: UserCrud
+  action: create
+
+users-update:
+  path: users-update
+  controller: UserCrud
+  action: edit
+
+users-delete:
+  path: /users-delete
+  controller: UserCrud
+  action: delete
+
+
+pages:
+  path: /pages
+  controller: PageController
+  action: index
+
+create-page:
+  path: /pages/create
+  controller: PageController
+  action: create
+
+update-page:
+  controller: PageController
+  action: edit
+
+delete-page:
+  path: /pages/delete
+  controller: PageController
+  action: delete
