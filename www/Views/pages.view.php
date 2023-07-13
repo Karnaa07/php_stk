@@ -58,10 +58,14 @@
     <link rel="stylesheet" type="text/css" href="/css/createPageform.css">
     <h1>Créer une page</h1>
 
-    <?php echo $createPageForm->renderForm(); ?>
+    <?php echo  $this->partial("form", $form) ?>
 
     <script src="https://cdn.tiny.cloud/1/9i4ty3dj7s5dyw4g2xbzg2u7udwf4mliqo7r71asossk42gb/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
+        //check if the form is submitted
+        
+
+
         tinymce.init({
             selector: '.wysiwyg',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',

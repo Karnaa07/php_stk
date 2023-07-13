@@ -43,6 +43,7 @@ class Validator
         if (empty($this->errors)) {
             return true;
         }
+
         return false;
     }
 

@@ -10,12 +10,27 @@
 
     <?php foreach ($config["inputs"] as $name => $configInput): ?>
         <label for="<?= $name ?>"><?= $configInput["label"] ?></label>
-        <input name="<?= $name ?>"
-               placeholder="<?= $configInput["placeholder"] ?>"
-               class="<?= $configInput["class"] ?>"
-               id="<?= $name ?>"
-               type="<?= $configInput["type"] ?>"
-               <?= $configInput["required"] ? "required" : "" ?>><br>
+
+        <?php if ($configInput["type"] === "textarea"): ?>
+            <textarea 
+                name="<?= $name?>" 
+                rows = "5" 
+                cols = "33"
+                placeholder="<?= $configInput["placeholder"]??"" ?>"
+                id="<?= $configInput["id"]??"" ?>"
+                class="<?= $configInput["class"]??"" ?>" >
+            </textarea>
+        <?php else: ?>
+            <input name="<?= $name ?>"
+                placeholder="<?= $configInput["placeholder"] ?>"
+                class="<?= $configInput["class"] ?>"
+                id="<?= $name ?>"
+                type="<?= $configInput["type"] ?>"
+                <?= $configInput["required"] ? "required" : "" ?>><br>
+        <br>
+        <?php endif; ?>
+
+
     <?php endforeach; ?>
 
     <?php if ($_SERVER['REQUEST_URI'] === '/login'): ?>

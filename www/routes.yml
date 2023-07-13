@@ -111,7 +111,7 @@ pages:
   action: index
 
 create-page:
-  path: /pages/create
+  path: /create-page
   controller: PageController
   action: create
 
@@ -123,3 +123,4 @@ delete-page:
   path: /pages/delete
   controller: PageController
   action: delete
+
