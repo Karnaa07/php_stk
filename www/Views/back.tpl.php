@@ -81,7 +81,7 @@
                         </a>
                     </li>
                     <li class="item">
-                        <a href="/users">
+                        <a href="/dashboard/users">
                             <span class="material-icons-sharp">
                                 person
                             </span>

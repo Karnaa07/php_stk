@@ -12,9 +12,6 @@ class dashboard
 {
     public function board(): void
     {
-        AuthMiddleware::checkAuthenticated();
-        AuthMiddleware::checkAdminRole();
-
         $view = new View("Dashboard/board", "back");
 
         AuthMiddleware::assignPseudoToView($view);

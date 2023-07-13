@@ -2,12 +2,14 @@
 
 namespace App;
 
+
+use App\Core\AuthMiddleware;
+
 session_start();
 
 //require "Core/View.php";
 
 spl_autoload_register(function ($class) {
-
     //$class = App\Core\View
     $class = str_replace("App\\", "", $class);
     //$class = Core\View
@@ -70,6 +72,10 @@ $objController = new $controller();
 
 if (!method_exists($objController, $action)) {
     die("L'action " . $action . " n'existe pas");
+}
+
+if (strpos($uri, 'dashboard') === 0 || strpos($uri, 'dashboard/') === 0) {
+    AuthMiddleware::checkDashboardSecurity();
 }
 
 $objController->$action();

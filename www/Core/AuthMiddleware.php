@@ -8,7 +8,7 @@ class AuthMiddleware
     {
         if (!isset($_SESSION["user"])) {
             // Redirigez l'utilisateur vers la page de connexion
-            header('Location: /login');
+            header('Location: /');
             exit;
         }
     }
@@ -31,5 +31,12 @@ class AuthMiddleware
             header('Location: /'); // Exemple de redirection vers une page d'erreur
             exit;
         }
+    }
+
+    public static function checkDashboardSecurity()
+    {
+        // Vérifier si l'utilisateur est authentifié et a le rôle d'administrateur
+        self::checkAuthenticated();
+        self::checkAdminRole();
     }
 }

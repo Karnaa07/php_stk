@@ -1,4 +1,4 @@
-# // Route du back
+# // Route du back rajouter dashboard a chaque route qui passe par le back
 
 dashboard:
   controller: Dashboard
@@ -29,7 +29,7 @@ logout:
   controller: Auth
   action: logout
 
-# // Routes Pages
+# // Routes Pages 
 create-page:
   controller: Page
   action: create
@@ -40,20 +40,20 @@ create-article:
   action: create
 
 # // Routes Users
-  users:
+dashboard/users:
   controller: UserCrud
   action: index
 
-users-create:
+dashboard/users-create:
   controller: UserCrud
   action: create
 
-users-update:
+dashboard/users-update:
   path: users-update
   controller: UserCrud
   action: edit
 
-users-delete:
+dashboard/users-delete:
   path: /users-delete
   controller: UserCrud
   action: delete

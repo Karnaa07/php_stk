@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Core\Validator;
-use App\Core\AuthMiddleware;
 use App\Core\Mail;
 use App\Forms\Register;
 use App\Forms\Login;
@@ -26,7 +25,7 @@ class Auth
         $form = new Login();
         $view = new View("Auth/login", "auth");
         $view->assign("form", $form->getConfig());
-        
+
 
         // Formulaire soumis et valide
         if ($form->isSubmited() && $form->isValid()) {
@@ -122,8 +121,7 @@ class Auth
     public function logout(): void
     {
 
-        AuthMiddleware::checkAuthenticated();
-
+        // AuthMiddleware::checkAuthenticated(); // Vérifiez si l'utilisateur est connecté
         // Supprimez le token de l'utilisateur de la session
         if (isset($_SESSION["user"])) {
             $user = new User();
@@ -229,7 +227,7 @@ class Auth
 
             if ($existingUser) {
                 // Récupérer les nouveaux mots de passe
-                
+
                 $newPassword = $_POST["new_password"];
                 $confirmPassword = $_POST["confirm_password"];
 

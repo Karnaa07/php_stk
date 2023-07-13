@@ -28,12 +28,12 @@
                                     visibility
                                 </span>
                             </a>
-                            <a href="/users-update/?id=<?= $user['id']; ?>">
+                            <a href="/dashboard/users-update/?id=<?= $user['id']; ?>">
                                 <span class="material-icons-sharp">
                                     create
                                 </span>
                             </a>
-                            <a href="/users-delete?id=<?= $user['id']; ?>">
+                            <a href="/dashboard/users-delete?id=<?= $user['id']; ?>">
                                 <span class="material-icons-sharp">
                                     delete
                                 </span>
@@ -45,7 +45,7 @@
         </table>
 
         <div class="crud-create">
-            <a href="/users-create">Créer un utilisateur</a>
+            <a href="/dashboard/users-create">Créer un utilisateur</a>
         </div>
     </div>
 
@@ -70,7 +70,7 @@
         </div>
 
         <div class="crud-back">
-            <a href="/users" class="btn btn-primary">Retour à la liste des utilisateurs</a>
+            <a href="/dashboard/users" class="btn btn-primary">Retour à la liste des utilisateurs</a>
         </div>
     </div>
 
