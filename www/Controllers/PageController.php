@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Models\Page;
-use App\Forms\CreatePageForm;
+use App\Forms\CreatePage;
 
 class PageController
 {
@@ -27,13 +27,15 @@ class PageController
 
     public function create()
     {
-        $createPageForm = new CreatePageForm();
+           
+        $form= new CreatePage();
         $view = new View("pages", "auth");
-        $view->assign("createPageForm", $createPageForm);
+        // var_dump($form->getConfig() );
+        $view->assign("form", $form->getConfig());
         $view->assign("action", "create");
 
-        // Formulaire soumis et valide ?
-        if ($createPageForm->isSubmited() && $createPageForm->isValid()) {
+        if (count($_POST) > 0 ) {
+
             $page = new Page();
             $page->setAuthor($_POST['author']);
             $page->setDate($_POST['date']);
@@ -41,6 +43,8 @@ class PageController
             $page->setTheme($_POST['theme']);
             $page->setColor($_POST['color']);
             $page->setContent($_POST['content']);
+
+            
 
             // Enregistrer la page dans la base de données
             $page->save();
@@ -50,7 +54,7 @@ class PageController
             exit();
         }
 
-        $view->assign("formErrors", $createPageForm->errors);
+        $view->assign("formErrors", $form->errors);
         //$view->render();
     }
 

@@ -20,6 +20,8 @@ class Page extends SQL
     public function __construct()
     {
         $this->pdo = SQL::getInstance()->getConnection();
+
+
     }
 
     public static function find($id)

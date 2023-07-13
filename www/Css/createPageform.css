@@ -82,12 +82,12 @@ form button[type="reset"]:hover {
 /* Position des boutons */
 .form-submit {
   position: absolute;
-  bottom: 30px;
-  left: 35px;
+   /* bottom: 30px; */
+  left: 35px; 
 }
 
 .form-reset {
   position: absolute;
-  bottom: 30px;
-  right: 35px;
+   /* bottom: 30px; */
+  right: 35px; 
 }
