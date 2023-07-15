@@ -48,6 +48,70 @@ class PageController
             // Enregistrer la page dans la base de données
             $page->save();
 
+            // Générer le contenu HTML de la nouvelle page
+            $html = '<!DOCTYPE html>
+            <html>
+            <head>
+                <title>' . $page->getTitle() . '</title>
+                <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    color: #333;
+                    background-color: #f2f2f2;
+                    line-height: 1.6;
+                }
+            
+                .container {
+                    max-width: 800px;
+                    margin: 0 auto;
+                    padding: 20px;
+                }
+            
+                h1 {
+                    font-size: 2.5em;
+                    color: #444;
+                    margin-bottom: 20px;
+                }
+            
+                p {
+                    font-size: 1.1em;
+                    margin-bottom: 10px;
+                }
+            
+                /* Custom Header Style */
+                header {
+                    background-color: ' . $page->getColor() . ';
+                    padding: 20px;
+                    color: white;
+                    text-align: center;
+                }
+                </style>
+            </head>
+            <body>
+                <header>
+                    <h1>' . $page->getTitle() . '</h1>
+                </header>
+                <div class="container">
+                    <p>Auteur : ' . $page->getAuthor() . '</p>
+                    <p>Date : ' . $page->getDate() . '</p>
+                    <p>Thème de l\'article : ' . $page->getTheme() . '</p>
+                    <p>Couleur : ' . $page->getColor() . '</p>
+                    <p>Contenu : ' . $page->getContent() . '</p>
+                </div>
+            </body>
+            </html>';
+            
+            // Créer le nom du fichier à partir du titre de la page
+            $fileName = str_replace(' ', '-', strtolower($page->getTitle())) . '.html';
+
+            // Créer un répertoire pour stocker les pages s'il n'existe pas déjà
+            if (!file_exists('PageCreateView')) {
+                mkdir('PageCreateView', 0777, true);
+            }
+
+            // Écrire le contenu HTML dans le nouveau fichier
+            file_put_contents('PageCreateView/' . $fileName, $html);
+
             // Rediriger vers la liste des pages ou afficher un message de succès
             header('Location: /pages');
             exit();
@@ -58,30 +122,30 @@ class PageController
     }
 
 
-    public function store()
-    {
-        $createPageForm = new CreatePageForm();
-        // Récupérer les données du formulaire
-        $data = $_POST;
+    // public function store()
+    // {
+    //     $createPageForm = new CreatePageForm();
+    //     // Récupérer les données du formulaire
+    //     $data = $_POST;
 
-        // Créer une instance du modèle Page
-        $page = new Page();
+    //     // Créer une instance du modèle Page
+    //     $page = new Page();
 
-        // Renseigner les propriétés de la page à partir des données reçues
-        $page->setAuthor($data['author']);
-        $page->setDate($data['date']);
-        $page->setTitle($data['title']);
-        $page->setTheme($data['theme']);
-        $page->setColor($data['color']);
-        $page->setContent($data['content']);
+    //     // Renseigner les propriétés de la page à partir des données reçues
+    //     $page->setAuthor($data['author']);
+    //     $page->setDate($data['date']);
+    //     $page->setTitle($data['title']);
+    //     $page->setTheme($data['theme']);
+    //     $page->setColor($data['color']);
+    //     $page->setContent($data['content']);
 
-        // Enregistrer la page dans la base de données
-        $page->save();
+    //     // Enregistrer la page dans la base de données
+    //     $page->save();
 
-        // Rediriger vers la liste des pages ou afficher un message de succès
-        header('Location: /pages');
-        exit();
-    }
+    //     // Rediriger vers la liste des pages ou afficher un message de succès
+    //     header('Location: /pages');
+    //     exit();
+    // }
 
     public function edit()
     {

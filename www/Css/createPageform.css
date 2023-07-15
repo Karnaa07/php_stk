@@ -1,95 +1,75 @@
-*,
-*:before,
-*:after {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 body {
-  background-image: url(../assets/background_register.svg);
-  background-size: cover;
-  color: white;
-  overflow: hidden;
-}
-
-/* Formulaire */
-form {
-  height: 630px;
-  width: 400px;
-  background-color: rgba(255, 255, 255, 0.13);
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-  padding: 50px 35px;
-  overflow: auto;
-}
-
-form * {
-  font-family: 'Poppins', sans-serif;
-  color: #ffffff;
-  letter-spacing: 0.5px;
-  outline: none;
-  border: none;
-}
-
-label {
-  display: block;
-  font-size: 16px;
-  font-weight: 500;
-  margin-top: 30px;
-}
-
-input {
-  display: block;
-  height: 40px;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.07);
-  border-radius: 3px;
-  padding: 0 10px;
-  margin-top: 8px;
-  font-size: 14px;
-  font-weight: 300;
-}
-
-/* Boutons */
-form button[type="submit"],
-form button[type="reset"] {
-  display: inline-block;
-  padding: 8px 12px; /* Adjust the padding values as per your preference */
-  margin-right: 10px;
-  background-color: rgba(255, 255, 255, 0.5);
-  color: black;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 12px; /* Adjust the font size as per your preference */
-}
-
-
-/* Style au survol des boutons */
-form button[type="submit"]:hover,
-form button[type="reset"]:hover {
-  background-color: rgba(30, 180, 188, 0);
-}
-
-
-
-/* Position des boutons */
-.form-submit {
-  position: absolute;
-  bottom: 20px;
-  left: 50px;
-}
-
-.form-reset {
-  position: absolute;
-  bottom: 20px;
-  right: 50px;
-}
+    background-image: url(../assets/background_login.svg);
+    background-size: cover;
+    color: white;
+  }
+  
+  /* Formulaire */
+  .form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(17, 17, 17, 0.8);
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  /* Titre du formulaire */
+  .form-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Champ de saisie */
+  .form-input {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    background-color: #222;
+    color: #fff;
+    border-radius: 3px;
+  }
+  
+  /* Placeholder (texte d'indication) */
+  .form-input::placeholder {
+    color: #888;
+  }
+  
+  /* Champ de couleur */
+  .form-input[type="color"] {
+    padding: 0;
+  }
+  
+  /* Boutons */
+  .form-submit,
+  .form-reset {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Style au survol des boutons */
+  .form-submit:hover,
+  .form-reset:hover {
+    background-color: #555;
+  }
+  
+  /* Messages d'erreur */
+  .error-message {
+    color: #ff5555;
+    margin-top: 5px;
+  }
+  
+  /* Style des messages d'erreur */
+  .error-input {
+    border: 1px solid #ff5555;
+  }
+  
