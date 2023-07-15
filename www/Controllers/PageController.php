@@ -30,12 +30,11 @@ class PageController
            
         $form= new CreatePage();
         $view = new View("pages", "auth");
-        // var_dump($form->getConfig() );
         $view->assign("form", $form->getConfig());
         $view->assign("action", "create");
-
-        if (count($_POST) > 0 ) {
-
+       
+        if ($form->isSubmited() && $form->isValid()) {
+        
             $page = new Page();
             $page->setAuthor($_POST['author']);
             $page->setDate($_POST['date']);
