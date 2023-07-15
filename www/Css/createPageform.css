@@ -61,7 +61,7 @@ input {
 form button[type="submit"],
 form button[type="reset"] {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 8px 12px; /* Adjust the padding values as per your preference */
   margin-right: 10px;
   background-color: rgba(255, 255, 255, 0.5);
   color: black;
@@ -69,12 +69,14 @@ form button[type="reset"] {
   border-radius: 3px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-size: 12px; /* Adjust the font size as per your preference */
 }
+
 
 /* Style au survol des boutons */
 form button[type="submit"]:hover,
 form button[type="reset"]:hover {
-  background-color: rgba(33, 76, 78, 0.3);
+  background-color: rgba(30, 180, 188, 0);
 }
 
 
@@ -82,12 +84,12 @@ form button[type="reset"]:hover {
 /* Position des boutons */
 .form-submit {
   position: absolute;
-   /* bottom: 30px; */
-  left: 35px; 
+  bottom: 20px;
+  left: 50px;
 }
 
 .form-reset {
   position: absolute;
-   /* bottom: 30px; */
-  right: 35px; 
+  bottom: 20px;
+  right: 50px;
 }
