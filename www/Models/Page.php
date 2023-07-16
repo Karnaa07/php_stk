@@ -17,7 +17,7 @@ class Page extends SQL
     {
         $this->pdo = SQL::getInstance()->getConnection();
         $classExploded = explode("\\", get_called_class());
-        $this->table = "esgi_" . end($classExploded);
+        $this->table = $GLOBALS["config"]["dbprefix"]. "_" . end($classExploded);
     }
 
     /**

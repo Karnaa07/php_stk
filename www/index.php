@@ -2,6 +2,8 @@
 
 namespace App;
 
+include "conf.inc.php";
+
 
 use App\Core\AuthMiddleware;
 

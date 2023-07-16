@@ -13,9 +13,16 @@ class SQL
 
     private function __construct()
     {
+
+        $host = $GLOBALS["config"]["host"];
+        $dbname = $GLOBALS["config"]["dbname"];
+        $port = $GLOBALS["config"]["port"];
+        $user = $GLOBALS["config"]["user"];
+        $password = $GLOBALS["config"]["password"];
+        
         // Connexion à la base de données
         try {
-            $this->pdo = new \PDO("pgsql:host=database;dbname=esgi;port=5432", "esgi", "Test1234");
+            $this->pdo = new \PDO("pgsql:host=" .$host . ";dbname=" . $dbname . ";port=" . $port, $user, $password);
         } catch (\Exception $e) {
             die("Erreur SQL : " . $e->getMessage());
         }
