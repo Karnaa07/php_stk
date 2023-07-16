@@ -115,11 +115,29 @@ class SQL
         return null; // Aucun enregistrement trouvé avec l'ID spécifié
     }
 
+    public function protectScriptInjection(array $columns): array
+    {
+        $newColumns = [];
+        foreach ($columns as $key => $value) {
+            if(is_string($value)){
+                $valueTemp = str_replace(">", "&gt;", $value);
+                $valueTemp = str_replace("<", "&lt;", $valueTemp);
+                $newColumns[$key] = $valueTemp;
+            }
+            else{
+                $newColumns[$key] = $value;
+            }
+        }
+
+        return $newColumns;
+    }
+
     public function save(): void
     {
         $columns = get_object_vars($this);
         $columnsToExclude = get_class_vars(get_class());
         $columns = array_diff_key($columns, $columnsToExclude);
+        $columns = $this->protectScriptInjection($columns);
 
         if (is_numeric($this->getId()) && $this->getId() > 0) {
             $sqlUpdate = [];
