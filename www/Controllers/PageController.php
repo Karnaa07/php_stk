@@ -48,61 +48,29 @@ class PageController
             // Enregistrer la page dans la base de données
             $page->save();
 
-            // Générer le contenu HTML de la nouvelle page
-            $html = '<!DOCTYPE html>
-            <html>
-            <head>
-                <title>' . $page->getTitle() . '</title>
-                <style>
-                body {
-                    font-family: Arial, sans-serif;
-                    color: #333;
-                    background-color: #f2f2f2;
-                    line-height: 1.6;
-                }
-            
-                .container {
-                    max-width: 800px;
-                    margin: 0 auto;
-                    padding: 20px;
-                }
-            
-                h1 {
-                    font-size: 2.5em;
-                    color: #444;
-                    margin-bottom: 20px;
-                }
-            
-                p {
-                    font-size: 1.1em;
-                    margin-bottom: 10px;
-                }
-            
-                /* Custom Header Style */
-                header {
-                    background-color: ' . $page->getColor() . ';
-                    padding: 20px;
-                    color: white;
-                    text-align: center;
-                }
-                </style>
-            </head>
-            <body>
-                <header>
-                    <h1>' . $page->getTitle() . '</h1>
-                </header>
-                <div class="container">
-                    <p>Auteur : ' . $page->getAuthor() . '</p>
-                    <p>Date : ' . $page->getDate() . '</p>
-                    <p>Thème de l\'article : ' . $page->getTheme() . '</p>
-                    <p>Couleur : ' . $page->getColor() . '</p>
-                    <p>Contenu : ' . $page->getContent() . '</p>
-                </div>
-            </body>
-            </html>';
-            
+
+            // Préparer les variables pour le template
+            $title = $page->getTitle();
+            $author = $page->getAuthor();
+            $date = $page->getDate();
+            $theme = $page->getTheme();
+            $color = $page->getColor();
+            $content = $page->getContent();
+
+            // Démarrer la mise en tampon de sortie
+            ob_start();
+
+            // Inclure le fichier de template
+            include 'views/pageTemplate.php';
+
+            // Obtenir le contenu du tampon
+            $html = ob_get_contents();
+
+            // Arrêter la mise en tampon de sortie et nettoyer le tampon
+            ob_end_clean();
+
             // Créer le nom du fichier à partir du titre de la page
-            $fileName = str_replace(' ', '-', strtolower($page->getTitle())) . '.html';
+            $fileName = str_replace(' ', '-', strtolower($title)) . '.html';
 
             // Créer un répertoire pour stocker les pages s'il n'existe pas déjà
             if (!file_exists('PageCreateView')) {
@@ -118,7 +86,6 @@ class PageController
         }
 
         $view->assign("formErrors", $form->errors);
-        //$view->render();
     }
 
 
