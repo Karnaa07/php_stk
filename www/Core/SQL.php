@@ -19,10 +19,10 @@ class SQL
         $port = $GLOBALS["config"]["port"];
         $user = $GLOBALS["config"]["user"];
         $password = $GLOBALS["config"]["password"];
-        
+
         // Connexion à la base de données
         try {
-            $this->pdo = new \PDO("pgsql:host=" .$host . ";dbname=" . $dbname . ";port=" . $port, $user, $password);
+            $this->pdo = new \PDO("pgsql:host=" . $host . ";dbname=" . $dbname . ";port=" . $port, $user, $password);
         } catch (\Exception $e) {
             die("Erreur SQL : " . $e->getMessage());
         }
@@ -126,12 +126,11 @@ class SQL
     {
         $newColumns = [];
         foreach ($columns as $key => $value) {
-            if(is_string($value)){
+            if (is_string($value)) {
                 $valueTemp = str_replace(">", "&gt;", $value);
                 $valueTemp = str_replace("<", "&lt;", $valueTemp);
                 $newColumns[$key] = $valueTemp;
-            }
-            else{
+            } else {
                 $newColumns[$key] = $value;
             }
         }

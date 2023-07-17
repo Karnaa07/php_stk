@@ -63,7 +63,7 @@
 						<li><a href="/">Accueil</a></li>
 						<li><a href="/about-us">Qui nous sommes ?</a></li>
 						<li><a href="/page">Pages</a></li>
-						<li><a href="/article">Articles</a></li>
+						<li><a href="/show_article">Articles</a></li>
 
 						<?php if (!isset($_SESSION["user"])) : ?>
 							<li><a href="/login">Connexion</a></li>

@@ -39,9 +39,21 @@ create-page:
   action: create
 
 # // Routes Articles
-create-article:
+dashboard/articles:
+  controller: Article
+  action: index
+
+dashboard/create-article:
   controller: Article
   action: create
+
+dashboard/update-article:
+  controller: Article
+  action: update
+
+dashboard/delete-article:
+  controller: Article
+  action: delete
 
 # // Routes Users
 dashboard/users:
@@ -81,9 +93,9 @@ page:
   controller: Page
   action: index
 
-article:
+show_article:
   controller: Article
-  action: index
+  action: show
 
 
 

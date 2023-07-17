@@ -65,7 +65,7 @@
                         </a>
                     </li>
                     <li class="item">
-                        <a href="/create-article">
+                        <a href=" /dashboard/articles">
                             <span class="material-icons-sharp">
                                 border_color
                             </span>

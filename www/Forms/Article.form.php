@@ -28,7 +28,8 @@ class Article extends Validator
                     "placeholder" => "Entrez le titre de l'article",
                     "type" => "text",
                     "error" => "Le titre est requis",
-                    "required" => true
+                    "required" => true,
+                    "value" => "" // Valeur par défaut du champ titre (chaîne vide)
                 ],
                 "slug" => [
                     "id" => "create-article-form-slug",
@@ -37,7 +38,8 @@ class Article extends Validator
                     "placeholder" => "Entrez le slug de l'article",
                     "type" => "text",
                     "error" => "Le slug est requis",
-                    "required" => true
+                    "required" => true,
+                    "value" => "" // Valeur par défaut du champ slug (chaîne vide)
                 ],
                 "content" => [
                     "id" => "create-article-form-content",
@@ -46,20 +48,22 @@ class Article extends Validator
                     "placeholder" => "Entrez le contenu de l'article",
                     "type" => "text",
                     "error" => "",
-                    "required" => false
-                ],
-                "imageUrl" => [
-                    "id" => "create-article-form-imageUrl",
-                    "label" => "URL de l'image",
-                    "class" => "form-input",
-                    "placeholder" => "Entrez l'URL de l'image de l'article",
-                    "type" => "text",
-                    "error" => "",
-                    "required" => false
+                    "required" => false,
+                    "value" => "" // Valeur par défaut du champ contenu (chaîne vide)
                 ]
+                // "imageUrl" => [
+                //     "id" => "create-article-form-imageUrl",
+                //     "label" => "URL de l'image",
+                //     "class" => "form-input",
+                //     "placeholder" => "Entrez l'URL de l'image de l'article",
+                //     "type" => "text",
+                //     "error" => "",
+                //     "required" => false
+                // ]
             ]
         ];
 
         return $this->config;
     }
+    
 }

@@ -59,7 +59,7 @@
     </div>
 
 <?php elseif ($action === 'edit') : ?>
-    <link rel="stylesheet" type="text/css" href="../css/register.css">
+    <link rel="stylesheet" type="text/css" href="../css/auth/register.css">
     <div class="crud-container">
         <h1 class="crud-header">Modifier un utilisateur</h1>
 

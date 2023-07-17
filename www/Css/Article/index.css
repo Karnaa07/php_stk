@@ -1,0 +1,59 @@
+/* Fichier : /../css/article/index.css */
+
+/* Style pour le conteneur principal */
+.container {
+  margin: 20px;
+}
+
+/* Style pour le titre */
+.title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Style pour le bouton "Créer un article" */
+.btn {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Style pour le tableau des articles */
+.article-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.article-list th,
+.article-list td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.article-list th {
+  text-align: center;
+}
+
+.article-list td {
+  text-align: center;
+}
+
+/* Style pour le bouton "Supprimer" */
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 3px;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}

@@ -1,2 +1,2 @@
-<link rel="stylesheet" href="../css/forgot_password.css">
+<link rel="stylesheet" href="../css/auth/forgot_password.css">
 <?php $this->partial("form", $form) ?>

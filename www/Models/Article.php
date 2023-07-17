@@ -10,7 +10,9 @@ class Article extends SQL
     protected String $title;
     protected String $content;
     protected String $slug;
-    protected String $createdAt; // Nouvelle propriété pour la date de création
+    protected String $created_at; // Nouvelle propriété pour la date de création
+    protected ?String $imageUrl; // Nouvelle propriété pour l'URL de l'image
+    
 
 
     //Connexion with singleton
@@ -50,7 +52,7 @@ class Article extends SQL
      */
     public function setTitle(string $title): void
     {
-        $this->title = ucwords(strtolower(trim($title)));
+        $this->title = $title;
     }
 
     /**
@@ -66,7 +68,7 @@ class Article extends SQL
      */
     public function setContent(string $content): void
     {
-        $this->content = strtoupper(trim($content));
+        $this->content = $content;
     }
 
     /**
@@ -83,7 +85,7 @@ class Article extends SQL
      */
     public function setSlug(string $slug): void
     {
-        $this->slug = strtolower(trim($slug));
+        $this->slug = $slug;
     }
 
     /**
@@ -91,15 +93,23 @@ class Article extends SQL
      */
     public function getCreatedAt(): string
     {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
     /**
      * @param String $createdAt
      */
-    public function setCreatedAt(string $createdAt): void
+    public function setCreatedAt(string $created_at): void
     {
-        $this->createdAt = $createdAt;
+        $this->created_at = $created_at;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImageUrl(): ?string
+    {
+        return $this->imageUrl;
     }
 
     /**
@@ -111,10 +121,18 @@ class Article extends SQL
     }
 
     /**
-     * @return string|null
+     * Supprime un article de la base de données en fonction de son ID.
+     *
+     * @param int $id L'ID de l'article à supprimer.
+     * @return bool True si la suppression a réussi, False sinon.
      */
-    public function getImageUrl(): ?string
+    public function delete(int $id): bool
     {
-        return $this->imageUrl;
+        $queryPrepared = $this->pdo->prepare("DELETE FROM " . $this->table . " WHERE id = :id");
+        $queryPrepared->execute(['id' => $id]);
+
+        // Vérifier si la suppression a réussi
+        return $queryPrepared->rowCount() > 0;
     }
+
 }

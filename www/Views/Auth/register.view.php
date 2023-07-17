@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../css/register.css">
+<link rel="stylesheet" href="../css/auth/register.css">
 
 <div class="container">
 
