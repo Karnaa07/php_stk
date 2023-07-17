@@ -1,3 +1,5 @@
+<!-- <?php var_dump($user); ?> -->
+
 <?php if (!empty($errors)): ?>
     <?php print_r($errors); ?>
 <?php endif; ?>
@@ -19,7 +21,7 @@
     <?php endforeach; ?>
 
     <?php if ($_SERVER['REQUEST_URI'] === '/login'): ?>
-        <a href="/forgot_password" class="forgot-password-link">
+        <a href="reset_password_email" class="forgot-password-link">
             Mot de passe oublié ?
         </a>
     <?php endif; ?>

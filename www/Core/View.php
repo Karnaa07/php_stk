@@ -60,6 +60,7 @@ class View
         if (!file_exists("Views/Partials/" . $name . ".ptl.php")) {
             die("Le partial " . $name . " n'existe pas");
         }
+        // extract($this->data);
         include "Views/Partials/" . $name . ".ptl.php";
     }
 

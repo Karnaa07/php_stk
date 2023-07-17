@@ -5,11 +5,12 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Core\Validator;
 use App\Core\Mail;
-use App\Forms\Register;
-use App\Forms\Login;
-use App\Forms\Change;
-use App\Forms\VerifyAccount;
-use App\Forms\ForgotPassword;
+use App\Forms\Auth\Register;
+use App\Forms\Auth\Login;
+use App\Forms\Auth\Change;
+use App\Forms\Auth\VerifyAccount;
+use App\Forms\Auth\ForgotPassword;
+use App\Forms\Auth\ForgotPasswordWithEmail;
 use App\Models\User;
 
 
@@ -144,6 +145,7 @@ class Auth
         // Vérifiez si l'utilisateur est connecté
         if (!isset($_SESSION["user"])) {
             echo "Vous devez être connecté pour changer votre mot de passe.";
+            header('Refresh: 2; URL=/login');
             return;
         }
 
@@ -211,6 +213,36 @@ class Auth
         $view->assign("formErrors", $form->errors);
     }
 
+    public function pwdforgot_with_email(): void
+    {
+        $form = new ForgotPasswordWithEmail();
+        $view = new View("Auth/forgot_password_with_email", "auth");
+        $view->assign("form", $form->getConfig());
+
+        // Formulaire soumis et valide
+        if ($form->isSubmited() && $form->isValid()) {
+            $email = $_POST["email"];
+            $user = new User();
+            $existingUser = $user->getOneWhere(["email" => $email]);
+
+            if ($existingUser) {
+                // Get the existing verification code from the user object
+                $verif_code = $existingUser->getVerifCode();
+
+                // Send the verification code via email
+                $mail = new Mail();
+                $mail->pwd_forgot($email, $verif_code);
+
+                echo "Un email de réinitialisation de mot de passe vous a été envoyé.";
+                header('Refresh: 2; URL=/reset_password');
+            } else {
+                echo "Aucun utilisateur n'est associé à cet e-mail.";
+            }
+        }
+        $view->assign("formErrors", $form->errors);
+    }
+
+
     public function pwdforgot(): void
     {
         $form = new ForgotPassword();
@@ -220,14 +252,20 @@ class Auth
         // Formulaire soumis et valide
         if ($form->isSubmited() && $form->isValid()) {
             $email = $_POST["email"];
+            $verificationCode = $_POST["verification_code"]; // New field for verification code
 
             // Vérifier si l'utilisateur existe dans la base de données
             $user = new User();
             $existingUser = $user->getOneWhere(["email" => $email]);
 
             if ($existingUser) {
-                // Récupérer les nouveaux mots de passe
+                // Check if the provided verification code matches the one in the database
+                if ($existingUser->getVerifCode() !== $verificationCode) {
+                    echo "Le code de vérification est incorrect.";
+                    return;
+                }
 
+                // Récupérer les nouveaux mots de passe
                 $newPassword = $_POST["new_password"];
                 $confirmPassword = $_POST["confirm_password"];
 

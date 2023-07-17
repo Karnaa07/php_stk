@@ -17,9 +17,13 @@ login:
   controller: Auth
   action: login
 
-forgot_password:
+reset_password:
   controller: Auth
   action: pwdforgot
+
+reset_password_email:
+  controller: Auth
+  action: pwdforgot_with_email
 
 new_pass:
   controller: Auth

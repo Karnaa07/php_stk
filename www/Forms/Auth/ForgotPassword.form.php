@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Forms;
+namespace App\Forms\Auth;
 
 use App\Core\Validator;
 
@@ -29,6 +29,15 @@ class ForgotPassword extends Validator
           "placeholder" => "Votre email",
           "type" => "email",
           "error" => "Veuillez entrer un email valide",
+          "required" => true
+        ],
+        "verification_code" => [ // New field for verification code
+          "id" => "forgot-password-form-verification-code",
+          "label" => "Code de vérification",
+          "class" => "form-input",
+          "placeholder" => "Votre code de vérification",
+          "type" => "text",
+          "error" => "Veuillez entrer le code de vérification",
           "required" => true
         ],
         "new_password" => [

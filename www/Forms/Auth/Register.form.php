@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Forms;
+namespace App\Forms\Auth;
 
 use App\Core\Validator;
 

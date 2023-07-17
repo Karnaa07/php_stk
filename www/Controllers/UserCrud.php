@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Core\Validator;
 use App\Core\Mail;
-use App\Forms\Register;
+use App\Forms\Auth\Register;
 use App\Forms\UpdateForm;
 use App\Models\User;
 
@@ -139,6 +139,7 @@ class UserCrud
         // Charger la vue avec le formulaire d'UDAPE et les données de l'utilisateur
         $view = new View("user", "auth");
         $view->assign("user", $user);
+        // var_dump($user);
         $view->assign("updateForm", $updateForm->getConfig());
         $view->assign("action", "edit"); // Ajouter cette ligne pour définir la valeur de $action
         // $view->render();
