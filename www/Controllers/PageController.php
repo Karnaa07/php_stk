@@ -6,6 +6,7 @@ use App\Core\View;
 use App\Models\Page;
 use App\Forms\CreatePage;
 
+
 class PageController
 {
     public function index(): void
@@ -88,7 +89,6 @@ class PageController
         $view->assign("formErrors", $form->errors);
     }
 
-
     // public function store()
     // {
     //     $createPageForm = new CreatePageForm();
@@ -114,73 +114,94 @@ class PageController
     //     exit();
     // }
 
-    public function edit()
+    // public function edit()
+    // {
+    //     $id = $_GET['id'];
+
+    //     // Récupérer la page à modifier depuis la base de données
+    //     $page = Page::find($id);
+
+    //     // Vérifier si la page existe
+    //     if (!$page) {
+    //         // Gérer l'erreur, page non trouvée
+    //     }
+
+    //     // Instanciation de la classe CreatePageForm
+    //     $editForm = new CreatePageForm();
+
+    //     // Obtention de la configuration du formulaire
+    //     $editFormConfig = $editForm->getConfig();
+
+    //     // Charger la vue avec le formulaire de création de page et les données de la page
+    //     $view = new View("pages/edit", "back");
+    //     $view->assign("page", $page);
+    //     $view->assign("form", $editFormConfig);
+
+    //     // Formulaire soumis et valide ?
+    //     if ($editForm->isSubmited() && $editForm->isValid()) {
+    //         // Mettre à jour les propriétés de la page à partir des données reçues
+    //         $page->setAuthor($_POST["author"]);
+    //         $page->setDate($_POST["date"]);
+    //         $page->setTitle($_POST["title"]);
+    //         $page->setTheme($_POST["theme"]);
+    //         $page->setColor($_POST["color"]);
+    //         $page->setContent($_POST["content"]);
+
+    //         // Enregistrer les modifications de la page dans la base de données
+    //         $page->save();
+
+    //         // Rediriger vers la liste des pages ou afficher un message de succès
+    //         header('Location: /pages');
+    //         exit();
+    //     }
+
+    //     $view->assign("formErrors", $createPageForm->errors);
+    //     //$view->render();
+    // }
+
+    // public function update()
+    // {
+    //     // Code pour mettre à jour la page dans la base de données
+    // }
+    public function deletePage()
     {
-        $id = $_GET['id'];
-
-        // Récupérer la page à modifier depuis la base de données
-        $page = Page::find($id);
-
-        // Vérifier si la page existe
-        if (!$page) {
-            // Gérer l'erreur, page non trouvée
+      // Vérifier si un ID de page est passé en paramètre GET
+      if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+        $pageModel = new PageModel();
+        $page = $pageModel->getOneWhere(['id' => $_GET['id']]);
+    
+        // Vérifier si la page existe avant de la supprimer
+        if ($page) {
+          $pageModel->deleteWhere(['id' => $_GET['id']]);
+          // Rediriger vers la page d'index ou une autre page après la suppression
+          header('Location: /dashboard/pages'); // Remplacez "/index" par l'URL souhaitée
+          exit;
         }
-
-        // Instanciation de la classe CreatePageForm
-        $editForm = new CreatePageForm();
-
-        // Obtention de la configuration du formulaire
-        $editFormConfig = $editForm->getConfig();
-
-        // Charger la vue avec le formulaire de création de page et les données de la page
-        $view = new View("pages/edit", "back");
-        $view->assign("page", $page);
-        $view->assign("form", $editFormConfig);
-
-        // Formulaire soumis et valide ?
-        if ($editForm->isSubmited() && $editForm->isValid()) {
-            // Mettre à jour les propriétés de la page à partir des données reçues
-            $page->setAuthor($_POST["author"]);
-            $page->setDate($_POST["date"]);
-            $page->setTitle($_POST["title"]);
-            $page->setTheme($_POST["theme"]);
-            $page->setColor($_POST["color"]);
-            $page->setContent($_POST["content"]);
-
-            // Enregistrer les modifications de la page dans la base de données
-            $page->save();
-
-            // Rediriger vers la liste des pages ou afficher un message de succès
-            header('Location: /pages');
-            exit();
-        }
-
-        $view->assign("formErrors", $createPageForm->errors);
-        //$view->render();
+      }
+    
+      // Si l'ID de page n'est pas valide ou la page n'existe pas, rediriger vers une page d'erreur ou une autre page appropriée
+      header('Location: /error-page'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
+      exit;
     }
+    
+    // public function delete()
+    // {
+    //     $id = $_POST['id'];
 
-    public function update()
-    {
-        // Code pour mettre à jour la page dans la base de données
-    }
+    //     // Récupérer la page à supprimer depuis la base de données
+    //     $page = \App\Models\Page::populate($id);
 
-    public function delete()
-    {
-        $id = $_GET['id'];
+    //     if (!$page) {
+    //         echo "Page non trouvée.";
+    //         exit();
+    //     }
 
-        // Récupérer la page à supprimer depuis la base de données
-        $page = Page::find($id);
+    //     // Supprimer la page de la base de données en utilisant la méthode delete de l'objet Page
+    //     $page->delete();
 
-        if (!$page) {
-            echo "Page non trouvée.";
-            exit();
-        }
+    //     // Rediriger vers la liste des pages ou afficher un message de succès
+    //     header('Location: /pages');
+    //     exit();
+    // }
 
-        // Supprimer la page de la base de données en utilisant la fonction delete()
-        $page->delete();
-
-        // Rediriger vers la liste des pages ou afficher un message de succès
-        header('Location: /pages');
-        exit();
-    }
 }

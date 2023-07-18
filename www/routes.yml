@@ -83,7 +83,7 @@ update-page:
   action: edit
 
 delete-page:
-  path: /pages/delete
+  path: /pages-delete
   controller: PageController
   action: delete
 

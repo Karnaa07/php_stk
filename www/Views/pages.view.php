@@ -45,7 +45,7 @@
                 <td><?= $page['color']; ?></td>
                 <td>
                     <a href="/pages-update/?id=<?= $page['id']; ?>">Modifier</a>
-                    <a href="/pages-delete?id=<?= $page['id']; ?>">Supprimer</a>
+                    <a href="/pages-delete/?id=<?= $page['id']; ?>">Supprimer</a>
                     <a href="/PageCreateView/<?= str_replace(' ', '-', strtolower($page['title'])) . '.html'; ?>">Visualiser</a>
                 </td>
             </tr>
