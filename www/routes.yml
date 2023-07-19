@@ -69,4 +69,16 @@ toto:
   path: /toto
   controller: PageController
   action: show
+rerer:
+  path: /rerer
+  controller: PageController
+  action: show
+lucos:
+  path: /lucos
+  controller: PageController
+  action: show
+lolo:
+  path: /lolo
+  controller: PageController
+  action: show
 ...
