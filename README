@@ -1,1 +1,38 @@
+# Nom du Projet
 
+Une brève description du projet.
+
+## Table des matières
+
+- [Introduction](#introduction)
+- [Fonctionnalités](#fonctionnalités)
+- [Exigences](#exigences)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Utilisation](#utilisation)
+- [Contribuer](#contribuer)
+- [Licence](#licence)
+
+## Introduction
+
+Une introduction détaillée du projet, en expliquant son but et son contexte.
+
+## Fonctionnalités
+
+- Rebase -> se mettre sur la branche qu'on souhaite modifier et rebase la branche en question.
+
+## Exigences
+
+Décrivez ici les exigences et les dépendances du projet, par exemple :
+
+- PHP 7.4 ou supérieur
+- MySQL 5.7 ou supérieur
+
+## Installation
+
+Expliquez ici comment installer le projet localement sur la machine de l'utilisateur. Incluez les étapes nécessaires pour configurer l'environnement de développement.
+
+1. Clonez le dépôt GitHub :
+
+```bash
+git clone https://github.com/votre-utilisateur/votre-projet.git

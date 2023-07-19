@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Core\SQL;
-use PDO;
+
 
 class User extends SQL
 {
@@ -14,16 +14,18 @@ class User extends SQL
     protected String $pwd;
     protected String $country;
     protected Int $status = 0;
-    private ?String $date_inserted;
-    private ?String $date_updated;
+    protected ?String $date_inserted;
+    protected ?String $date_updated;
     protected ?String $token;
-
-    protected $table = "esgi_user";
+    protected String $verif_code;
+    protected String $role_id;
 
     //Connexion with singleton
     public function __construct()
     {
         $this->pdo = SQL::getInstance()->getConnection();
+        $classExploded = explode("\\", get_called_class());
+        $this->table = $GLOBALS["config"]["dbprefix"]. "_" . end($classExploded);
     }
 
     /**
@@ -138,34 +140,22 @@ class User extends SQL
         $this->status = $status;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getDateInserted(): \DateTime
+    public function getDateInserted(): ?string
     {
         return $this->date_inserted;
     }
 
-    /**
-     * @param \DateTime $date_inserted
-     */
-    public function setDateInserted(\DateTime $date_inserted): void
+    public function setDateInserted(?string $date_inserted): void
     {
         $this->date_inserted = $date_inserted;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getDateUpdated(): \DateTime
+    public function getDateUpdated(): ?string
     {
         return $this->date_updated;
     }
 
-    /**
-     * @param \DateTime $date_updated
-     */
-    public function setDateUpdated(\DateTime $date_updated): void
+    public function setDateUpdated(?string $date_updated): void
     {
         $this->date_updated = $date_updated;
     }
@@ -185,4 +175,29 @@ class User extends SQL
         $this->token = $token;
     }
 
+    public function getRoleId(): int|null
+    {
+        return $this->role_id;
+    }
+
+    public function setRoleId(int $role_id): void
+    {
+        $this->role_id = $role_id;
+    }
+
+    public function getVerifCode(): string|null
+    {
+        return $this->verif_code;
+    }
+
+    public function setVerifCode(string $verif_code): void
+    {
+        $this->verif_code = $verif_code;
+    }
+
+
+    public function delete()
+    {
+        $this->deleteWhere(['id' => $this->id]);
+    }
 }

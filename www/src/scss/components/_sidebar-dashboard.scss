@@ -1,0 +1,75 @@
+.main-sidebar {
+  grid-area: sidebar;
+  height: 100%;
+  width: 320px;
+  padding: 20px 0 20px 10px;
+
+}
+
+.main-sidebar .aside-header {
+
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
+
+.aside-header .brand {
+  display: flex;
+  align-items: center;
+  padding-left: 4rem;
+}
+
+.brand img {
+  width: 60px;
+  height: 60px;
+}
+
+
+.main-sidebar .sidebar {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem;
+  width: 100%;
+}
+
+.sidebar .list-items {
+  width: 100%;
+}
+
+.list-items li:last-child {
+  position: absolute;
+  bottom: 4rem;
+  width: 100%;
+}
+
+.list-items .item a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 16px 1rem 16px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: all .3s ease-in-out;
+
+
+}
+
+.list-items .item a:hover {
+  color: var(--hover-color);
+  transform: translateX(5%);
+}
+
+ul.list-items li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+  transition: color 0.3s ease-in-out;
+}
