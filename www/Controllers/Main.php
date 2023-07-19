@@ -3,24 +3,16 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Core\AuthMiddleware;
 use App\Controller\Auth;
+
 
 class Main
 {
     public function home(): void
     {
-
         $view = new View("Main/home", "front");
-        
-        if (isset($_SESSION["user"])) {
-            $pseudo = $_SESSION["firstname"];
-            $view->assign("pseudo", $pseudo);
-        }
-
-        $pseudo = $_SESSION["firstname"];
-        $view = new View("adventure-master/index", "front"); //le path du fichier , et la vue assigné (back ou front)
-        $view->assign("pseudo", $pseudo);
-        $view->assign("age", 30);
+        AuthMiddleware::assignPseudoToView($view);
         $view->assign("titleseo", "supernouvellepage");
     }
 
@@ -31,8 +23,8 @@ class Main
 
     public function aboutUs(): void
     {
-        echo "Page à propos";
+        $view = new View("Main/aboutUs", "front");
+        AuthMiddleware::assignPseudoToView($view);
     }
-
 
 }

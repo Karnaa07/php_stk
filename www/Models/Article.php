@@ -10,7 +10,10 @@ class Article extends SQL
   private Int $id = 0;
   protected String $title;
   protected String $content;
+  protected ?string $imageUrl = null;
   protected String $slug;
+  protected String $createdAt; // Nouvelle propriété pour la date de création
+  
 
   //Connexion with singleton
   public function __construct()
@@ -84,4 +87,38 @@ class Article extends SQL
   {
       $this->slug = strtolower(trim($slug));
   }
+  
+  /**
+   * @return String
+   */
+  public function getCreatedAt(): string
+  {
+      return $this->createdAt;
+  }
+
+  /**
+   * @param String $createdAt
+   */
+  public function setCreatedAt(string $createdAt): void
+  {
+      $this->createdAt = $createdAt;
+  }
+
+  /**
+   * @param string|null $imageUrl The image URL or null
+   */
+  public function setImageUrl(?string $imageUrl): void
+  {
+      $this->imageUrl = $imageUrl;
+  }
+
+  /**
+  * @return string|null
+  */
+  public function getImageUrl(): ?string
+  {
+      return $this->imageUrl;
+  }
+
+
 }

@@ -5,18 +5,22 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Core\Validator;
 use App\Core\AuthMiddleware;
+use App\Core\Mail;
 use App\Forms\Register;
 use App\Forms\Login;
 use App\Forms\Change;
 use App\Models\User;
+use App\Forms\CommentForm;
+use App\Models\Comment;
+
 
 class Auth
 {
-   
+
     public function login(): void
     {
         if (isset($_SESSION["user"])) {
-            // Redirigez l'utilisateur vers le tableau de bord 
+            // Redirigez l'utilisateur vers le tableau de bord
             header('Location: /dashboard');
             exit;
         }
@@ -33,7 +37,7 @@ class Auth
             $email = $_POST["email"];
             $password = $_POST["pwd"];
             $user = $user->getOneWhere(["email" => $email]);
-            
+
             if ($user && password_verify($password, $user->getPwd())) {
                 // L'utilisateur est authentifié avec succès
                 // Créez un token et enregistrez-le dans la session
@@ -41,10 +45,11 @@ class Auth
                 $_SESSION["user"] = $user->getId();
                 $_SESSION["firstname"] = $user->getFirstname();
                 $_SESSION["token"] = $user->getToken();
+                $_SESSION["role_id"] = $user->getRoleId();
                 $user->save();
-                
+
                 // Redirigez l'utilisateur vers la page d'accueil ou une autre page appropriée
-                header('Location: /dashboard');
+                header('Location: /');
                 exit;
             } else {
                 // Les informations d'identification sont incorrectes
@@ -65,11 +70,16 @@ class Auth
         // Formulaire soumis et valide ?
         if ($form->isSubmited() && $form->isValid()) {
             $user = new User();
+            // $mail = new Mail();
+            $verif_code = substr(number_format(time() * rand(),0,'',''),0,6);
+            // $mail->send_mail("waveflow278@gmail.com", $verif_code);
             $user->setFirstname($_POST["firstname"]);
             $user->setLastname($_POST["lastname"]);
             $user->setEmail($_POST["email"]);
             $user->setPwd($_POST["pwd"]);
+            $user->setRoleId(2);
             $user->setCountry("FR");
+            $user->setVerifCode($verif_code);
 
             // Vérifier si l'email existe déjà dans la base de données
             $email = $_POST["email"];
@@ -79,28 +89,30 @@ class Auth
                 echo "L'adresse email n'est pas valide.";
                 return;
             }
-
+            
             if ($existingUser) {
                 echo "Cet email est déjà utilisé !";
                 return;
-
+            }
+            
             if (!Validator::checkPassword($_POST["pwd"])) {
                 echo "Votre mot de passe doit faire au minimum 8 caractères avec des minuscules, des majuscules et des chiffres.";
                 return;
             }
-
+            
             if ($_POST["pwd"] !== $_POST["pwdConfirm"]) {
                 echo "Les mots de passe ne correspondent pas.";
                 return;
             }
+            
+            // Si toutes les conditions sont vérifiées, enregistrez l'utilisateur et affichez un message de succès
 
-            } else {
-                $user->save();
-                echo("Votre compte à bien été créé, vous allez être redirigé vers la page de connexion");
-                header('Refresh: 2; URL=/login');
-            }
+            $user->save();
+            echo "Votre compte a bien été créé. Vous allez être redirigé vers la page de connexion.";
+            header('Refresh: 2; URL=/login');
+            
         }
-        
+
         $view->assign("formErrors", $form->errors);
     }
 
@@ -119,10 +131,11 @@ class Auth
             unset($_SESSION["user"]);
             unset($_SESSION["token"]);
             unset($_SESSION["firstname"]);
+            unset($_SESSION["role_id"]);
         }
-      
+
         // Redirigez l'utilisateur vers la page de connexion ou une autre page appropriée
-        header('Location: /home');
+        header('Location: /');
         exit;
     }
 
@@ -168,6 +181,43 @@ class Auth
         $view->assign("formErrors", $form->errors);
     }
 
-    
+    public function comment(): void
+{
+    // Créer une instance du formulaire de commentaires
+    $form = new CommentForm();
+
+    // Créer une instance de la vue
+    $view = new View("Auth/comment", "auth");
+
+    // Assigner le formulaire à la vue
+    $view->assign("form", $form->getConfig());
+
+    // Formulaire soumis et valide ?
+    if ($form->isSubmited() && $form->isValid()) {
+        // Récupérer les données du formulaire
+        $nom = $_POST['nom'];
+        $email = $_POST['email'];
+        $commentaire = $_POST['commentaire'];
+
+        // Créer une instance du modèle Comment
+        $newComment = new Comment();
+        $newComment->setNom($nom);
+        $newComment->setEmail($email);
+        $newComment->setCommentaire($commentaire);
+
+        // Créer le commentaire dans la base de données
+        $newCommentId = $newComment->createComment();
+
+        if ($newCommentId) {
+            echo "Le commentaire a été créé";
+        } else {
+            echo "Une erreur s'est produite lors de la création du commentaire.";
+        }
+    }
+    $view->assign("formErrors", $form->errors);
+}
+
 
 }
+
+

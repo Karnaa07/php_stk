@@ -2,3 +2,15 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L,QSA]
+
+<Files "config.php">
+    Require all denied
+</Files>
+
+
+# Deny from all empêchera tout accès à ce fichier.
+
+<Files "conf.inc.php"> 
+    Order allow,deny
+    Deny from all
+</Files>

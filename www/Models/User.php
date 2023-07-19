@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Core\SQL;
+use DateTime;
 use PDO;
 
 class User extends SQL
@@ -141,22 +142,6 @@ class User extends SQL
     /**
      * @return \DateTime
      */
-    public function getDateInserted(): \DateTime
-    {
-        return $this->date_inserted;
-    }
-
-    /**
-     * @param \DateTime $date_inserted
-     */
-    public function setDateInserted(\DateTime $date_inserted): void
-    {
-        $this->date_inserted = $date_inserted;
-    }
-
-    /**
-     * @return \DateTime
-     */
     public function getDateUpdated(): \DateTime
     {
         return $this->date_updated;
@@ -183,6 +168,32 @@ class User extends SQL
     public function setToken(?String $token): void
     {
         $this->token = $token;
+    }
+
+    public function getRoleId(): int|null
+    {
+        return $this->role_id;
+    }  
+
+    public function setRoleId(int $role_id): void
+    {
+        $this->role_id = $role_id;
+    }
+
+    public function getVerifCode(): int|null
+    {
+        return $this->verif_code;
+    }
+
+    public function setVerifCode(int $verif_code): void
+    {
+        $this->verif_code = $verif_code;
+    }
+
+
+    public function delete()
+    {
+        $this->deleteWhere(['id' => $this->id]);
     }
 
 }

@@ -1,6 +1,8 @@
 <?php
 namespace App\Core;
 
+use PDO;
+
 class SQL{
 
     private static $instance;
@@ -32,7 +34,7 @@ class SQL{
         return $this->pdo;
     }
 
-
+    // Méthode pour obtenir le nom de la table
     public static function populate(Int $id): object
     {
         $class = get_called_class();
@@ -40,6 +42,7 @@ class SQL{
         return $objet->getOneWhere(["id"=>$id]);
     }
 
+    // Méthode pour obtenir un élément d'une table en fonction de son id
     public function getOneWhere(array $where): object|bool
     {
         $sqlWhere = [];
@@ -52,6 +55,17 @@ class SQL{
         return $queryPrepared->fetch();
     }
 
+    public function deleteWhere(array $where): void
+    {
+        $sqlWhere = [];
+        foreach ($where as $column => $value) {
+            $sqlWhere[] = $column . "=:" . $column;
+        }
+        $queryPrepared = $this->pdo->prepare("DELETE FROM " . $this->table . " WHERE " . implode(" AND ", $sqlWhere));
+        $queryPrepared->execute($where);
+    }
+
+    // Méthode pour obtenir tous les éléments d'une table
     public function getAll(): array|bool
     {
         $queryPrepared = $this->pdo->prepare("SELECT * FROM ".$this->table);
@@ -60,6 +74,44 @@ class SQL{
         return $queryPrepared->fetchAll();
     }
 
+    // Méthode pour compter tous les éléments d'une table
+    public function countAll(): int
+    {
+        $query = "SELECT COUNT(*) FROM " . $this->table;
+        $statement = $this->pdo->query($query);
+        return $statement->fetchColumn();
+    }
+
+    public function all($limit = 100, $offset = 0): array
+    {
+        $query = "SELECT esgi_user.*, esgi_role.name AS role_name 
+                FROM " . $this->table . " 
+                INNER JOIN esgi_role ON esgi_user.role_id = esgi_role.id
+                LIMIT :limit OFFSET :offset";
+
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':limit', $limit, \PDO::PARAM_INT);
+        $statement->bindValue(':offset', $offset, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function find($id)
+    {
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE id = :id';
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $id);
+        $statement->execute();
+
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
+            return $user;
+        }
+
+        return null; // Aucun enregistrement trouvé avec l'ID spécifié
+    }
 
     public function save(): void
     {
@@ -76,7 +128,7 @@ class SQL{
                 " SET " . implode(",", $sqlUpdate) . " WHERE id=" . $this->getId());
         } else {
             $queryPrepared = $this->pdo->prepare("INSERT INTO " . $this->table .
-                " (" . implode(",", array_keys($columns)) . ") 
+                " (" . implode(",", array_keys($columns)) . ")
                 VALUES
                 (:" . implode(",:", array_keys($columns)) . ")");
         }

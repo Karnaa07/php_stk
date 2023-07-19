@@ -1,32 +1,42 @@
 <!DOCTYPE html>
 	<html lang="zxx" class="no-js">
 	<head>
-		<!-- Mobile Specific Meta -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!-- Favicon-->
 		<link rel="shortcut icon" href="../views/adventure-master/img/fav.png">
-		<!-- Author Meta -->
 		<meta name="author" content="colorlib">
-		<!-- Meta Description -->
 		<meta name="description" content="">
-		<!-- Meta Keyword -->
 		<meta name="keywords" content="">
-		<!-- meta character set -->
 		<meta charset="UTF-8">
-		<!-- Site Title -->
 		<title>Adventure</title>
 
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
-			<!--
-			CSS
-			============================================= -->
-			<link rel="stylesheet" href="../views/adventure-master/css/linearicons.css">
-			<link rel="stylesheet" href="../views/adventure-master/css/font-awesome.min.css">
-			<link rel="stylesheet" href="../views/adventure-master/css/bootstrap.css">
-			<link rel="stylesheet" href="../views/adventure-master/css/magnific-popup.css">
-			<link rel="stylesheet" href="../views/adventure-master/css/animate.min.css">
-			<link rel="stylesheet" href="../views/adventure-master/css/owl.carousel.css">
-			<link rel="stylesheet" href="../views/adventure-master/css/main.css">
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+		<!--
+		CSS
+		============================================= -->
+		<link rel="stylesheet" href=" css/bootstrap/linearicons.css">
+		<link rel="stylesheet" href="../css/bootstrap/font-awesome.min.css">
+		<link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
+		<link rel="stylesheet" href="../css/bootstrap/magnific-popup.css">
+		<link rel="stylesheet" href="../css/bootstrap/animate.min.css">
+		<link rel="stylesheet" href="../css/bootstrap/owl.carousel.css">
+		<link rel="stylesheet" href="../css/bootstrap/main.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+
+		<!--script js start -->
+		<script src="../js/vendor/jquery-2.2.4.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="../js/vendor/bootstrap.min.js"></script>
+		<script src="../js/jquery.ajaxchimp.min.js"></script>
+		<script src="../js/jquery.magnific-popup.min.js"></script>
+		<script src="../js/owl.carousel.min.js"></script>
+		<script src="../js/jquery.sticky.js"></script>
+		<script src="../js/slick.js"></script>
+		<script src="../js/jquery.counterup.min.js"></script>
+		<script src="../js/waypoints.min.js"></script>
+		<script src="../js/main.js"></script>
+		<script src="../js/auth.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+		<!--script js end -->
 		</head>
 
 		<section class="banner-area" id="home">
@@ -43,33 +53,34 @@
 
 							  <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 							    <ul class="navbar-nav">
-									<li><a href="#home">Home</a></li>
-									<li><a href="#about">About</a></li>									
-									<li><a href="#secvice">Service</a></li>
-									<li><a href="#gallery">Gallery</a></li>
-									<li><a href="#faq">Faq</a></li>
-									<li><a href="#contact">Contact</a></li>
-									<!-- Dropdown -->
-								    <li class="dropdown">
-								      <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-								        Pages
-								      </a>
-								      <div class="dropdown-menu">
-								        <a class="dropdown-item" href="generic.html">Generic</a>
-								        <a class="dropdown-item" href="elements.html">Elements</a>
-								      </div>
-								    </li>
+									<?php if (isset($_SESSION["role_id"]) && $_SESSION["role_id"] == 1): ?>
+											<li><a href="/dashboard">Dashboard</a></li>
+									<?php endif; ?>
+
+
+									<li><a href="/">Accueil</a></li>
+									<li><a href="/about-us">Qui nous sommes ?</a></li>
+									<li><a href="/page">Pages</a></li>
+									<li><a href="/article">Articles</a></li>
+
+									<?php if (!isset($_SESSION["user"])): ?>
+											<li><a href="/login">Connexion</a></li>
+											<li><a href="/register">Inscription</a></li>
+									<?php endif; ?>
+									<?php if (isset($_SESSION["user"])): ?>
+    								<li><a href="#" onclick="confirmLogout()">Déconnexion</a></li>
+									<?php endif; ?>
 							    </ul>
-							  </div>						
+							  </div>
 						</div>
 					</nav>
 				</header>
-				<!-- End Header Area -->				
+				<!-- End Header Area -->
 			</section>
 <body>
 
-			<?php include $this->view;?> 
-			<!-- start footer Area -->		
+			<?php include $this->view;?>
+			<!-- start footer Area -->
 			<footer class="footer-area section-gap">
 				<div class="container">
 					<div class="row">
@@ -101,16 +112,16 @@
 				                            	<div style="position: absolute; left: -5000px;">
 													<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
 												</div>
-				                          	
+
 											<!-- <div class="col-lg-4 col-md-4">
 												<button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
 											</div>  -->
-										</div>		
+										</div>
 										<div class="info"></div>
 										</form>
 								</div>
 								</div>
-						</div>						
+						</div>
 						<div class="col-lg-2 col-md-6 col-sm-6 social-widget">
 							<div class="single-footer-widget">
 								<h6>Follow Us</h6>
@@ -122,25 +133,9 @@
 									<a href="#"><i class="fa fa-behance"></i></a>
 								</div>
 							</div>
-						</div>							
+						</div>
 					</div>
 				</div>
 			</footer>
-
-			<!--script js start -->
-		<script src="../views/adventure-master/js/vendor/jquery-2.2.4.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-			<script src="../views/adventure-master/js/vendor/bootstrap.min.js"></script>
-			<script src="../views/adventure-master/js/jquery.ajaxchimp.min.js"></script>
-			<script src="../views/adventure-master/js/jquery.magnific-popup.min.js"></script>	
-			<script src="../views/adventure-master/js/owl.carousel.min.js"></script>			
-			<script src="../views/adventure-master/js/jquery.sticky.js"></script>
-			<script src="../views/adventure-master/js/slick.js"></script>
-			<script src="../views/adventure-master/js/jquery.counterup.min.js"></script>
-			<script src="../views/adventure-master/js/waypoints.min.js"></script>		
-			<script src="../views/adventure-master/js/main.js"></script>	
-			<!--script js end -->
-			
-
 </body>
 </html>

@@ -1,24 +1,11 @@
 # // Route du back
 default:
-  controller: Auth
-  action: login
-  
-# Page du dashboard
+  controller: Main
+  action: home
+
 dashboard:
   controller: Dashboard
   action: board
-
-a-propos:
-  controller: Main
-  action: aboutUs
-
-about-us:
-  controller: Main
-  action: aboutUs
-
-contact:
-  controller: Main
-  action: contact
 
 login:
   controller: Auth
@@ -36,9 +23,17 @@ new_pass:
   controller: Auth
   action: change
 
-#Accueil 
+create-page:
+  controller: Page
+  action: create
 
-accueil:
+create-article:
+  controller: Article
+  action: create
+
+
+# // Routes du Front
+home:
   controller: Main
   action: home
 
@@ -57,4 +52,39 @@ page:
 article:
   controller: Article
   action: index
+
+#Comment
+
+comments:
+  controller: CommentController
+  action: commentController  
+
+commentControllerReport:
+  controller: CommentController
+  action: report
+
+
+
+users:
+  controller: UserCrud
+  action: index
+
+users-create:
+  controller: UserCrud
+  action: create
+
+users-update:
+  path: users-update
+  controller: UserCrud
+  action: edit
+
+users-delete:
+  path: /users-delete
+  controller: UserCrud
+  action: delete
+
+
+comment: 
+  controller: Auth
+  action: comment
 

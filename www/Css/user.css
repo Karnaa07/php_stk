@@ -1,0 +1,169 @@
+.crud-container {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.crud-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.crud-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.crud-table th,
+.crud-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.crud-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center; /* Ajout de l'alignement horizontal centré */
+}
+
+.crud-actions a {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.crud-actions a:hover {
+  background-color: #0056b3;
+}
+
+.crud-actions .material-icons-sharp {
+  margin-right: 5px;
+}
+
+.crud-create {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.crud-create a {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #28a745;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.crud-create a:hover {
+  background-color: #1f8639;
+}
+
+.crud-form {
+  margin-top: 20px;
+}
+
+.crud-back {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.crud-back a {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.crud-back a:hover {
+  background-color: #111;
+}
+.crud-container {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.crud-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.crud-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.crud-table th,
+.crud-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.crud-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.crud-actions a {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.crud-actions a:hover {
+  background-color: #0056b3;
+}
+
+.crud-actions .material-icons-sharp {
+  margin-right: 5px;
+}
+
+.crud-create {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.crud-create a {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #28a745;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.crud-create a:hover {
+  background-color: #1f8639;
+}
+
+.crud-form {
+  margin-top: 20px;
+}
+
+.crud-back {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.crud-back a {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.crud-back a:hover {
+  background-color: #111;
+}
