@@ -16,7 +16,13 @@ class Comment
     {
         return $this->id;
     }
+    
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
+    
     public function getNom()
     {
         return $this->nom;
@@ -59,13 +65,22 @@ class Comment
 
     // Méthodes pour les opérations CRUD sur les commentaires
 
+     // méthode getAllComments() pour renvoyer un tableau associatif
     public function getAllComments()
     {
         $db = SQL::getInstance()->getConnection();
         $query = "SELECT * FROM esgi_commentaires";
         $result = $db->query($query);
-        return $result->fetchAll();
+        $comments = [];
+
+        while ($row = $result->fetch(\PDO::FETCH_ASSOC)) {
+            $comments[] = $row;
+        }
+
+        return $comments;
     }
+
+
 
     public function getCommentsByPostId($postId)
     {
@@ -112,13 +127,23 @@ class Comment
         return $result->rowCount();
     }
 
-    public function reportComment($id)
+    public function reportComment($id, $reason)
     {
         $db = SQL::getInstance()->getConnection();
-        $query = "UPDATE esgi_commentaires SET is_reported = 1 WHERE id = :id";
+        $query = "UPDATE esgi_commentaires SET is_reported = 1, reason = :reason WHERE id = :id";
+        $result = $db->prepare($query);
+        $result->execute([
+            'id' => $id,
+            'reason' => $reason
+        ]);
+        return $result->rowCount() > 0;
+    }
+    public function approveComment($id)
+    {
+        $db = SQL::getInstance()->getConnection();
+        $query = "UPDATE esgi_commentaires SET is_approved = true WHERE id = :id";
         $result = $db->prepare($query);
         $result->execute(['id' => $id]);
-        return $result->rowCount();
+        return $result->rowCount() > 0;
     }
-
 }

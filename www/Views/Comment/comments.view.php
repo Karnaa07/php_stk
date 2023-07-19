@@ -41,23 +41,36 @@
 
     <?php $this->partial("form", $form, $formErrors) ?>
 
+    <ul class="comment-list">
     <?php if (isset($comments) && count($comments) > 0): ?>
-    <?php foreach ($comments as $comment): ?>
-        <div class="comment">
-            <p class="author"><?php echo htmlspecialchars($comment['nom']); ?></p>
-            <p class="date"><?php echo date_format(new DateTime($comment['date_creation']), 'd/m/Y H:i:s'); ?></p>
-            <p class="content"><?php echo nl2br(htmlspecialchars($comment['commentaire'])); ?></p>
-            <?php if (!$comment['is_reported']): ?>
-                <!-- Bouton pour signaler le commentaire -->
-                <form action=""<?php echo $comment['id']; ?>" method="POST">
-                    <button type="submit">Signaler</button>
-                </form>
-            <?php else: ?>
-                <!-- Message indiquant que le commentaire a déjà été signalé -->
-                <p class="reported-message">Ce commentaire a été signalé.</p>
-            <?php endif; ?>
-        </div>
-    <?php endforeach; ?>
-<?php else: ?>
-    <p>Aucun commentaire trouvé.</p>
-<?php endif; ?>
+        <?php foreach ($comments as $comment): ?>
+            <li class="comment">
+                <!-- Afficher les informations du commentaire ici -->
+                <p class="author"><?php echo htmlspecialchars($comment['nom']); ?></p>
+                <p class="date"><?php echo date_format(new DateTime($comment['date_creation']), 'd/m/Y H:i:s'); ?></p>
+                <p class="content"><?php echo nl2br(htmlspecialchars($comment['commentaire'])); ?></p>
+
+                <?php if (!$comment['is_reported']): ?>
+                    <!-- Formulaire de signalement -->
+                    <form action="" method="post">
+                        <input type="hidden" name="commentId" value="<?php echo $comment['id']; ?>">
+                        <label for="reason">Raison du signalement :</label>
+                        <select id="reason" name="reason">
+                            <option value="insultes">Insultes</option>
+                            <option value="messages_incorrects">Messages incorrects</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                        <button type="submit">Signaler</button>
+                    </form>
+                <?php else: ?>
+                    <!-- Message indiquant que le commentaire a déjà été signalé -->
+                    <p class="reported-message">Ce commentaire a été signalé.</p>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <li class="comment">
+            Aucun commentaire trouvé.
+        </li>
+    <?php endif; ?>
+</ul>

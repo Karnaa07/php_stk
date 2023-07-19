@@ -87,11 +87,11 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a href="#">
+                            <a href="/commentaires">
                                 <span class="material-icons-sharp">
                                     support_agent
                                 </span>
-                                <span>Assistances</span>
+                                <span>Commentaires</span>
                             </a>
                         </li>
                         <li class="item">

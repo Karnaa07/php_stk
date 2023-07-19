@@ -53,18 +53,35 @@ article:
   controller: Article
   action: index
 
-#Comment
+# // Commentaire
 
 comments:
   controller: CommentController
   action: commentController  
 
-commentControllerReport:
+reportComment:
   controller: CommentController
-  action: report
+  action: reportComment
+  method: POST
+
+# // CommentCrud
+
+commentaires:
+  controller: CommentCrud
+  action: index
+
+commentaires-delete:
+  path: /commentaires-delete
+  controller: CommentCrud
+  action: delete
+
+commentaires-approve:
+  path: /commentaires-approve
+  controller: CommentCrud
+  action: approve
 
 
-
+# // UserCrud
 users:
   controller: UserCrud
   action: index

@@ -52,13 +52,18 @@ class CommentController
         $view->assign("formErrors", $form->errors);
     }
 
-    public function report($commentId)
+    public function reportComment()
     {
-        // Vérifier si le formulaire de signalement a été soumis
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Mettre à jour le commentaire avec la valeur 1 dans le champ is_reported
+            // Récupérer les données du formulaire de signalement
+            $commentId = $_POST['commentId'];
+            $reason = $_POST['reason'];
+
+            // Créer une instance du modèle Comment
             $commentModel = new Comment();
-            $success = $commentModel->reportComment($commentId);
+
+            // Signaler le commentaire avec la raison spécifiée
+            $success = $commentModel->reportComment($commentId, $reason);
 
             if ($success) {
                 echo "Le commentaire a été signalé avec succès.";
