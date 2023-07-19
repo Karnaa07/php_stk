@@ -135,7 +135,6 @@ class SQL
         $newColumns = [];
         foreach ($columns as $key => $value) {
             if (is_string($value)) {
-                var_dump($key);
                 if ($key != "content") {
                     $valueTemp = str_replace(">", "&gt;", $value);
                     $valueTemp = str_replace("<", "&lt;", $valueTemp);
