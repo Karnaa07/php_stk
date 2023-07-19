@@ -33,9 +33,18 @@ class PageController
         $view = new View("pages", "auth");
         $view->assign("form", $form->getConfig());
         $view->assign("action", "create");
+
+
        
+
         if ($form->isSubmited() && $form->isValid()) {
-        
+            // Vérifie si une page avec le même titre existe déjà
+            // $existingPage = Page::where('title', $_POST['title'])->first();
+            // if ($existingPage) {
+            //     // Si oui, afficher un message d'erreur et arrêter l'exécution
+            //     $view->assign("formErrors", array("Une page avec ce titre existe déjà."));
+            //     return;
+            // }
             $page = new Page();
             $page->setAuthor($_POST['author']);
             $page->setDate($_POST['date']);
@@ -44,125 +53,33 @@ class PageController
             $page->setColor($_POST['color']);
             $page->setContent($_POST['content']);
 
-            
-
             // Enregistrer la page dans la base de données
             $page->save();
 
+            // Ecrire dans le routes.yml la route de la page avec l'action show 
+            $newRoute = [
+              'path' => '/' . str_replace(' ', '-', strtolower($page->getTitle())),
+              'controller' => 'PageController', // Remplacez par le nom du contrôleur approprié
+              'action' => 'show' // Remplacez par la fonction appropriée
+            ];
+            
+            // lire le fichier route.yml
+          $routes = yaml_parse_file('routes.yml');
+  
+          // ajouter la nouvelle route
+          $routes[str_replace(' ', '_', strtolower($page->getTitle()))] = $newRoute;
+  
+          // écrire le fichier route.yml
+          yaml_emit_file('routes.yml', $routes);
 
-            // Préparer les variables pour le template
-            $title = $page->getTitle();
-            $author = $page->getAuthor();
-            $date = $page->getDate();
-            $theme = $page->getTheme();
-            $color = $page->getColor();
-            $content = $page->getContent();
-
-            // Démarrer la mise en tampon de sortie
-            ob_start();
-
-            // Inclure le fichier de template
-            include 'views/pageTemplate.php';
-
-            // Obtenir le contenu du tampon
-            $html = ob_get_contents();
-
-            // Arrêter la mise en tampon de sortie et nettoyer le tampon
-            ob_end_clean();
-
-            // Créer le nom du fichier à partir du titre de la page
-            $fileName = str_replace(' ', '-', strtolower($title)) . '.html';
-
-            // Créer un répertoire pour stocker les pages s'il n'existe pas déjà
-            if (!file_exists('PageCreateView')) {
-                mkdir('PageCreateView', 0777, true);
-            }
-
-            // Écrire le contenu HTML dans le nouveau fichier
-            file_put_contents('PageCreateView/' . $fileName, $html);
-
-            // Rediriger vers la liste des pages ou afficher un message de succès
-            header('Location: /pages');
-            exit();
+          
+          header('Location: /pages');
+          exit();
         }
 
         $view->assign("formErrors", $form->errors);
     }
 
-    // public function store()
-    // {
-    //     $createPageForm = new CreatePageForm();
-    //     // Récupérer les données du formulaire
-    //     $data = $_POST;
-
-    //     // Créer une instance du modèle Page
-    //     $page = new Page();
-
-    //     // Renseigner les propriétés de la page à partir des données reçues
-    //     $page->setAuthor($data['author']);
-    //     $page->setDate($data['date']);
-    //     $page->setTitle($data['title']);
-    //     $page->setTheme($data['theme']);
-    //     $page->setColor($data['color']);
-    //     $page->setContent($data['content']);
-
-    //     // Enregistrer la page dans la base de données
-    //     $page->save();
-
-    //     // Rediriger vers la liste des pages ou afficher un message de succès
-    //     header('Location: /pages');
-    //     exit();
-    // }
-
-    // public function edit()
-    // {
-    //     $id = $_GET['id'];
-
-    //     // Récupérer la page à modifier depuis la base de données
-    //     $page = Page::find($id);
-
-    //     // Vérifier si la page existe
-    //     if (!$page) {
-    //         // Gérer l'erreur, page non trouvée
-    //     }
-
-    //     // Instanciation de la classe CreatePageForm
-    //     $editForm = new CreatePageForm();
-
-    //     // Obtention de la configuration du formulaire
-    //     $editFormConfig = $editForm->getConfig();
-
-    //     // Charger la vue avec le formulaire de création de page et les données de la page
-    //     $view = new View("pages/edit", "back");
-    //     $view->assign("page", $page);
-    //     $view->assign("form", $editFormConfig);
-
-    //     // Formulaire soumis et valide ?
-    //     if ($editForm->isSubmited() && $editForm->isValid()) {
-    //         // Mettre à jour les propriétés de la page à partir des données reçues
-    //         $page->setAuthor($_POST["author"]);
-    //         $page->setDate($_POST["date"]);
-    //         $page->setTitle($_POST["title"]);
-    //         $page->setTheme($_POST["theme"]);
-    //         $page->setColor($_POST["color"]);
-    //         $page->setContent($_POST["content"]);
-
-    //         // Enregistrer les modifications de la page dans la base de données
-    //         $page->save();
-
-    //         // Rediriger vers la liste des pages ou afficher un message de succès
-    //         header('Location: /pages');
-    //         exit();
-    //     }
-
-    //     $view->assign("formErrors", $createPageForm->errors);
-    //     //$view->render();
-    // }
-
-    // public function update()
-    // {
-    //     // Code pour mettre à jour la page dans la base de données
-    // }
     public function deletePage()
     {
       // Vérifier si un ID de page est passé en paramètre GET
@@ -183,25 +100,24 @@ class PageController
       header('Location: /error-page'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
       exit;
     }
+    public function show(){
+      // get uri by removing the slash
     
-    // public function delete()
-    // {
-    //     $id = $_POST['id'];
+      $uri = substr($_SERVER['REQUEST_URI'], 1);
+      $pageModel = new Page();
+      $page = $pageModel->getOneWhere(['title' => str_replace('-', ' ', $uri)]);
 
-    //     // Récupérer la page à supprimer depuis la base de données
-    //     $page = \App\Models\Page::populate($id);
-
-    //     if (!$page) {
-    //         echo "Page non trouvée.";
-    //         exit();
-    //     }
-
-    //     // Supprimer la page de la base de données en utilisant la méthode delete de l'objet Page
-    //     $page->delete();
-
-    //     // Rediriger vers la liste des pages ou afficher un message de succès
-    //     header('Location: /pages');
-    //     exit();
-    // }
+      // assign the page to the view
+      $view = new View("pageTemplate", "Auth");
+      $view->assign("title", $page->getTitle());
+      $view->assign("content", $page->getContent());
+      $view->assign("theme", $page->getTheme());
+      $view->assign("color", $page->getColor());
+      $view->assign("author", $page->getAuthor());
+      $view->assign("date", $page->getDate());
+      
+      
+    }
+    
 
 }

@@ -1,89 +1,69 @@
-# // Route du back
+---
 default:
   controller: Main
   action: home
-
 dashboard:
   controller: Dashboard
   action: board
-
 login:
   controller: Auth
   action: login
-
 logout:
   controller: Auth
   action: logout
-
 register:
   controller: Auth
   action: register
-
 new_pass:
   controller: Auth
   action: change
-
-create-page:
-  controller: Page
-  action: create
-
-create-article:
-  controller: Article
-  action: create
-
-
-# // Routes du Front
-home:
-  controller: Main
-  action: home
-
-about-us:
-  controller: Main
-  action: aboutUs
-
-contact:
-  controller: Main
-  action: contact
-
-article:
-  controller: Article
-  action: index
-
-
-users:
-  controller: UserCrud
-  action: index
-
-users-create:
-  controller: UserCrud
-  action: create
-
-users-update:
-  path: users-update
-  controller: UserCrud
-  action: edit
-
-users-delete:
-  path: /users-delete
-  controller: UserCrud
-  action: delete
-
-pages:
-  path: /pages
-  controller: PageController
-  action: index
-
 create-page:
   path: /create-page
   controller: PageController
   action: create
-
+create-article:
+  controller: Article
+  action: create
+home:
+  controller: Main
+  action: home
+about-us:
+  controller: Main
+  action: aboutUs
+contact:
+  controller: Main
+  action: contact
+article:
+  controller: Article
+  action: index
+users:
+  controller: UserCrud
+  action: index
+users-create:
+  controller: UserCrud
+  action: create
+users-update:
+  path: users-update
+  controller: UserCrud
+  action: edit
+users-delete:
+  path: /users-delete
+  controller: UserCrud
+  action: delete
+pages:
+  path: /pages
+  controller: PageController
+  action: index
 update-page:
   controller: PageController
   action: edit
-
 delete-page:
   path: /pages-delete
   controller: PageController
   action: delete
+sf:
+  path: sf
+  controller: PageController
+  action: show
 
+...
