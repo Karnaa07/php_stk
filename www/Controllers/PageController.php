@@ -79,7 +79,25 @@ class PageController
 
         $view->assign("formErrors", $form->errors);
     }
+    public function show()
+    {
+      // get uri by removing the slash
+    
+      $uri = substr($_SERVER['REQUEST_URI'], 1);
+      $pageModel = new Page();
+      $page = $pageModel->getOneWhere(['title' => str_replace('-', ' ', $uri)]);
 
+      // assign the page to the view
+      $view = new View("pageTemplate", "Auth");
+      $view->assign("title", $page->getTitle());
+      $view->assign("content", $page->getContent());
+      $view->assign("theme", $page->getTheme());
+      $view->assign("color", $page->getColor());
+      $view->assign("author", $page->getAuthor());
+      $view->assign("date", $page->getDate());
+      
+      
+    }
     public function deletePage()
     {
       // Vérifier si un ID de page est passé en paramètre GET
@@ -100,24 +118,7 @@ class PageController
       header('Location: /error-page'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
       exit;
     }
-    public function show(){
-      // get uri by removing the slash
     
-      $uri = substr($_SERVER['REQUEST_URI'], 1);
-      $pageModel = new Page();
-      $page = $pageModel->getOneWhere(['title' => str_replace('-', ' ', $uri)]);
-
-      // assign the page to the view
-      $view = new View("pageTemplate", "Auth");
-      $view->assign("title", $page->getTitle());
-      $view->assign("content", $page->getContent());
-      $view->assign("theme", $page->getTheme());
-      $view->assign("color", $page->getColor());
-      $view->assign("author", $page->getAuthor());
-      $view->assign("date", $page->getDate());
-      
-      
-    }
     
 
 }

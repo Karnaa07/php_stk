@@ -65,5 +65,8 @@ sf:
   path: sf
   controller: PageController
   action: show
-
+toto:
+  path: /toto
+  controller: PageController
+  action: show
 ...
