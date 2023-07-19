@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # // Route du back rajouter dashboard a chaque route qui passe par le back
 
 dashboard:
@@ -78,6 +79,18 @@ dashboard/users-delete:
   controller: UserCrud
   action: delete
 
+pages: //rajouter dahsboard/ a chaque route qui passe par le back
+  path: /pages
+  controller: PageController
+  action: index
+update-page:
+  controller: PageController
+  action: edit
+delete-page:
+  path: /pages-delete
+  controller: PageController
+  action: delete
+
 
 # // Routes du Front
 
@@ -93,10 +106,6 @@ about-us:
   controller: Main
   action: aboutUs
 
-page:
-  controller: Page
-  action: index
-
 show_article:
   controller: Article
   action: show
@@ -104,6 +113,5 @@ show_article:
 show_one_article:
   controller: Article
   action: showOneArticle
-
 
 

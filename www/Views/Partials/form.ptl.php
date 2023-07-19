@@ -19,6 +19,26 @@
                     value="<?= $configValues[$name] ?>"
                 <?php endif; ?>
 
+        <?php if ($configInput["type"] === "textarea"): ?>
+            <textarea
+                name="<?= $name?>" 
+                rows = "5" 
+                cols = "33"
+                placeholder="<?= $configInput["placeholder"]??"" ?>"
+                id="<?= $configInput["id"]??"" ?>"
+                class="<?= $configInput["class"]??"" ?>" >
+            </textarea>
+        <?php else: ?>
+            <input name="<?= $name ?>"
+                placeholder="<?= $configInput["placeholder"] ?>"
+                class="<?= $configInput["class"] ?>"
+                id="<?= $name ?>"
+                type="<?= $configInput["type"] ?>"
+                <?= $configInput["required"] ? "required" : "" ?>><br>
+        <br>
+        <?php endif; ?>
+
+
                <?= $configInput["required"] ? "required" : "" ?>><br>
     <?php endforeach; ?>
 
