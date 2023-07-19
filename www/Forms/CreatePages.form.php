@@ -83,52 +83,13 @@ class CreatePages extends Validator
         return $this->config;
     }
     
-    // public function renderForm()
+    // public function getValue($name)
     // {
-    //     $config = $this->getConfig();
-    
-    //     $html = '<form method="' . $config['config']['method'] . '" action="' . $config['config']['action'] . '" id="' . $config['config']['id'] . '" class="' . $config['config']['class'] . '">';
-    
-    //     foreach ($config['inputs'] as $name => $input) {
-    //         $html .= '<div class="form-group">';
-    //         $html .= '<label for="' . $input['id'] . '">' . ucfirst($name) . '</label>';
-    
-    //         if ($name === 'content') {
-    //             $html .= '<textarea id="' . $input['id'] . '" class="' . $input['class'] . '" placeholder="' . $input['placeholder'] . '" name="' . $name . '" ' . ($input['required'] ? 'required' : '') . '"value="' . $this->getValue($name) . '" ' . '></textarea>';
-    //         } else {
-    //             $html .= '<input type="' . $input['type'] . '" id="' . $input['id'] . '" class="' . $input['class'] . '" placeholder="' . $input['placeholder'] . '" name="' . $name . '" value="' . $this->getValue($name) . '" ' . ($input['required'] ? 'required' : '') . '>';
-    //         }
-    
-    //         $html .= '</div>';
+    //     // Vérifier si la valeur existe dans les données soumises
+    //     if (isset($_POST[$name])) {
+    //         return $_POST[$name];
     //     }
     
-    //     $html .= '<button type="submit">' . $config['config']['submit'] . '</button>';
-    //     $html .= '<button type="reset">' . $config['config']['reset'] . '</button>';
-    //     $html .= '</form>';
-    //     $html .= '<script src="https://cdn.tiny.cloud/1/9i4ty3dj7s5dyw4g2xbzg2u7udwf4mliqo7r71asossk42gb/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>';
-    //     $html .= '<link rel="stylesheet" href="https://cdn.tiny.cloud/1/9i4ty3dj7s5dyw4g2xbzg2u7udwf4mliqo7r71asossk42gb/tinymce/5/skins/ui/oxide/content.min.css">';
-    //     $html .= '<link rel="stylesheet" href="https://cdn.tiny.cloud/1/9i4ty3dj7s5dyw4g2xbzg2u7udwf4mliqo7r71asossk42gb/tinymce/5/skins/ui/oxide/skin.min.css">';
-    //     $html .= '<script>
-    //         window.addEventListener("DOMContentLoaded", function() {
-    //             tinymce.init({
-    //                 selector: "textarea",
-    //                 plugins: "link image lists",
-    //                 toolbar: "undo redo | formatselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | image link | removeformat",
-    //             });
-    //         });
-    //     </script>';
-        
-    
-    //     return $html;
+    //     return '';
     // }
-    
-    public function getValue($name)
-    {
-        // Vérifier si la valeur existe dans les données soumises
-        if (isset($_POST[$name])) {
-            return $_POST[$name];
-        }
-    
-        return '';
-    }
 }

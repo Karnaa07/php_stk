@@ -82,36 +82,61 @@ show_article:
 show_one_article:
   controller: Article
   action: showOneArticle
-
-# // Commentaire
-
 comments:
   controller: CommentController
-  action: commentController  
-
+  action: commentController
 reportComment:
   controller: CommentController
   action: reportComment
   method: POST
-
-# // CommentCrud
-
 commentaires:
   controller: CommentCrud
   action: index
-
 commentaires-delete:
   path: /commentaires-delete
   controller: CommentCrud
   action: delete
-
 commentaires-approve:
   path: /commentaires-approve
   controller: CommentCrud
   action: approve
-
-# // Formulaire commentaire
-
-comment: 
+comment:
   controller: Auth
   action: comment
+allemagne:
+  path: /allemagne
+  controller: PageController
+  action: show
+zdzd:
+  path: /zdzd
+  controller: PageController
+  action: show
+tunis:
+  path: /tunis
+  controller: PageController
+  action: show
+ok_ok:
+  path: /ok-ok
+  controller: PageController
+  action: show
+ollallllkaka:
+  path: /ollallllkaka
+  controller: PageController
+  action: show
+saint-marie_incroyable:
+  path: /saint-marie-incroyable
+  controller: PageController
+  action: show
+ok-ht_en_vrais:
+  path: /ok-ht-en-vrais
+  controller: PageController
+  action: show
+lp-re-bo-bo-bo:
+  path: /lp-re-bo-bo-bo
+  controller: PageController
+  action: show
+ssdcs-sdc:
+  path: /ssdcs-sdc
+  controller: PageController
+  action: show
+...

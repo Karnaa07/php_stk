@@ -35,24 +35,29 @@ class PageController
         $view->assign("form", $form->getConfig());
         $view->assign("action", "create");
 
-
-       
-
+        
         if ($form->isSubmited() && $form->isValid()) {
-            // Vérifie si une page avec le même titre existe déjà
-            // $existingPage = Page::where('title', $_POST['title'])->first();
-            // if ($existingPage) {
-            //     // Si oui, afficher un message d'erreur et arrêter l'exécution
-            //     $view->assign("formErrors", array("Une page avec ce titre existe déjà."));
-            //     return;
-            // }
+
+          
+          $pageModel = new Pages();
+          $page = $pageModel->getOneWhere(['title' => $_POST['title']]);
+          if ($page) {
+              $form->errors['title'] = "Une page avec ce titre existe déjà";
+          }
+  
+          if (!empty($form->errors)) {
+              $view->assign("formErrors", $form->errors);
+              return;
+          }
+            
             $page = new Pages();
             $page->setAuthor($_POST['author']);
             $page->setDate($_POST['date']);
-            $page->setTitle($_POST['title']);
+            $page->setTitle(strtolower($_POST['title'])); 
             $page->setTheme($_POST['theme']);
             $page->setColor($_POST['color']);
             $page->setContent($_POST['content']);
+          
 
             // Enregistrer la page dans la base de données
             $page->save();
@@ -68,18 +73,20 @@ class PageController
           $routes = yaml_parse_file('routes.yml');
   
           // ajouter la nouvelle route
-          $routes[str_replace(' ', '_', strtolower($page->getTitle()))] = $newRoute;
+          $routes[str_replace(' ', '-', strtolower($page->getTitle()))] = $newRoute;
   
           // écrire le fichier route.yml
           yaml_emit_file('routes.yml', $routes);
 
           
-          // header('Location: /pages');
+          header('Location: /pages');
           exit();
         }
 
         $view->assign("formErrors", $form->errors);
     }
+
+
     public function show()
     {
       // get uri by removing the slash
@@ -87,7 +94,8 @@ class PageController
       $uri = substr($_SERVER['REQUEST_URI'], 1);
       $pageModel = new Pages();
       $page = $pageModel->getOneWhere(['title' => str_replace('-', ' ', $uri)]);
-      var_dump($page -> getTitle());
+      
+   
 
       // assign the page to the view
       $view = new View("pageTemplate", "Auth");
@@ -100,6 +108,8 @@ class PageController
       
       
     }
+
+
     public function deletePage()
     {
       // Vérifier si un ID de page est passé en paramètre GET

@@ -46,7 +46,7 @@
                 <td>
                     <a href="/pages-update/?id=<?= $page['id']; ?>">Modifier</a>
                     <a href="/pages-delete/?id=<?= $page['id']; ?>">Supprimer</a>
-                    <a href="/PageCreateView/<?= str_replace(' ', '-', strtolower($page['title'])) . '.html'; ?>">Visualiser</a>
+                    <a href="/<?= str_replace(' ', '-', strtolower($page['title'])); ?>">Visualiser</a>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -63,11 +63,9 @@
 
     <script src="https://cdn.tiny.cloud/1/9i4ty3dj7s5dyw4g2xbzg2u7udwf4mliqo7r71asossk42gb/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
-        //check if the form is submitted
-        
+       
 
-
-        tinymce.init({
+     tinymce.init({
             selector: '.wysiwyg',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
