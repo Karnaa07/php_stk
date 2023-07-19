@@ -20,9 +20,21 @@
           <td><?= $article->getTitle() ?></td>
           <td><?= $article->getCreatedAt() ?></td>
           <td>
-            <a href="/dashboard/update-article?id=<?= $article->getId() ?>" class="btn btn-info">Modifier</a>
-            <a href="/dashboard/restore-article?id=<?= $article->getId() ?>" class="btn btn-warning">Restaurer</a>
-            <a href="/dashboard/delete-article?id=<?= $article->getId() ?>" class="btn btn-danger">Supprimer</a>
+            <a href="/dashboard/update-article?id=<?= $article->getId() ?>">
+              <span class="btn material-icons-sharp">
+                create
+              </span>
+            </a>
+            <a href="/dashboard/restore-article?id=<?= $article->getId() ?>">
+              <span class="btn material-icons-sharp">
+                history
+              </span>
+            </a>
+            <a href="/dashboard/delete-article?id=<?= $article->getId() ?>">
+              <span class="btn btn-danger material-icons-sharp">
+                delete
+              </span>
+            </a>
           </td>
         </tr>
       <?php endforeach; ?>
