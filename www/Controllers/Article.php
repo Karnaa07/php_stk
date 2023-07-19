@@ -147,7 +147,7 @@ class Article
           $article->save();
           // Redirect to the list of articles or another page if needed
           echo ("L'article a été mis à jour avec succès");
-          // header('Refresh: 2; URL= /dashboard/articles');
+          header('Refresh: 2; URL= /dashboard/articles');
         }
 
         // Show the form with validation errors if any

@@ -48,7 +48,7 @@ class Article extends Validator
                     "placeholder" => "Entrez le contenu de l'article",
                     "type" => "text",
                     "error" => "",
-                    "required" => false,
+                    "required" => true,
                     "value" => "" // Valeur par défaut du champ contenu (chaîne vide)
                 ],
                 "image_url" => [
@@ -58,7 +58,8 @@ class Article extends Validator
                     "placeholder" => "Entrez l'URL de l'image de l'article",
                     "type" => "text",
                     "error" => "",
-                    "required" => true
+                    "required" => true,
+                    "value" => "" // Valeur par défaut du champ contenu (chaîne vide)
                 ]
             ]
         ];
