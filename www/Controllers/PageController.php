@@ -3,33 +3,32 @@
 namespace App\Controllers;
 
 use App\Core\View;
-use App\Models\Page;
-use App\Forms\CreatePage;
+use App\Models\Pages;
+use App\Forms\CreatePages;
 
 
 class PageController
 {
     public function index(): void
     {
-        $pageModel = new Page();
+        $pageModel = new Pages();
         $limit = 20; // Nombre de pages à afficher par page
         $page = $_GET['page'] ?? 1; // Récupérer le numéro de page à partir de la requête, par exemple, à l'aide de la superglobale $_GET
         $offset = ($page - 1) * $limit; // Calculer le décalage en fonction du numéro de page
 
-        $pages = $pageModel->all($limit, $offset);
+        $pages = $pageModel->all1($limit, $offset);
 
         $action = "index";
 
         $view = new View("pages", "back");
         $view->assign("pages", $pages);
         $view->assign("action", $action);
-        //$view->render();
     }
 
     public function create()
     {
            
-        $form= new CreatePage();
+        $form= new CreatePages();
         $view = new View("pages", "auth");
         $view->assign("form", $form->getConfig());
         $view->assign("action", "create");
@@ -45,7 +44,7 @@ class PageController
             //     $view->assign("formErrors", array("Une page avec ce titre existe déjà."));
             //     return;
             // }
-            $page = new Page();
+            $page = new Pages();
             $page->setAuthor($_POST['author']);
             $page->setDate($_POST['date']);
             $page->setTitle($_POST['title']);
@@ -73,7 +72,7 @@ class PageController
           yaml_emit_file('routes.yml', $routes);
 
           
-          header('Location: /pages');
+          // header('Location: /pages');
           exit();
         }
 
@@ -84,8 +83,9 @@ class PageController
       // get uri by removing the slash
     
       $uri = substr($_SERVER['REQUEST_URI'], 1);
-      $pageModel = new Page();
+      $pageModel = new Pages();
       $page = $pageModel->getOneWhere(['title' => str_replace('-', ' ', $uri)]);
+      var_dump($page -> getTitle());
 
       // assign the page to the view
       $view = new View("pageTemplate", "Auth");

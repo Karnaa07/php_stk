@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Core\SQL;
 
-class Page extends SQL
+class Pages extends SQL
 {
     private int $id = 0;
     protected string $author;
@@ -19,25 +19,6 @@ class Page extends SQL
     public function __construct()
     {
         $this->pdo = SQL::getInstance()->getConnection();
-
-
-    }
-
-    public static function find($id)
-    {
-        $pdo = SQL::getInstance()->getConnection();
-
-        $statement = $pdo->prepare('SELECT * FROM pages WHERE id = :id');
-        $statement->bindValue(':id', $id);
-        $statement->execute();
-
-        $page = $statement->fetch(PDO::FETCH_ASSOC);
-
-        if ($page) {
-            return $page;
-        }
-
-        return null;
     }
 
     public function getId(): int
@@ -108,17 +89,6 @@ class Page extends SQL
     public function setContent(string $content): void
     {
         $this->content = $content;
-    }
-
-    public function all($limit = 100, $offset = 0): array
-    {
-        $query = "SELECT * FROM " . $this->table . " LIMIT :limit OFFSET :offset";
-        $statement = $this->pdo->prepare($query);
-        $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
-        $statement->bindValue(':offset', $offset, PDO::PARAM_INT);
-        $statement->execute();
-
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function delete()

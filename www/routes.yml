@@ -1,88 +1,65 @@
-<<<<<<< HEAD
-# // Route du back rajouter dashboard a chaque route qui passe par le back
-
+---
 dashboard:
   controller: Dashboard
   action: board
-
-# // Routes de l'authentification
 register:
   controller: Auth
   action: register
-
 verify_account:
   controller: Auth
   action: verifyAccount
-
 login:
   controller: Auth
   action: login
-
 reset_password:
   controller: Auth
   action: pwdforgot
-
 reset_password_email:
   controller: Auth
   action: pwdforgot_with_email
-
 new_pass:
   controller: Auth
   action: change
-
 logout:
   controller: Auth
   action: logout
-
-# // Routes Pages 
-create-page:
-  controller: Page
-  action: create
-
-# // Routes Articles
 dashboard/articles:
   controller: Article
   action: index
-
 dashboard/create-article:
   controller: Article
   action: create
-
 dashboard/update-article:
   controller: Article
   action: update
-
 dashboard/delete-article:
   controller: Article
   action: delete
-
 dashboard/restore-article:
   controller: Article
   action: restoreArticle
-
-# // Routes Users
 dashboard/users:
   controller: UserCrud
   action: index
-
 dashboard/users-create:
   controller: UserCrud
   action: create
-
 dashboard/users-update:
   path: users-update
   controller: UserCrud
   action: edit
-
 dashboard/users-delete:
   path: /users-delete
   controller: UserCrud
   action: delete
-
-pages: //rajouter dahsboard/ a chaque route qui passe par le back
+pages:
   path: /pages
   controller: PageController
   action: index
+create-page:
+  path: /create-page
+  controller: PageController
+  action: create
 update-page:
   controller: PageController
   action: edit
@@ -90,28 +67,18 @@ delete-page:
   path: /pages-delete
   controller: PageController
   action: delete
-
-
-# // Routes du Front
-
 default:
   controller: Main
   action: home
-
 home:
   controller: Main
   action: home
-
 about-us:
   controller: Main
   action: aboutUs
-
 show_article:
   controller: Article
   action: show
-
 show_one_article:
   controller: Article
   action: showOneArticle
-
-

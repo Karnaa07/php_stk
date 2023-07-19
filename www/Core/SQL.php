@@ -64,10 +64,10 @@ class SQL
         return $queryPrepared->fetch();
     }
 
-    public function getAllWhere(array $where,array $order=["id","ASC"]): object
+    public function getAllWhere(array $where, array $order = ["id", "ASC"]): object
     {
-        $queryPrepared = $this->pdo->prepare("SELECT * FROM ".$this->table." WHERE ".implode(" and ", $where)." ORDER BY ".implode(' ', $order).";");
-        $queryPrepared->setFetchMode( \PDO::FETCH_CLASS, get_called_class());
+        $queryPrepared = $this->pdo->prepare("SELECT * FROM " . $this->table . " WHERE " . implode(" and ", $where) . " ORDER BY " . implode(' ', $order) . ";");
+        $queryPrepared->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
         $queryPrepared->execute();
         return $queryPrepared;
     }
@@ -135,15 +135,31 @@ class SQL
         $newColumns = [];
         foreach ($columns as $key => $value) {
             if (is_string($value)) {
-                $valueTemp = str_replace(">", "&gt;", $value);
-                $valueTemp = str_replace("<", "&lt;", $valueTemp);
-                $newColumns[$key] = $valueTemp;
+                var_dump($key);
+                if ($key != "content") {
+                    $valueTemp = str_replace(">", "&gt;", $value);
+                    $valueTemp = str_replace("<", "&lt;", $valueTemp);
+                    $newColumns[$key] = $valueTemp;
+                } else {
+                    $newColumns[$key] = $value;
+                }
             } else {
                 $newColumns[$key] = $value;
             }
         }
 
         return $newColumns;
+    }
+
+    public function all1($limit = 100, $offset = 0): array
+    {
+        $query = "SELECT * FROM " . $this->table . " LIMIT :limit OFFSET :offset";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $statement->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function save(): void
@@ -153,7 +169,7 @@ class SQL
         $columns = array_diff_key($columns, $columnsToExclude);
         $columns = $this->protectScriptInjection($columns);
         if (is_numeric($this->getId()) && $this->getId() > 0) {
-            
+
             $sqlUpdate = [];
             foreach ($columns as $column => $value) {
                 $sqlUpdate[] = $column . "=:" . $column;

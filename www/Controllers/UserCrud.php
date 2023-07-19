@@ -28,7 +28,6 @@ class UserCrud
         $view->assign("pseudo", $pseudo);
         $view->assign("users", $users);
         $view->assign("action", $action);
-        //$view->render();
     }
 
 
@@ -140,7 +139,7 @@ class UserCrud
         $view->assign("user", $user);
         $view->assign("updateForm", $updateForm->getConfig());
         $view->assign("action", "edit"); // Ajouter cette ligne pour définir la valeur de $action
-        // $view->render();
+        
         if ($updateForm->isSubmited() && $updateForm->isValid()) {
             $user = new User();
             $user = $user->populate($id);

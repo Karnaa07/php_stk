@@ -8,41 +8,38 @@
       id="<?= $config["config"]["id"] ?>"
       class="<?= $config["config"]["class"] ?>">
 
-    <?php foreach ($config["inputs"] as $name => $configInput): ?>
+      <?php foreach ($config["inputs"] as $name => $configInput): ?>
         <label for="<?= $name ?>"><?= $configInput["label"] ?></label>
-        <input name="<?= $name ?>"
-               placeholder="<?= $configInput["placeholder"] ?>"
-               class="<?= $configInput["class"] ?>"
-               id="<?= $name ?>"
-               type="<?= $configInput["type"] ?>"
-                <?php if (isset($configValues[$name])): ?>
-                    value="<?= $configValues[$name] ?>"
-                <?php endif; ?>
 
         <?php if ($configInput["type"] === "textarea"): ?>
-            <textarea
+            <textarea 
                 name="<?= $name?>" 
-                rows = "5" 
-                cols = "33"
+                rows="5" 
+                cols="33"
                 placeholder="<?= $configInput["placeholder"]??"" ?>"
                 id="<?= $configInput["id"]??"" ?>"
-                class="<?= $configInput["class"]??"" ?>" >
+                class="<?= $configInput["class"]??"" ?>"
+                <?= $configInput["required"] ? "required" : "" ?>>
+                <?php if (isset($configValues[$name])): ?>
+                    <?= $configValues[$name] ?>
+                <?php endif; ?>
             </textarea>
         <?php else: ?>
-            <input name="<?= $name ?>"
+            <input 
+                name="<?= $name ?>"
                 placeholder="<?= $configInput["placeholder"] ?>"
                 class="<?= $configInput["class"] ?>"
                 id="<?= $name ?>"
                 type="<?= $configInput["type"] ?>"
-                <?= $configInput["required"] ? "required" : "" ?>><br>
-        <br>
+                <?= $configInput["required"] ? "required" : "" ?>
+                <?php if (isset($configValues[$name])): ?>
+                    value="<?= $configValues[$name] ?>"
+                <?php endif; ?>
+            >
         <?php endif; ?>
 
-
-               <?= $configInput["required"] ? "required" : "" ?>><br>
+        <br>
     <?php endforeach; ?>
-
-
 
     <?php if ($_SERVER['REQUEST_URI'] === '/login'): ?>
         <a href="reset_password_email" class="forgot-password-link">

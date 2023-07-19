@@ -2,7 +2,7 @@
 namespace App\Forms;
 use App\Core\Validator;
 
-class CreatePage extends Validator
+class CreatePages extends Validator
 {
     public $method = "POST";
     protected array $config = [];
