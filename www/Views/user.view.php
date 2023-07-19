@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="../css/user.css">
 
-<?php if ($action === 'index'): ?>
+<?php if ($action === 'index') : ?>
     <div class="crud-container">
         <h1 class="crud-header">Liste des utilisateurs</h1>
         <table class="crud-table">
@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($users as $user): ?>
+                <?php foreach ($users as $user) : ?>
                     <tr>
                         <td><?= $user['firstname']; ?></td>
                         <td><?= $user['lastname']; ?></td>
@@ -24,16 +24,16 @@
                         <td><?= $user['role_name']; ?></td>
                         <td class="crud-actions">
                             <a href="#">
-                                    <span class="material-icons-sharp">
-                                        visibility
-                                    </span>
+                                <span class="material-icons-sharp">
+                                    visibility
+                                </span>
                             </a>
-                            <a href="/users-update/?id=<?= $user['id']; ?>">
+                            <a href="/dashboard/users-update/?id=<?= $user['id']; ?>">
                                 <span class="material-icons-sharp">
                                     create
                                 </span>
                             </a>
-                            <a href="/users-delete?id=<?= $user['id']; ?>">
+                            <a href="/dashboard/users-delete?id=<?= $user['id']; ?>">
                                 <span class="material-icons-sharp">
                                     delete
                                 </span>
@@ -43,13 +43,13 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-    
+
         <div class="crud-create">
-            <a href="/users-create">Créer un utilisateur</a>
+            <a href="/dashboard/users-create">Créer un utilisateur</a>
         </div>
     </div>
 
-<?php elseif ($action === 'create'): ?>
+<?php elseif ($action === 'create') : ?>
     <div class="crud-container">
         <h1 class="crud-header">Créer un utilisateur</h1>
 
@@ -58,22 +58,23 @@
         </div>
     </div>
 
-<?php elseif ($action === 'edit'): ?>
-    <link rel="stylesheet" type="text/css" href="../css/register.css">
+<?php elseif ($action === 'edit') : ?>
+    <link rel="stylesheet" type="text/css" href="../css/auth/register.css">
     <div class="crud-container">
         <h1 class="crud-header">Modifier un utilisateur</h1>
 
         <div class="crud-form">
-            <?php //$updateForm->renderForm(); ?>
+            <?php //$updateForm->renderForm(); 
+            ?>
             <?php $this->partial('form', $updateForm); ?>
         </div>
 
         <div class="crud-back">
-            <a href="/users" class="btn btn-primary">Retour à la liste des utilisateurs</a>
+            <a href="/dashboard/users" class="btn btn-primary">Retour à la liste des utilisateurs</a>
         </div>
     </div>
 
-<?php elseif ($action === 'delete'): ?>
+<?php elseif ($action === 'delete') : ?>
     <div class="crud-container">
         <h1 class="crud-header">Supprimer un utilisateur</h1>
     </div>
