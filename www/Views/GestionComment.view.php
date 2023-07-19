@@ -39,14 +39,7 @@
         <div class="crud-create"></div>
     </div>
 
-<?php elseif ($action === 'create'): ?>
-    <div class="crud-container">
-        <h1 class="crud-header">Créer un commentaire</h1>
 
-        <div class="crud-form">
-            <?php echo $form->render(); ?>
-        </div>
-    </div>
 
 <?php elseif ($action === 'edit'): ?>
     <link rel="stylesheet" type="text/css" href="../css/register.css">

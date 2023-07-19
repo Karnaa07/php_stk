@@ -31,4 +31,13 @@ class dashboard
 
         // Ajoutez d'autres données spécifiques au tableau de bord ici
     }
+
+    public function users(): void
+    {
+        $pseudo = $_SESSION["firstname"];
+        $view = new View("Dashboard/user", "front");
+        $view->assign("pseudo", $pseudo);
+        $view->assign("titleseo", "supernouvellepage");
+
+    }
 }

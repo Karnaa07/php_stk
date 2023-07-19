@@ -12,6 +12,8 @@ class SQL{
     private function __construct()
     {
         // Connexion à la base de données
+
+        
         try {
             $this->pdo = new \PDO("pgsql:host=database;dbname=esgi;port=5432", "esgi", "Test1234");
         } catch (\Exception $e) {

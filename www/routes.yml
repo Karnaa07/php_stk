@@ -1,11 +1,54 @@
-# // Route du back
-default:
-  controller: Main
-  action: home
+# // Routes de l'authentification
 
+register:
+  controller: Auth
+  action: register
+
+verify_account:
+  controller: Auth
+  action: verifyAccount
+
+login:
+  controller: Auth
+  action: login
+
+reset_password:
+  controller: Auth
+  action: pwdforgot
+
+reset_password_email:
+  controller: Auth
+  action: pwdforgot_with_email
+
+new_pass:
+  controller: Auth
+  action: change
+
+logout:
+  controller: Auth
+  action: logout
+
+# Page du dashboard
 dashboard:
   controller: Dashboard
   action: board
+
+# Page utilisateur du dashboard
+utilisateur:
+  controller: Dashboard
+  action: users
+
+a-propos:
+  controller: Main
+  action: aboutUs
+
+about-us:
+  controller: Main
+  action: aboutUs
+
+contact:
+  controller: Main
+  action: contact
 
 login:
   controller: Auth
@@ -33,6 +76,11 @@ create-article:
 
 
 # // Routes du Front
+
+default:
+  controller: Main
+  action: home
+
 home:
   controller: Main
   action: home
@@ -40,10 +88,6 @@ home:
 about-us:
   controller: Main
   action: aboutUs
-
-contact:
-  controller: Main
-  action: contact
 
 page:
   controller: Page
@@ -80,28 +124,29 @@ commentaires-approve:
   controller: CommentCrud
   action: approve
 
-
-# // UserCrud
-users:
-  controller: UserCrud
-  action: index
-
-users-create:
-  controller: UserCrud
-  action: create
-
-users-update:
-  path: users-update
-  controller: UserCrud
-  action: edit
-
-users-delete:
-  path: /users-delete
-  controller: UserCrud
-  action: delete
-
+# // Formulaire commentaire
 
 comment: 
   controller: Auth
   action: comment
+
+
+# // Routes Users
+dashboard/users:
+  controller: UserCrud
+  action: index
+
+dashboard/users-create:
+  controller: UserCrud
+  action: create
+
+dashboard/users-update:
+  path: users-update
+  controller: UserCrud
+  action: edit
+
+dashboard/users-delete:
+  path: /users-delete
+  controller: UserCrud
+  action: delete
 
