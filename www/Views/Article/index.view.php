@@ -21,6 +21,7 @@
           <td><?= $article->getCreatedAt() ?></td>
           <td>
             <a href="/dashboard/update-article?id=<?= $article->getId() ?>" class="btn btn-info">Modifier</a>
+            <a href="/dashboard/restore-article?id=<?= $article->getId() ?>" class="btn btn-warning">Restaurer</a>
             <a href="/dashboard/delete-article?id=<?= $article->getId() ?>" class="btn btn-danger">Supprimer</a>
           </td>
         </tr>

@@ -58,6 +58,7 @@ class Auth
                 }
             } else {
                 // Les informations d'identification sont incorrectes
+                // $form->errors[] = "Mot de passe ou e-mail incorrect";
                 echo "Mot de passe ou e-mail incorrect";
             }
         }
@@ -99,7 +100,7 @@ class Auth
             }
 
             if (!Validator::checkPassword($_POST["pwd"])) {
-                echo "Votre mot de passe doit faire au minimum 8 caractères avec des minuscules, des majuscules et des chiffres.";
+               echo  "Votre mot de passe doit faire au minimum 8 caractères avec des minuscules, des majuscules et des chiffres.";
                 return;
             }
 

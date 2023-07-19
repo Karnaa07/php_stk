@@ -23,7 +23,8 @@
 }
 
 .btn:hover {
-  background-color: #0056b3;
+  background-color: #0069d9;
+  color: #fff;
 }
 
 /* Style pour le tableau des articles */
@@ -50,10 +51,11 @@
 .btn-danger {
   background-color: #dc3545;
   color: #fff;
-  padding: 6px 12px;
+  padding: 10px 20px;
   border-radius: 3px;
 }
 
 .btn-danger:hover {
   background-color: #c82333;
+  color: white;
 }

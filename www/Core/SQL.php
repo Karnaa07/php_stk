@@ -64,6 +64,14 @@ class SQL
         return $queryPrepared->fetch();
     }
 
+    public function getAllWhere(array $where,array $order=["id","ASC"]): object
+    {
+        $queryPrepared = $this->pdo->prepare("SELECT * FROM ".$this->table." WHERE ".implode(" and ", $where)." ORDER BY ".implode(' ', $order).";");
+        $queryPrepared->setFetchMode( \PDO::FETCH_CLASS, get_called_class());
+        $queryPrepared->execute();
+        return $queryPrepared;
+    }
+
     public function deleteWhere(array $where): void
     {
         $sqlWhere = [];
@@ -144,8 +152,8 @@ class SQL
         $columnsToExclude = get_class_vars(get_class());
         $columns = array_diff_key($columns, $columnsToExclude);
         $columns = $this->protectScriptInjection($columns);
-
         if (is_numeric($this->getId()) && $this->getId() > 0) {
+            
             $sqlUpdate = [];
             foreach ($columns as $column => $value) {
                 $sqlUpdate[] = $column . "=:" . $column;
@@ -158,7 +166,6 @@ class SQL
                 VALUES
                 (:" . implode(",:", array_keys($columns)) . ")");
         }
-
         $queryPrepared->execute($columns);
     }
 }

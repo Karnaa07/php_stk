@@ -6,6 +6,7 @@ use App\Core\View;
 use App\Core\AuthMiddleware;
 use App\Forms\Article as FormArticle;
 use App\Models\Article as ModelArticle;
+use App\Models\ArticleMemento as ModelArticleMemento;
 
 
 class Article
@@ -21,7 +22,6 @@ class Article
     AuthMiddleware::assignPseudoToView($view);
     $view->assign("title", "Liste des articles");
     $view->assign("articles", $articles);
-    $view->render();
   }
 
 
@@ -39,7 +39,32 @@ class Article
     }
     $view->assign("articles", $articles);
   }
-  // ... Autres méthodes ...
+
+  public function showOneArticle(): void
+  {
+    // Check if an article ID is passed in the GET parameters
+    if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+      $articleModel = new ModelArticle();
+      $article = $articleModel->getOneWhere(['id' => $_GET['id']]);
+
+      // Check if the article exists
+      if ($article) {
+        $view = new View("Article/showOneArticle", "front");
+        $view->assign("title", $article->getTitle()); // Utilisez le titre de l'article comme titre de la page
+        $view->assign("article", $article); // Assignez l'article à la vue pour l'affichage des détails
+        // Afficher les détails de l'article sur la page
+      } else {
+        // Si l'article n'existe pas, rediriger vers une page d'erreur ou une autre page appropriée
+        header('Location: /error-page'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
+        exit;
+      }
+    } else {
+      // Si l'ID de l'article n'est pas valide ou n'est pas présent dans les paramètres GET, rediriger vers une page d'erreur ou une autre page appropriée
+      header('Location: /error-page'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
+      exit;
+    }
+    $view->assign("articles", $article);
+  }
 
   public function create(): void
   {
@@ -53,7 +78,7 @@ class Article
       $article->setTitle($_POST["title"]);
       $article->setSlug($_POST["slug"]);
       $article->setContent($_POST["content"]);
-      // $article->setImageUrl($_POST["imageUrl"]);
+      $article->setImageUrl($_POST["image_url"]);
       $article->setCreatedAt(date("Y-m-d")); // Vous pouvez également obtenir la date actuelle à partir de la base de données.
 
       // Sauvegarder l'article dans la base de données
@@ -87,5 +112,74 @@ class Article
     // Si l'ID d'article n'est pas valide ou l'article n'existe pas, rediriger vers une page d'erreur ou une autre page appropriée
     header('Location: /error-page'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
     exit;
+  }
+
+  public function update(): void
+  {
+    // Check if an article ID is passed in the GET parameters
+    if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+      $articleModel = new ModelArticle();
+      $article = $articleModel->getOneWhere(['id' => $_GET['id']]);
+      
+
+      // Check if the article exists before updating
+      if ($article) {
+        $form = new FormArticle();
+        $view = new View("Article/edit", "back");
+        AuthMiddleware::assignPseudoToView($view);
+        $view->assign("form", $form->getConfig());
+        $view->assign("formValues", $article->recupInfo());
+        // $view->assign("formValues", "kdksjds");
+
+
+        if ($form->isSubmited() && $form->isValid()) {
+          $articleMemento = new ModelArticleMemento();
+          $articleMemento->createMemento($article);
+          // Update the article with the submitted form data
+          $article->setTitle($_POST["title"]);
+          $article->setSlug($_POST["slug"]);
+          $article->setContent($_POST["content"]);
+          $article->setUpdatedAt(date("Y-m-d")); // You can also get the current date from the database.
+          $article->setImageUrl($_POST["image_url"]);
+          // You can also update the "updatedAt" field with the current date from the database.
+
+          // Save the updated article to the database
+          $article->save();
+          // Redirect to the list of articles or another page if needed
+          echo ("L'article a été mis à jour avec succès");
+          // header('Refresh: 2; URL= /dashboard/articles');
+        }
+
+        // Show the form with validation errors if any
+        $view->assign("formErrors", $form->errors);
+        return;
+      }
+    }
+  }
+
+  public function restoreArticle()
+  {
+    $view = new View("Article/memento", "back");
+    AuthMiddleware::assignPseudoToView($view);
+
+    if (isset($_GET['id_article']) && is_numeric($_GET['id_article'])) {
+      $article_memento = new ModelArticleMemento();
+      $article = new ModelArticle();
+      $article_memento = $article_memento->populate($_GET['id_article']);
+      $id_article = $article_memento->getIdArticle();
+      $article_memento_backup_article = new ModelArticleMemento();
+      $article_memento_backup_article->createMemento($article->populate($id_article));
+      $article = $article_memento->restoreFromMemento($_GET['id_article']);
+      $article->save();
+      header('Location: /dashboard/articles');
+    }
+
+    if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+      $ModelArticleMemento = new ModelArticleMemento();
+      $article_memento = $ModelArticleMemento->getAllWhere(["id_article = '".$_GET['id']."'"]);
+    }
+
+
+    $view->assign("article_memento", $article_memento);
   }
 }

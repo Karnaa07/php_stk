@@ -50,16 +50,16 @@ class Article extends Validator
                     "error" => "",
                     "required" => false,
                     "value" => "" // Valeur par défaut du champ contenu (chaîne vide)
+                ],
+                "image_url" => [
+                    "id" => "create-article-form-imageUrl",
+                    "label" => "URL de l'image",
+                    "class" => "form-input",
+                    "placeholder" => "Entrez l'URL de l'image de l'article",
+                    "type" => "text",
+                    "error" => "",
+                    "required" => true
                 ]
-                // "imageUrl" => [
-                //     "id" => "create-article-form-imageUrl",
-                //     "label" => "URL de l'image",
-                //     "class" => "form-input",
-                //     "placeholder" => "Entrez l'URL de l'image de l'article",
-                //     "type" => "text",
-                //     "error" => "",
-                //     "required" => false
-                // ]
             ]
         ];
 

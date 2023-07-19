@@ -1,5 +1,3 @@
-<!-- <?php var_dump($user); ?> -->
-
 <?php if (!empty($errors)): ?>
     <?php print_r($errors); ?>
 <?php endif; ?>
@@ -17,14 +15,28 @@
                class="<?= $configInput["class"] ?>"
                id="<?= $name ?>"
                type="<?= $configInput["type"] ?>"
+                <?php if (isset($configValues[$name])): ?>
+                    value="<?= $configValues[$name] ?>"
+                <?php endif; ?>
+
                <?= $configInput["required"] ? "required" : "" ?>><br>
     <?php endforeach; ?>
+
+
 
     <?php if ($_SERVER['REQUEST_URI'] === '/login'): ?>
         <a href="reset_password_email" class="forgot-password-link">
             Mot de passe oublié ?
         </a>
     <?php endif; ?>
+
+    <!-- <?php if ($formErrors): ?>
+        <?php foreach ($formErrors as $error): ?>
+            <div class="text-danger">
+                <?= $error ?>
+            </div>  
+        <?php endforeach; ?>
+    <?php endif; ?> -->
 
     <input type="submit" name="submit" class="form-submit" value="<?= $config["config"]["submit"] ?>">
 

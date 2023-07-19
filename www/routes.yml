@@ -55,6 +55,10 @@ dashboard/delete-article:
   controller: Article
   action: delete
 
+dashboard/restore-article:
+  controller: Article
+  action: restoreArticle
+
 # // Routes Users
 dashboard/users:
   controller: UserCrud
@@ -96,6 +100,10 @@ page:
 show_article:
   controller: Article
   action: show
+
+show_one_article:
+  controller: Article
+  action: showOneArticle
 
 
 

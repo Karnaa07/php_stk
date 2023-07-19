@@ -14,7 +14,7 @@ body {
 
 /* Formulaire */
 form {
-  height: 520px;
+  height: 560px;
   width: 400px;
   background-color: rgba(255, 255, 255, 0.13);
   position: absolute;
@@ -102,4 +102,15 @@ input {
   text-decoration: underline;
   font-size: 14px;
   color: #ffffff;
+}
+
+.text-danger {
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 5px;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #ffeeee;
 }
