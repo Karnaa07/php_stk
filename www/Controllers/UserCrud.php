@@ -31,7 +31,7 @@ class UserCrud
     }
 
 
-
+    
     public function create()
     {
         $form = new Register();
