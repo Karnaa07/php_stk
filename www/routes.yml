@@ -63,10 +63,10 @@ dashboard/create-page:
 dashboard/update-page:
   controller: PageController
   action: update
-delete-page:
+dashboard/delete-page:
   path: /pages-delete
   controller: PageController
-  action: delete
+  action: deletePage
 default:
   controller: Main
   action: home
@@ -103,4 +103,4 @@ dashboard/commentaires-approve:
 comment:
   controller: Auth
   action: comment
-
+...

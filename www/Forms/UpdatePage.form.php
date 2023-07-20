@@ -38,15 +38,6 @@ class UpdatePage extends Validator
                     "error" => "Le champ 'Date' est requis",
                     "required" => true
                 ],
-                "title" => [
-                    "id" => "create-page-form-title",
-                    "label" => "Titre",
-                    "class" => "form-input",
-                    "placeholder" => "Titre",
-                    "type" => "text",
-                    "error" => "Le champ 'Titre' est requis",
-                    "required" => true
-                ],
                 "theme" => [
                     "id" => "create-page-form-theme",
                     "label" => "Thème de l'article",
