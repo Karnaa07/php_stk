@@ -26,6 +26,7 @@ class PageController
         AuthMiddleware::assignPseudoToView($view);
         $view->assign("pages", $pages);
         $view->assign("action", $action);
+        AuthMiddleware::assignPseudoToView($view);
     }
 
     public function create()

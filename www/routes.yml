@@ -100,8 +100,8 @@ dashboard/commentaires-approve:
   path: /commentaires-approve
   controller: CommentCrud
   action: approve
-comment:
-  controller: Auth
+comment: 
+  controller: CommentController
   action: comment
 dashboard/settings:
   controller: Settings

@@ -5,8 +5,11 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Core\AuthMiddleware;
 use App\Forms\Article as FormArticle;
+use App\Forms\CommentForm;
 use App\Models\Article as ModelArticle;
 use App\Models\ArticleMemento as ModelArticleMemento;
+use App\Models\Comment as ModelComment;
+use App\Models\Comment;
 
 
 class Article
@@ -46,25 +49,68 @@ class Article
     if (isset($_GET['id']) && is_numeric($_GET['id'])) {
       $articleModel = new ModelArticle();
       $article = $articleModel->getOneWhere(['id' => $_GET['id']]);
-
-      // Check if the article exists
+      $articleId = $_GET['id'];
+      echo "ID de l'article : " . $articleId;
+      // Si l'article existe
       if ($article) {
+
+        // Créer une instance du formulaire de commentaires
+        $form = new CommentForm($articleId);
+
+        // Vérifier si le formulaire est soumis et valide
+        if ($form->isSubmited() && $form->isValid()) {
+          // Récupérer les données du formulaire
+          $nom = $_POST['nom'];
+          $email = $_POST['email'];
+          $commentaire = $_POST['commentaire'];
+          $articleId = $_POST['articleId'];
+
+          // Créer une instance du modèle Comment
+          $commentModel = new ModelComment();
+          $newComment = new Comment();
+          $newComment->setNom($nom);
+          $newComment->setEmail($email);
+          $newComment->setCommentaire($commentaire);
+          $newComment->setArticleId($articleId);
+
+          // Associer le commentaire à l'article en définissant l'ID de l'article
+          $newComment->setArticleId($_GET['id']);
+
+          // Créer le commentaire dans la base de données
+          $newCommentId = $newComment->createComment();
+
+
+          if ($newCommentId) {
+            echo "Le commentaire a été créé";
+          } else {
+            echo "Une erreur s'est produite lors de la création du commentaire.";
+          }
+        }
+
+        // Récupérer les commentaires associés à l'article
+        $commentModel = new ModelComment();
+        $comments = $commentModel->getCommentsByArticleId($_GET['id']);
+
+        // Créer une instance de la vue
         $view = new View("Article/showOneArticle", "front");
         $view->assign("title", $article->getTitle()); // Utilisez le titre de l'article comme titre de la page
         $view->assign("article", $article); // Assignez l'article à la vue pour l'affichage des détails
-        // Afficher les détails de l'article sur la page
+        $view->assign("form", $form->getConfig());
+        $view->assign("comments", $comments); // Assignez les commentaires à la vue
       } else {
-        // Si l'article n'existe pas, rediriger vers une page d'erreur ou une autre page appropriée
-        header('Location: /404'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
+
+        header('Location: /404');
         exit;
       }
     } else {
-      // Si l'ID de l'article n'est pas valide ou n'est pas présent dans les paramètres GET, rediriger vers une page d'erreur ou une autre page appropriée
-      header('Location: /404'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
+
+      header('Location: /404');
       exit;
     }
-    $view->assign("articles", $article);
+    // Afficher le formulaire avec les erreurs de validation s'il y en a
+    $view->assign("formErrors", $form->errors);
   }
+
 
   public function create(): void
   {
@@ -120,7 +166,7 @@ class Article
     if (isset($_GET['id']) && is_numeric($_GET['id'])) {
       $articleModel = new ModelArticle();
       $article = $articleModel->getOneWhere(['id' => $_GET['id']]);
-      
+
 
       // Check if the article exists before updating
       if ($article) {
@@ -176,7 +222,7 @@ class Article
 
     if (isset($_GET['id']) && is_numeric($_GET['id'])) {
       $ModelArticleMemento = new ModelArticleMemento();
-      $article_memento = $ModelArticleMemento->getAllWhere(["id_article = '".$_GET['id']."'"]);
+      $article_memento = $ModelArticleMemento->getAllWhere(["id_article = '" . $_GET['id'] . "'"]);
     }
 
 
