@@ -82,36 +82,24 @@ show_article:
 show_one_article:
   controller: Article
   action: showOneArticle
-
-# // Commentaire
-
 comments:
   controller: CommentController
-  action: commentController  
-
+  action: commentController
 reportComment:
   controller: CommentController
   action: reportComment
   method: POST
-
-# // CommentCrud
-
 commentaires:
   controller: CommentCrud
   action: index
-
 commentaires-delete:
   path: /commentaires-delete
   controller: CommentCrud
   action: delete
-
 commentaires-approve:
   path: /commentaires-approve
   controller: CommentCrud
   action: approve
-
-# // Formulaire commentaire
-
-comment: 
+comment:
   controller: Auth
   action: comment
