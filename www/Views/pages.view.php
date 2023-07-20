@@ -44,7 +44,7 @@
                 <td><?= $page['theme']; ?></td>
                 <td><?= $page['color']; ?></td>
                 <td>
-                    <a href="/update-page/?id=<?= $page['id']; ?>">Modifier</a>
+                    <a href="/dashboard/update-page/?id=<?= $page['id']; ?>">Modifier</a>
                     <a href="/pages-delete/?id=<?= $page['id']; ?>">Supprimer</a>
                     <a href="/<?= str_replace(' ', '-', strtolower($page['title'])); ?>">Visualiser</a>
                 </td>
@@ -73,7 +73,7 @@
     </script>
     
 
-    <a href="/pages" class="btn btn-primary">Retour à la liste des Pages</a>
+    <a href="/dashboard/pages" class="btn btn-primary">Retour à la liste des Pages</a>
 
 
 <?php elseif ($action === 'update'): ?>

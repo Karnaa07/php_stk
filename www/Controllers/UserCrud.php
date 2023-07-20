@@ -8,6 +8,7 @@ use App\Core\Mail;
 use App\Forms\Auth\Register;
 use App\Forms\UpdateForm;
 use App\Models\User;
+use App\Core\AuthMiddleware;
 
 
 class UserCrud
@@ -35,7 +36,7 @@ class UserCrud
     public function create()
     {
         $form = new Register();
-        $view = new View("Auth/register", "auth");
+        $view = new View("Auth/register", "back");
         $view->assign("form", $form->getConfig());
 
         // Formulaire soumis et valide ?
@@ -131,7 +132,7 @@ class UserCrud
         $infos = $user->recupInfo();
 
         // Charger la vue avec le formulaire d'UDAPE et les données de l'utilisateur
-        $view = new View("user", "auth");
+        $view = new View("user", "back");
         $view->assign("user", $user);
         $view->assign("updateForm", $updateForm->getConfig());
         $view->assign("formValues", $infos);
@@ -144,7 +145,6 @@ class UserCrud
             $user->setLastname($_POST["lastname"]);
             $user->setEmail($_POST["email"]);
             $user->setRoleId($_POST["role"]);
-            $user->setPwd($_POST["pwd"]);
             $user->setCountry("FR");
             $user->setDateUpdated(date('Y-m-d H:i:s'));
 

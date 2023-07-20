@@ -80,7 +80,7 @@ class PageController
           yaml_emit_file('routes.yml', $routes);
 
           
-          header('Location: /pages');
+          header('Location: /dashboard/pages');
           exit();
         }
 
@@ -146,7 +146,7 @@ class PageController
             // Si toutes les conditions sont vérifiées, enregistrez la page et affichez un message de succès
             echo "La page a bien été modifiée. Vous allez être redirigé vers l'index'.";
            //redirigé vers l'index
-            header('Location: /pages');
+            header('Location: /dashboard/pages');
             exit;
         }
     }

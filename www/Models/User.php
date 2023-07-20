@@ -209,6 +209,8 @@ class User extends SQL
             $user->setFirstname($data['firstname']);
             $user->setLastname($data['lastname']);
             $user->setEmail($data['email']);
+            $user->setRoleId($data['role_id']);
+            $user->setPwd($data['pwd']);
             $user->setCountry($data['country'] ?? ""); // Use the null coalescing operator to avoid errors if $data['country'] is not set
             // ... Continue to set all other properties of User ...
     
@@ -224,8 +226,9 @@ class User extends SQL
             'firstname' => $this->getFirstname(),
             'lastname' => $this->getLastname(),
             'email' => $this->getEmail(),
+            'role_id' => $this->getRoleId(),
+            'pwd' => $this->getPwd(),
             'country' => $this->getCountry(),
-            // 'pwd' => $this->getPwd(), // je pense que le preremplir c une betise.
         ];
     }
 }

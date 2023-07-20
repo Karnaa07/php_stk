@@ -66,25 +66,6 @@ class UpdateForm extends Validator
                         "2" => "2"
                     ]
                 ],
-                "pwd" => [
-                    "id" => "udape-form-pwd",
-                    "label" => "Mot de passe",
-                    "class" => "form-input",
-                    "placeholder" => "Votre mot de passe",
-                    "type" => "password",
-                    "error" => "Votre mot de passe doit faire au minimum 8 caractères avec minuscules, majuscules et chiffres",
-                    "required" => true
-                ],
-                "pwdConfirm" => [
-                    "id" => "udape-form-pwd-confirm",
-                    "label" => "Confirmation du mot de passe",
-                    "class" => "form-input",
-                    "placeholder" => "Confirmation",
-                    "type" => "password",
-                    "error" => "Votre mot de passe de confirmation ne correspond pas",
-                    "required" => true,
-                    "confirm" => "pwd"
-                ],
             ]
         ];
 
