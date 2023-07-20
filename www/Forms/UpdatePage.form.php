@@ -57,7 +57,7 @@ class UpdatePage extends Validator
                     "error" => "Le champ 'Couleur' est requis",
                     "required" => true
                 ],
-                "content" => [
+                "content_page" => [
                     "id" => "create-page-form-content",
                     "label" => "Contenu",
                     "class" => "wysiwyg", // Ajout de la classe wysiwyg

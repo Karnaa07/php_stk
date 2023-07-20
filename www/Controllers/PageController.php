@@ -58,7 +58,7 @@ class PageController
             $page->setTitle(strtolower($_POST['title'])); 
             $page->setTheme($_POST['theme']);
             $page->setColor($_POST['color']);
-            $page->setContent($_POST['content']);
+            $page->setContentPage($_POST['content_page']);
           
 
             // Enregistrer la page dans la base de données
@@ -102,7 +102,7 @@ class PageController
       // assign the page to the view
       $view = new View("pageTemplate", "Auth");
       $view->assign("title", $page->getTitle());
-      $view->assign("content", $page->getContent());
+      $view->assign("content_page", $page->getContentPage());
       $view->assign("theme", $page->getTheme());
       $view->assign("color", $page->getColor());
       $view->assign("author", $page->getAuthor());
@@ -141,7 +141,7 @@ class PageController
           //  $page->setTitle($_POST["title"]);
             $page->setTheme($_POST["theme"]);
             $page->setColor($_POST["color"]);
-            $page->setContent($_POST["content"]);
+            $page->setContentPage($_POST["content_page"]);
             $page->save();
 
             // Si toutes les conditions sont vérifiées, enregistrez la page et affichez un message de succès

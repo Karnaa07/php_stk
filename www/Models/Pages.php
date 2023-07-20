@@ -12,7 +12,7 @@ class Pages extends SQL
     protected string $title;
     protected string $theme;
     protected string $color;
-    protected string $content;
+    protected string $content_page;
 
     protected $table = "esgi_pages";
     
@@ -39,7 +39,7 @@ class Pages extends SQL
         $page->setTitle($data['title']);
         $page->setTheme($data['theme']);
         $page->setColor($data['color']);
-        $page->setContent($data['content']);
+        $page->setContentPage($data['content_page']);
 
         // Retournez l'objet Page
         return $page;
@@ -106,14 +106,14 @@ class Pages extends SQL
         $this->color = $color;
     }
 
-    public function getContent(): string
+    public function getContentPage(): string
     {
-        return $this->content;
+        return $this->content_page;
     }
 
-    public function setContent(string $content): void
+    public function setContentPage(string $content_page): void
     {
-        $this->content = $content;
+        $this->content_page = $content_page;
     }
 
     public function delete()
@@ -129,7 +129,7 @@ class Pages extends SQL
             //'title' => $this->getTitle(), // pas utile pour l'update 
             'theme' => $this->getTheme(),
             'color' => $this->getColor(),
-            'content' => $this->getContent()
+            'content_page' => $this->getContentPage()
         ];
     }
 }
