@@ -12,7 +12,9 @@ use App\Forms\CommentForm;
 
 class CommentController
 {
-    public function commentController()
+
+    
+    public function commentController(): void
     {
         // Afficher tous les commentaires depuis le modèle
         $commentModel = new Comment();
@@ -50,6 +52,30 @@ class CommentController
         }
         //Affiche des erreurs
         $view->assign("formErrors", $form->errors);
+
+        // Vérifier si le formulaire de signalement est soumis
+    if (isset($_POST['commentId']) && isset($_POST['reason'])) {
+        $commentId = $_POST['commentId'];
+        $reason = $_POST['reason'];
+
+        // Appeler la méthode pour signaler le commentaire
+        $isReported = $commentModel->reportComment($commentId, $reason);
+
+        if ($isReported) {
+            echo "Le commentaire a été signalé avec succès.";
+        } else {
+            echo "Une erreur s'est produite lors du signalement du commentaire.";
+        }
+    }
+
+    // Définir la propriété $isReported pour chaque commentaire
+    foreach ($comments as $comment) {
+        $comment->setIsReported($comment['is_reported']);
+    }
+
+    // Assigner les commentaires à la vue
+    $view->assign("comments", $comments);
+
     }
 
     public function reportComment()

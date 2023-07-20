@@ -96,7 +96,7 @@ reportComment:
 
 # // CommentCrud
 
-commentaires:
+dashboard/commentaires:
   controller: CommentCrud
   action: index
 
@@ -113,5 +113,5 @@ commentaires-approve:
 # // Formulaire commentaire
 
 comment: 
-  controller: Auth
+  controller: CommentController
   action: comment

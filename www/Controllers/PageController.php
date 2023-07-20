@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Models\Pages;
 use App\Forms\CreatePages;
-
+use App\Core\AuthMiddleware;
 
 class PageController
 {
@@ -23,6 +23,7 @@ class PageController
         $view = new View("pages", "back");
         $view->assign("pages", $pages);
         $view->assign("action", $action);
+        AuthMiddleware::assignPseudoToView($view);
     }
 
     public function create()

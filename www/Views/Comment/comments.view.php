@@ -1,46 +1,8 @@
-    <style>
-        body {
-            
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        .comment-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .comment {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            padding: 10px;
-        }
-
-        .comment .author {
-            font-weight: bold;
-            color: #007bff;
-        }
-
-        .comment .date {
-            font-size: 0.8em;
-            color: #666;
-        }
-
-        .comment .content {
-            margin-top: 5px;
-        }
-
-    </style>
+<link rel="stylesheet" href="/../css//commentForm.css">
     <h1>Commentaires</h1>
-
+<div class="comment-form-comments">
     <?php $this->partial("form", $form, $formErrors) ?>
-
+    </div>
     <ul class="comment-list">
     <?php if (isset($comments) && count($comments) > 0): ?>
         <?php foreach ($comments as $comment): ?>
@@ -52,13 +14,13 @@
 
                 <?php if (!$comment['is_reported']): ?>
                     <!-- Formulaire de signalement -->
-                    <form action="" method="post">
+                    <form id="form-signalement" action="" method="post">
                         <input type="hidden" name="commentId" value="<?php echo $comment['id']; ?>">
                         <label for="reason">Raison du signalement :</label>
                         <select id="reason" name="reason">
                             <option value="insultes">Insultes</option>
                             <option value="messages_incorrects">Messages incorrects</option>
-                            <option value="autre">Autre</option>
+                            <option value="autre">Incitation à la haine</option>
                         </select>
                         <button type="submit">Signaler</button>
                     </form>
