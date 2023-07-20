@@ -137,7 +137,6 @@ class PageController
         if ($form->isSubmited() && $form->isValid()) {
             $page->setAuthor($_POST["author"]);
             $page->setDate($_POST["date"]);
-            $page->setTitle($_POST["title"]);
             $page->setTheme($_POST["theme"]);
             $page->setColor($_POST["color"]);
             $page->setContent($_POST["content"]);
