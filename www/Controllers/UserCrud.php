@@ -147,6 +147,7 @@ class UserCrud
             $user->setFirstname($_POST["firstname"]);
             $user->setLastname($_POST["lastname"]);
             $user->setEmail($_POST["email"]);
+            $user->setRoleId($_POST["role"]);
             $user->setPwd($_POST["pwd"]);
             $user->setCountry("FR");
             $user->setDateUpdated(date('Y-m-d H:i:s'));

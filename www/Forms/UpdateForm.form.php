@@ -53,6 +53,19 @@ class UpdateForm extends Validator
                     "error" => "Votre email est incorrect",
                     "required" => true
                 ],
+                "role" => [
+                    "id" => "udape-form-role",
+                    "label" => "Role",
+                    "class" => "form-input",
+                    "placeholder" => "Votre role",
+                    "type" => "select",
+                    "error" => "Votre role est incorrect",
+                    "required" => true,
+                    "options" => [ // Ajout des options pour la liste déroulante
+                        "1" => "1",
+                        "2" => "2"
+                    ]
+                ],
                 "pwd" => [
                     "id" => "udape-form-pwd",
                     "label" => "Mot de passe",

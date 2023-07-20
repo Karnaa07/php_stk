@@ -23,11 +23,6 @@
                         <td><?= $user['country']; ?></td>
                         <td><?= $user['role_name']; ?></td>
                         <td class="crud-actions">
-                            <a href="#">
-                                <span class="material-icons-sharp">
-                                    visibility
-                                </span>
-                            </a>
                             <a href="/dashboard/users-update/?id=<?= $user['id']; ?>">
                                 <span class="material-icons-sharp">
                                     create
