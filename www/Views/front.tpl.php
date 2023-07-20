@@ -15,7 +15,7 @@
 	<!--
 		CSS
 		============================================= -->
-	<link rel="stylesheet" href=" css/bootstrap/linearicons.css">
+	<link rel="stylesheet" href="../css/bootstrap/linearicons.css">
 	<link rel="stylesheet" href="../css/bootstrap/font-awesome.min.css">
 	<link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
 	<link rel="stylesheet" href="../css/bootstrap/magnific-popup.css">
