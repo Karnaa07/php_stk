@@ -1,0 +1,59 @@
+/* Réinitialisation des styles pour assurer une base propre */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Style du conteneur principal */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Style du titre de l'article */
+.article-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Style de la date de création */
+.article-date {
+  font-size: 20px;
+  font-weight: bold;
+  color: #888;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+/* Style du contenu de l'article */
+.article-content {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Style du slug de l'article */
+.article-slug {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+/* Style de l'image de l'article */
+.article-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.article-banner {
+  width: 100%;
+  height: 500px; /* Hauteur de la bannière, vous pouvez ajuster cette valeur selon vos préférences */
+  object-fit: cover; /* Assurez-vous que l'image remplit complètement la bannière */
+}
+
