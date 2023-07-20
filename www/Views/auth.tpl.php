@@ -10,7 +10,15 @@
 </head>
 
 <body>
+
     <?php include $this->view; ?>
 </body>
 
 </html>
+
+<style>
+    body {
+        background-image: url("/assets/background_login.svg");
+        /* Autres propriétés CSS pour l'arrière-plan si nécessaire */
+    }
+</style>

@@ -52,21 +52,21 @@ dashboard/users-delete:
   path: /users-delete
   controller: UserCrud
   action: delete
-pages:
+dashboard/pages:
   path: /pages
   controller: PageController
   action: index
-dashboard/pages-create:
+dashboard/create-page:
   path: /create-page
   controller: PageController
   action: create
 dashboard/update-page:
   controller: PageController
-  action: edit
+  action: update
 dashboard/delete-page:
   path: /pages-delete
   controller: PageController
-  action: delete
+  action: deletePage
 default:
   controller: Main
   action: home
@@ -100,6 +100,10 @@ dashboard/commentaires-approve:
   path: /commentaires-approve
   controller: CommentCrud
   action: approve
-comment:
-  controller: Auth
+comment: 
+  controller: CommentController
   action: comment
+dashboard/settings:
+  controller: Settings
+  action: index
+...

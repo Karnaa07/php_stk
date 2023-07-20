@@ -57,7 +57,7 @@
                         </a>
                     </li>
                     <li class="item">
-                        <a href="/pages">
+                        <a href="/dashboard/pages">
                             <span class="material-icons-sharp">
                                 pages
                             </span>
@@ -97,7 +97,7 @@
                         </a>
                     </li>
                     <li class="item">
-                        <a href="#">
+                        <a href="/dashboard/settings">
                             <span class="material-icons-sharp">
                                 support
                             </span>
@@ -140,3 +140,4 @@
 </body>
 
 </html>
+

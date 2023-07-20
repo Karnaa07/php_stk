@@ -1,6 +1,5 @@
-<link rel="stylesheet" type="text/css" href="../css/user.css">
-
 <?php if ($action === 'index') : ?>
+    <link rel="stylesheet" type="text/css" href="../css/user.css">
     <div class="crud-container">
         <h1 class="crud-header">Liste des utilisateurs</h1>
         <table class="crud-table">
@@ -15,6 +14,7 @@
                 </tr>
             </thead>
             <tbody>
+
                 <?php foreach ($users as $user) : ?>
                     <tr>
                         <td><?= $user['firstname']; ?></td>
@@ -23,19 +23,9 @@
                         <td><?= $user['country']; ?></td>
                         <td><?= $user['role_name']; ?></td>
                         <td class="crud-actions">
-                            <a href="#">
-                                <span class="material-icons-sharp">
-                                    visibility
-                                </span>
-                            </a>
                             <a href="/dashboard/users-update/?id=<?= $user['id']; ?>">
                                 <span class="material-icons-sharp">
                                     create
-                                </span>
-                            </a>
-                            <a href="/dashboard/new_pass">
-                                <span class="material-icons-sharp">
-                                    key
                                 </span>
                             </a>
                             <a href="/dashboard/users-delete?id=<?= $user['id']; ?>">
@@ -55,6 +45,7 @@
     </div>
 
 <?php elseif ($action === 'create') : ?>
+    <link rel="stylesheet" type="text/css" href="../css/auth/register.css">
     <div class="crud-container">
         <h1 class="crud-header">Créer un utilisateur</h1>
 
@@ -71,7 +62,7 @@
         <div class="crud-form">
             <?php //$updateForm->renderForm(); 
             ?>
-            <?php $this->partial('form', $updateForm); ?>
+            <?php $this->partial('form', $updateForm, $formValues); ?>
         </div>
 
         <div class="crud-back">

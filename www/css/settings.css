@@ -1,0 +1,45 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+main {
+  padding: 20px;
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.settings-item a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.settings-item p {
+  margin: 0;
+}
+

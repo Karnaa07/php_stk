@@ -200,14 +200,35 @@ class User extends SQL
     {
         $this->deleteWhere(['id' => $this->id]);
     }
+    
+    public function find($id) {
+        $data = parent::find($id);
+        if ($data) {
+            $user = new User();
+            $user->setId($data['id']);
+            $user->setFirstname($data['firstname']);
+            $user->setLastname($data['lastname']);
+            $user->setEmail($data['email']);
+            $user->setRoleId($data['role_id']);
+            $user->setPwd($data['pwd']);
+            $user->setCountry($data['country'] ?? ""); // Use the null coalescing operator to avoid errors if $data['country'] is not set
+            // ... Continue to set all other properties of User ...
+    
+            return $user;
+        }
+        return null;
+    }
+    
 
-    public function recupInfo():array{
-        $array ['id'] = $this->getId();
-        $array ['firstname'] = $this->getFirstname();
-        $array ['lastname'] = $this->getLastname();
-        $array ['email'] = $this->getEmail();
-        $array ['country'] = $this->getCountry();
-        $array ['role_id'] = $this->getRoleId();
-        return $array;
+    public function recupInfo(): array {
+        return [
+            'id' => $this->getId(),
+            'firstname' => $this->getFirstname(),
+            'lastname' => $this->getLastname(),
+            'email' => $this->getEmail(),
+            'role_id' => $this->getRoleId(),
+            'pwd' => $this->getPwd(),
+            'country' => $this->getCountry(),
+        ];
     }
 }
