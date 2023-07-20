@@ -46,6 +46,7 @@ class CommentController
 
             if ($newCommentId) {
                 echo "Le commentaire a été créé";
+                header('Location: /comments');
             } else {
                 echo "Une erreur s'est produite lors de la création du commentaire.";
             }

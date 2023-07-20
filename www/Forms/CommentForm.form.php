@@ -48,16 +48,6 @@ class CommentForm extends Validator
                     "error" => "Veuillez entrer une adresse email valide",
                     "required" => true
                 ],
-                "articleId" => [
-                    "label" => "",
-                    "id" => "comment-form-article",
-                    "class" => "form-input",
-                    "placeholder" => "",
-                    "type" => "hidden",
-                    "error" => "",
-                    "required" => false,
-                    "value" => $this->articleId
-                ],
                 "commentaire" => [
                     "label" => "Commentaire",
                     "id" => "comment-form-commentaire",
