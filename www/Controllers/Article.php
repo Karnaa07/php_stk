@@ -55,12 +55,12 @@ class Article
         // Afficher les détails de l'article sur la page
       } else {
         // Si l'article n'existe pas, rediriger vers une page d'erreur ou une autre page appropriée
-        header('Location: /error-page'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
+        header('Location: /404'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
         exit;
       }
     } else {
       // Si l'ID de l'article n'est pas valide ou n'est pas présent dans les paramètres GET, rediriger vers une page d'erreur ou une autre page appropriée
-      header('Location: /error-page'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
+      header('Location: /404'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
       exit;
     }
     $view->assign("articles", $article);
@@ -110,7 +110,7 @@ class Article
     }
 
     // Si l'ID d'article n'est pas valide ou l'article n'existe pas, rediriger vers une page d'erreur ou une autre page appropriée
-    header('Location: /error-page'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
+    header('Location: /404'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
     exit;
   }
 

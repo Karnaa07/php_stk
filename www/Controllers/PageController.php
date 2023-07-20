@@ -117,7 +117,7 @@ class PageController
       }
     
       // Si l'ID de page n'est pas valide ou la page n'existe pas, rediriger vers une page d'erreur ou une autre page appropriée
-      header('Location: /error-page'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
+      header('Location: /404'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
       exit;
     }
     

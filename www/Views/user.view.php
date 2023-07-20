@@ -33,6 +33,11 @@
                                     create
                                 </span>
                             </a>
+                            <a href="/dashboard/new_pass">
+                                <span class="material-icons-sharp">
+                                    key
+                                </span>
+                            </a>
                             <a href="/dashboard/users-delete?id=<?= $user['id']; ?>">
                                 <span class="material-icons-sharp">
                                     delete

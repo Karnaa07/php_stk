@@ -45,7 +45,7 @@ class CommentCrud
         $commentModel->approveComment($commentId);
     
         // Rediriger vers la liste des commentaires ou afficher un message de succès
-        header('Location: /commentaires');
+        header('Location: /dashboard/commentaires');
         exit();
     }
     
@@ -73,7 +73,7 @@ class CommentCrud
     $commentModel->deleteComment($commentId);
 
     // Rediriger vers la liste des commentaires ou afficher un message de succès
-    header('Location: /commentaires');
+    header('Location: /dashboard/commentaires');
     exit();
 }
 

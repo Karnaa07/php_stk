@@ -200,4 +200,14 @@ class User extends SQL
     {
         $this->deleteWhere(['id' => $this->id]);
     }
+
+    public function recupInfo():array{
+        $array ['id'] = $this->getId();
+        $array ['firstname'] = $this->getFirstname();
+        $array ['lastname'] = $this->getLastname();
+        $array ['email'] = $this->getEmail();
+        $array ['country'] = $this->getCountry();
+        $array ['role_id'] = $this->getRoleId();
+        return $array;
+    }
 }

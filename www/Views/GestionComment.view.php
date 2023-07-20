@@ -20,12 +20,12 @@
                         <td><?= $comment['commentaire']; ?></td>
                         <td><?= $comment['date_creation']; ?></td>
                         <td class="crud-actions">
-                            <a href="/commentaires-approve?id=<?= $comment['id']; ?>">
+                            <a href="/dashboard/commentaires-approve?id=<?= $comment['id']; ?>">
                                 <span class="material-icons-sharp">
                                     check_circle
                                 </span>
                             </a>
-                            <a href="/commentaires-delete?id=<?= $comment['id']; ?>">
+                            <a href="/dashboard/commentaires-delete?id=<?= $comment['id']; ?>">
                                 <span class="material-icons-sharp">
                                     delete
                                 </span>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="crud-back">
-            <a href="/commentaires" class="btn btn-primary">Retour à la liste des commentaires</a>
+            <a href="/dashboard/commentaires" class="btn btn-primary">Retour à la liste des commentaires</a>
         </div>
     </div>
 

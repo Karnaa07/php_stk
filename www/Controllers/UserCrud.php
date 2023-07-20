@@ -138,6 +138,7 @@ class UserCrud
         $view = new View("user", "auth");
         $view->assign("user", $user);
         $view->assign("updateForm", $updateForm->getConfig());
+        // $view->assign("formValues", $user->recupInfo());
         $view->assign("action", "edit"); // Ajouter cette ligne pour définir la valeur de $action
         
         if ($updateForm->isSubmited() && $updateForm->isValid()) {
@@ -166,8 +167,10 @@ class UserCrud
         $currentUserId = $_SESSION["user"];
 
         if ($id == $currentUserId) {
-            echo "Vous ne pouvez pas supprimer votre propre compte.";
-            header('Refresh: 2; URL= /dashboard/users');
+            echo "<script>";
+            echo "alert('Vous ne pouvez pas supprimer votre propre compte.');";
+            echo "window.location.href = '/dashboard/users';";
+            echo "</script>";
             exit();
         }
 

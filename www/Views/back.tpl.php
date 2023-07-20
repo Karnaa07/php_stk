@@ -89,7 +89,7 @@
                         </a>
                     </li>
                     <li class="item">
-                        <a href="commentaires">
+                        <a href="/dashboard/commentaires">
                             <span class="material-icons-sharp">
                                 support_agent
                             </span>

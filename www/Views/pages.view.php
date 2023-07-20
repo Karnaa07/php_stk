@@ -5,7 +5,7 @@
     <h1>Liste des pages</h1>
     <link rel="stylesheet" type="text/css" href="/css/page.css">
     <div class="container">
-        <a href="/create-page" id="create-page-btn" class="button">
+        <a href="/dashboard/pages-create" id="create-page-btn" class="button">
           <div class="plate"></div>
           <div class="plate"></div>
           <div class="plate"></div>
