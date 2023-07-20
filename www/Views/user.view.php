@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" type="text/css" href="../css/user.css">
 
 <?php if ($action === 'index') : ?>
@@ -50,6 +51,7 @@
     </div>
 
 <?php elseif ($action === 'create') : ?>
+    <link rel="stylesheet" type="text/css" href="../css/auth/register.css">
     <div class="crud-container">
         <h1 class="crud-header">Créer un utilisateur</h1>
 
@@ -66,7 +68,7 @@
         <div class="crud-form">
             <?php //$updateForm->renderForm(); 
             ?>
-            <?php $this->partial('form', $updateForm); ?>
+            <?php $this->partial('form', $updateForm, $formValues); ?>
         </div>
 
         <div class="crud-back">

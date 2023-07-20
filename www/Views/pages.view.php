@@ -5,7 +5,7 @@
     <h1>Liste des pages</h1>
     <link rel="stylesheet" type="text/css" href="/css/page.css">
     <div class="container">
-        <a href="/dashboard/pages-create" id="create-page-btn" class="button">
+        <a href="/dashboard/create-page" id="create-page-btn" class="button">
           <div class="plate"></div>
           <div class="plate"></div>
           <div class="plate"></div>
@@ -44,9 +44,9 @@
                 <td><?= $page['theme']; ?></td>
                 <td><?= $page['color']; ?></td>
                 <td>
-                    <a href="/pages-update/?id=<?= $page['id']; ?>">Modifier</a>
+                    <a href="/update-page/?id=<?= $page['id']; ?>">Modifier</a>
                     <a href="/pages-delete/?id=<?= $page['id']; ?>">Supprimer</a>
-                    <a href="/PageCreateView/<?= str_replace(' ', '-', strtolower($page['title'])) . '.html'; ?>">Visualiser</a>
+                    <a href="/<?= str_replace(' ', '-', strtolower($page['title'])); ?>">Visualiser</a>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -63,11 +63,9 @@
 
     <script src="https://cdn.tiny.cloud/1/9i4ty3dj7s5dyw4g2xbzg2u7udwf4mliqo7r71asossk42gb/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
-        //check if the form is submitted
-        
+       
 
-
-        tinymce.init({
+     tinymce.init({
             selector: '.wysiwyg',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
@@ -78,14 +76,25 @@
     <a href="/pages" class="btn btn-primary">Retour à la liste des Pages</a>
 
 
-<?php elseif ($action === 'edit'): ?>
-    <link rel="stylesheet" type="text/css" href="../css/register.css">
+<?php elseif ($action === 'update'): ?>
+    <link rel="stylesheet" type="text/css" href="/css/createPageform.css">
     <h1>Modifier une page</h1>
 
     <!-- Afficher le formulaire -->
-    <?php echo $updateForm->renderForm(); ?>
+    <?php echo  $this->partial("form", $form, $formValues) ?>
 
-    <a href="/pages" class="btn btn-primary">Retour à la liste des pages</a>
+    <script src="https://cdn.tiny.cloud/1/9i4ty3dj7s5dyw4g2xbzg2u7udwf4mliqo7r71asossk42gb/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+       
+
+     tinymce.init({
+            selector: '.wysiwyg',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+    </script>
+
+    <a href="/dashboard/pages" class="btn btn-primary">Retour à la liste des pages</a>
 
 <?php elseif ($action === 'delete'): ?>
     <h1>Supprimer une page</h1>

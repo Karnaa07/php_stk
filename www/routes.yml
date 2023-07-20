@@ -62,8 +62,8 @@ dashboard/pages-create:
   action: create
 dashboard/update-page:
   controller: PageController
-  action: edit
-dashboard/delete-page:
+  action: update
+delete-page:
   path: /pages-delete
   controller: PageController
   action: delete

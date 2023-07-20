@@ -6,6 +6,7 @@ use App\Core\View;
 use App\Models\Pages;
 use App\Forms\CreatePages;
 use App\Core\AuthMiddleware;
+use App\Forms\UpdatePage;
 
 
 class PageController
@@ -31,28 +32,33 @@ class PageController
     {
            
         $form= new CreatePages();
-        $view = new View("pages", "auth");
+        $view = new View("pages", "back");
         $view->assign("form", $form->getConfig());
         $view->assign("action", "create");
 
-
-       
-
+        
         if ($form->isSubmited() && $form->isValid()) {
-            // Vérifie si une page avec le même titre existe déjà
-            // $existingPage = Page::where('title', $_POST['title'])->first();
-            // if ($existingPage) {
-            //     // Si oui, afficher un message d'erreur et arrêter l'exécution
-            //     $view->assign("formErrors", array("Une page avec ce titre existe déjà."));
-            //     return;
-            // }
+
+          
+          $pageModel = new Pages();
+          $page = $pageModel->getOneWhere(['title' => $_POST['title']]);
+          if ($page) {
+              $form->errors['title'] = "Une page avec ce titre existe déjà";
+          }
+  
+          if (!empty($form->errors)) {
+              $view->assign("formErrors", $form->errors);
+              return;
+          }
+            
             $page = new Pages();
             $page->setAuthor($_POST['author']);
             $page->setDate($_POST['date']);
-            $page->setTitle($_POST['title']);
+            $page->setTitle(strtolower($_POST['title'])); 
             $page->setTheme($_POST['theme']);
             $page->setColor($_POST['color']);
             $page->setContent($_POST['content']);
+          
 
             // Enregistrer la page dans la base de données
             $page->save();
@@ -68,18 +74,20 @@ class PageController
           $routes = yaml_parse_file('routes.yml');
   
           // ajouter la nouvelle route
-          $routes[str_replace(' ', '_', strtolower($page->getTitle()))] = $newRoute;
+          $routes[str_replace(' ', '-', strtolower($page->getTitle()))] = $newRoute;
   
           // écrire le fichier route.yml
           yaml_emit_file('routes.yml', $routes);
 
           
-          // header('Location: /pages');
+          header('Location: /pages');
           exit();
         }
 
         $view->assign("formErrors", $form->errors);
     }
+
+
     public function show()
     {
       // get uri by removing the slash
@@ -87,7 +95,8 @@ class PageController
       $uri = substr($_SERVER['REQUEST_URI'], 1);
       $pageModel = new Pages();
       $page = $pageModel->getOneWhere(['title' => str_replace('-', ' ', $uri)]);
-      var_dump($page -> getTitle());
+      
+   
 
       // assign the page to the view
       $view = new View("pageTemplate", "Auth");
@@ -100,6 +109,51 @@ class PageController
       
       
     }
+
+    public function update()
+    {
+        $id = $_GET['id'];
+
+        // Récupérer la page à modifier depuis la base de données
+        $pageModel = new Pages();
+        $page = $pageModel->find($id);
+
+        // Vérifier si la page existe
+        if (!$page) {
+            echo "La page n'existe pas";
+            exit;
+        }
+
+        // Instanciation de la classe UpdatePageForm
+        $form = new UpdatePage();
+
+        // Charger la vue avec le formulaire d'update et les données de la page
+        $view = new View("pages", "auth");
+        $view->assign("page", $page);
+        $view->assign("form", $form->getConfig());
+        $view->assign("formValues", $page->recupInfo());
+        $view->assign("action", "update"); 
+
+        if ($form->isSubmited() && $form->isValid()) {
+            $page->setAuthor($_POST["author"]);
+            $page->setDate($_POST["date"]);
+            $page->setTitle($_POST["title"]);
+            $page->setTheme($_POST["theme"]);
+            $page->setColor($_POST["color"]);
+            $page->setContent($_POST["content"]);
+            $page->save();
+
+            // Si toutes les conditions sont vérifiées, enregistrez la page et affichez un message de succès
+            echo "La page a bien été modifiée. Vous allez être redirigé vers l'index'.";
+           //redirigé vers l'index
+            header('Location: /pages');
+            exit;
+        }
+    }
+
+
+
+
     public function deletePage()
     {
       // Vérifier si un ID de page est passé en paramètre GET
