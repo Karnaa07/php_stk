@@ -12,10 +12,10 @@
     <p class="article-date"><?php echo date('M j, Y', strtotime($article->getCreatedAt())); ?></p>
     <p class="article-content"><?php echo $article->getContent(); ?></p>
 
-    <h2>Ajouter un commentaires</h2>
+    <!-- <h2>Ajouter un commentaires</h2> -->
 
     <!-- Afficher le formulaire de commentaires -->
-    <?php $this->partial("form", $form, $formErrors) ?>
+    <!-- <?php $this->partial("form", $form, $formErrors) ?> -->
 
     <!-- Afficher les commentaires existants -->
     

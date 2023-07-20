@@ -1,6 +1,3 @@
-
-
-
 <section class="default-banner active-blog-slider">
 	<div class="item-slider relative" style="background: url(../Assets/img_templates/slider1.jpg);background-size: cover;">
 		<div class="overlay" style="background: rgba(0,0,0,.3)"></div>
@@ -12,7 +9,7 @@
 						<h1 class="text-uppercase text-white">Nouvelle aventure</h1>
 						<p class="text-white">Explorez des destinations exotiques, plongez dans des cultures fascinantes et créez des souvenirs inoubliables lors de nos voyages extraordinaires.
 							Détendez-vous sur des plages de sable blanc, admirez des paysages spectaculaires et découvrez des merveilles naturelles. Rejoignez-nous pour une expérience unique qui restera gravée dans votre mémoire.</p>
-						<a href="#" class="text-uppercase header-btn">Discover Now</a>
+						<a href="/comments" class="text-uppercase header-btn">Laisser nous un commentaire</a>
 					</div>
 				</div>
 
@@ -29,7 +26,7 @@
 						<h1 class="text-uppercase text-white">Nouveau voyage</h1>
 						<p class="text-white">Laissez-vous tenter par de nouvelles aventures et partez à la découverte de destinations captivantes. De la montagne à la mer, en passant par les grandes villes cosmopolites,
 							nos voyages vous offrent des expériences uniques et des moments magiques. Plongez dans la richesse culturelle des pays que vous visiterez et laissez-vous émerveiller par la beauté du monde qui vous entoure.</p>
-						<a href="#" class="text-uppercase header-btn">Discover Now</a>
+						<a href="/comments" class="text-uppercase header-btn">Laisser nous un commentaire</a>
 					</div>
 				</div>
 			</div>
@@ -45,7 +42,7 @@
 						<h1 class="text-uppercase text-white">Nouvelle expérience</h1>
 						<p class="text-white">Vivez des expériences uniques et mémorables lors de nos voyages extraordinaires. Explorez des endroits insolites, goûtez à de délicieuses spécialités culinaires et immergez-vous dans la culture locale. Que vous souhaitiez vous détendre, vous aventurer ou découvrir de nouvelles passions,
 							nos voyages vous offrent une expérience complète qui éveillera tous vos sens et vous laissera des souvenirs inoubliables.</p>
-						<a href="#" class="text-uppercase header-btn">Discover Now</a>
+						<a href="/comments" class="text-uppercase header-btn">Laisser nous un commentaire</a>
 					</div>
 				</div>
 			</div>

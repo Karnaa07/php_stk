@@ -73,7 +73,6 @@ class CommentForm extends Validator
                 "value" => "Retour"
             ]
         ];
-        echo " La valeur de l'article : $this->articleId";
         return $this->config;
     }
 }

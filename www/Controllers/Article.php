@@ -50,7 +50,6 @@ class Article
       $articleModel = new ModelArticle();
       $article = $articleModel->getOneWhere(['id' => $_GET['id']]);
       $articleId = $_GET['id'];
-      echo "ID de l'article : " . $articleId;
       // Si l'article existe
       if ($article) {
 
