@@ -132,7 +132,7 @@ class UserCrud
         $infos = $user->recupInfo();
 
         // Charger la vue avec le formulaire d'UDAPE et les données de l'utilisateur
-        $view = new View("user", "back");
+        $view = new View("user", "Auth");
         $view->assign("user", $user);
         $view->assign("updateForm", $updateForm->getConfig());
         $view->assign("formValues", $infos);

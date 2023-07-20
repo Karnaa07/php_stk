@@ -107,7 +107,6 @@ class PageController
       $view->assign("author", $page->getAuthor());
       $view->assign("date", $page->getDate());
       
-      
     }
 
     public function update()
