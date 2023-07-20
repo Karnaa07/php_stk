@@ -104,3 +104,7 @@ comment:
   controller: Auth
   action: comment
 
+dashboard/settings:
+  controller: Settings
+  action: index
+

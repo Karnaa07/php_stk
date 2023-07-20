@@ -1,4 +1,3 @@
-
 <?php if ($action === 'index') : ?>
     <link rel="stylesheet" type="text/css" href="../css/user.css">
     <div class="crud-container">
@@ -15,6 +14,7 @@
                 </tr>
             </thead>
             <tbody>
+
                 <?php foreach ($users as $user) : ?>
                     <tr>
                         <td><?= $user['firstname']; ?></td>
@@ -26,11 +26,6 @@
                             <a href="/dashboard/users-update/?id=<?= $user['id']; ?>">
                                 <span class="material-icons-sharp">
                                     create
-                                </span>
-                            </a>
-                            <a href="/dashboard/new_pass">
-                                <span class="material-icons-sharp">
-                                    key
                                 </span>
                             </a>
                             <a href="/dashboard/users-delete?id=<?= $user['id']; ?>">

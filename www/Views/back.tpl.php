@@ -97,7 +97,7 @@
                         </a>
                     </li>
                     <li class="item">
-                        <a href="#">
+                        <a href="/dashboard/settings">
                             <span class="material-icons-sharp">
                                 support
                             </span>
