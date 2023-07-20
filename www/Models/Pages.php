@@ -126,7 +126,7 @@ class Pages extends SQL
             'id' => $this->getId(),
             'author' => $this->getAuthor(),
             'date' => $this->getDate(),
-            'title' => $this->getTitle(),
+            //'title' => $this->getTitle(), // pas utile pour l'update 
             'theme' => $this->getTheme(),
             'color' => $this->getColor(),
             'content' => $this->getContent()

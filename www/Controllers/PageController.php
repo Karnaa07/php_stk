@@ -128,7 +128,7 @@ class PageController
         $form = new UpdatePage();
 
         // Charger la vue avec le formulaire d'update et les données de la page
-        $view = new View("pages", "auth");
+        $view = new View("pages", "Auth");
         $view->assign("page", $page);
         $view->assign("form", $form->getConfig());
         $view->assign("formValues", $page->recupInfo());
@@ -137,7 +137,7 @@ class PageController
         if ($form->isSubmited() && $form->isValid()) {
             $page->setAuthor($_POST["author"]);
             $page->setDate($_POST["date"]);
-            $page->setTitle($_POST["title"]);
+          //  $page->setTitle($_POST["title"]);
             $page->setTheme($_POST["theme"]);
             $page->setColor($_POST["color"]);
             $page->setContent($_POST["content"]);
@@ -156,23 +156,29 @@ class PageController
 
     public function deletePage()
     {
-      // Vérifier si un ID de page est passé en paramètre GET
-      if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-        $pageModel = new PageModel();
-        $page = $pageModel->getOneWhere(['id' => $_GET['id']]);
-    
-        // Vérifier si la page existe avant de la supprimer
-        if ($page) {
-          $pageModel->deleteWhere(['id' => $_GET['id']]);
-          // Rediriger vers la page d'index ou une autre page après la suppression
-          header('Location: /dashboard/pages'); // Remplacez "/index" par l'URL souhaitée
-          exit;
+        $id = $_GET['id'];
+
+        // Récupérer la page à supprimer depuis la base de données
+        $pageModel = new Pages();
+        $page = $pageModel->find($id);
+
+        // Vérifier si la page existe
+        if (!$page) {
+            echo "La page n'existe pas";
+            exit;
         }
-      }
-    
-      // Si l'ID de page n'est pas valide ou la page n'existe pas, rediriger vers une page d'erreur ou une autre page appropriée
-      header('Location: /404'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
-      exit;
+
+        // Supprimer la page
+        $page->delete();
+
+        // Supprimer la route de la page dans le fichier routes.yml
+        $routes = yaml_parse_file('routes.yml');
+        unset($routes[str_replace(' ', '-', strtolower($page->getTitle()))]);
+        yaml_emit_file('routes.yml', $routes);
+
+        // Rediriger vers la liste des pages
+        header('Location: /dashboard/pages');
+        exit;
     }
     
     
