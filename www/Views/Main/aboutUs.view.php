@@ -1,12 +1,5 @@
 <div class="page-transition">
     <section id="about" class="section-full gray-bg">
-        <?php
-        if (isset($pseudo)) {
-            echo "<p>Bienvenue, $pseudo !</p>";
-        } else {
-            echo "<p>Connectez-vous pour voir votre pseudo.</p>";
-        }
-        ?>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
