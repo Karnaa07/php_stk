@@ -1,7 +1,6 @@
 
-<link rel="stylesheet" type="text/css" href="../css/user.css">
-
 <?php if ($action === 'index') : ?>
+    <link rel="stylesheet" type="text/css" href="../css/user.css">
     <div class="crud-container">
         <h1 class="crud-header">Liste des utilisateurs</h1>
         <table class="crud-table">
