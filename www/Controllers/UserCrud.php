@@ -115,9 +115,7 @@ class UserCrud
 
     public function edit()
     {
-
         $id = $_GET['id'];
-
         // Récupérer l'utilisateur à modifier depuis la base de données
         $userModel = new User();
         $user = $userModel->find($id);
@@ -130,16 +128,15 @@ class UserCrud
         // Instanciation de la classe UpdateForm
         $updateForm = new UpdateForm();
 
-
-        // Obtention de la configuration du formulaire
-
+        $infos = $user->recupInfo();
 
         // Charger la vue avec le formulaire d'UDAPE et les données de l'utilisateur
         $view = new View("user", "auth");
         $view->assign("user", $user);
         $view->assign("updateForm", $updateForm->getConfig());
+        $view->assign("formValues", $infos);
         $view->assign("action", "edit"); // Ajouter cette ligne pour définir la valeur de $action
-        
+
         if ($updateForm->isSubmited() && $updateForm->isValid()) {
             $user = new User();
             $user = $user->populate($id);

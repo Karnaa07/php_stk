@@ -44,7 +44,7 @@
                 <td><?= $page['theme']; ?></td>
                 <td><?= $page['color']; ?></td>
                 <td>
-                    <a href="/pages-update/?id=<?= $page['id']; ?>">Modifier</a>
+                    <a href="/update-page/?id=<?= $page['id']; ?>">Modifier</a>
                     <a href="/pages-delete/?id=<?= $page['id']; ?>">Supprimer</a>
                     <a href="/<?= str_replace(' ', '-', strtolower($page['title'])); ?>">Visualiser</a>
                 </td>
@@ -76,12 +76,23 @@
     <a href="/pages" class="btn btn-primary">Retour à la liste des Pages</a>
 
 
-<?php elseif ($action === 'edit'): ?>
-    <link rel="stylesheet" type="text/css" href="../css/register.css">
+<?php elseif ($action === 'update'): ?>
+    <link rel="stylesheet" type="text/css" href="/css/createPageform.css">
     <h1>Modifier une page</h1>
 
     <!-- Afficher le formulaire -->
-    <?php echo $updateForm->renderForm(); ?>
+    <?php echo  $this->partial("form", $form, $formValues) ?>
+
+    <script src="https://cdn.tiny.cloud/1/9i4ty3dj7s5dyw4g2xbzg2u7udwf4mliqo7r71asossk42gb/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+       
+
+     tinymce.init({
+            selector: '.wysiwyg',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+    </script>
 
     <a href="/pages" class="btn btn-primary">Retour à la liste des pages</a>
 

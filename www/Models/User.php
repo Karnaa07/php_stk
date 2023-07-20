@@ -200,4 +200,32 @@ class User extends SQL
     {
         $this->deleteWhere(['id' => $this->id]);
     }
+    
+    public function find($id) {
+        $data = parent::find($id);
+        if ($data) {
+            $user = new User();
+            $user->setId($data['id']);
+            $user->setFirstname($data['firstname']);
+            $user->setLastname($data['lastname']);
+            $user->setEmail($data['email']);
+            $user->setCountry($data['country'] ?? ""); // Use the null coalescing operator to avoid errors if $data['country'] is not set
+            // ... Continue to set all other properties of User ...
+    
+            return $user;
+        }
+        return null;
+    }
+    
+
+    public function recupInfo(): array {
+        return [
+            'id' => $this->getId(),
+            'firstname' => $this->getFirstname(),
+            'lastname' => $this->getLastname(),
+            'email' => $this->getEmail(),
+            'country' => $this->getCountry(),
+            // 'pwd' => $this->getPwd(), // je pense que le preremplir c une betise.
+        ];
+    }
 }

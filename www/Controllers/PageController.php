@@ -6,6 +6,7 @@ use App\Core\View;
 use App\Models\Pages;
 use App\Forms\CreatePages;
 use App\Core\AuthMiddleware;
+use App\Forms\UpdatePage;
 
 
 class PageController
@@ -31,7 +32,7 @@ class PageController
     {
            
         $form= new CreatePages();
-        $view = new View("pages", "auth");
+        $view = new View("pages", "back");
         $view->assign("form", $form->getConfig());
         $view->assign("action", "create");
 
@@ -108,6 +109,49 @@ class PageController
       
       
     }
+
+    public function update()
+    {
+        $id = $_GET['id'];
+
+        // Récupérer la page à modifier depuis la base de données
+        $pageModel = new Pages();
+        $page = $pageModel->find($id);
+
+        // Vérifier si la page existe
+        if (!$page) {
+            echo "La page n'existe pas";
+            exit;
+        }
+
+        // Instanciation de la classe UpdatePageForm
+        $form = new UpdatePage();
+
+        // Charger la vue avec le formulaire d'update et les données de la page
+        $view = new View("pages", "auth");
+        $view->assign("page", $page);
+        $view->assign("form", $form->getConfig());
+        $view->assign("formValues", $page->recupInfo());
+        $view->assign("action", "update"); 
+
+        if ($form->isSubmited() && $form->isValid()) {
+            $page->setAuthor($_POST["author"]);
+            $page->setDate($_POST["date"]);
+            $page->setTitle($_POST["title"]);
+            $page->setTheme($_POST["theme"]);
+            $page->setColor($_POST["color"]);
+            $page->setContent($_POST["content"]);
+            $page->save();
+
+            // Si toutes les conditions sont vérifiées, enregistrez la page et affichez un message de succès
+            echo "La page a bien été modifiée. Vous allez être redirigé vers l'index'.";
+           //redirigé vers l'index
+            header('Location: /pages');
+            exit;
+        }
+    }
+
+
 
 
     public function deletePage()

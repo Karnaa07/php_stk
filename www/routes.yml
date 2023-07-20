@@ -62,7 +62,7 @@ create-page:
   action: create
 update-page:
   controller: PageController
-  action: edit
+  action: update
 delete-page:
   path: /pages-delete
   controller: PageController
@@ -137,6 +137,10 @@ lp-re-bo-bo-bo:
   action: show
 ssdcs-sdc:
   path: /ssdcs-sdc
+  controller: PageController
+  action: show
+thor:
+  path: /thor
   controller: PageController
   action: show
 ...
