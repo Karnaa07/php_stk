@@ -1,5 +1,5 @@
 <section class="default-banner active-blog-slider">
-	<div class="item-slider relative" style="background: url(../Assets/img_templates/slider1.jpg);background-size: cover;">
+	<div class="item-slider relative" style="background: url(../assets/img_templates/slider1.jpg);background-size: cover;">
 		<div class="overlay" style="background: rgba(0,0,0,.3)"></div>
 		<div class="container">
 			<div class="row fullscreen justify-content-center align-items-center">
@@ -16,7 +16,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="item-slider relative" style="background: url(../Assets/img_templates/slider2.jpg);background-size: cover;">
+	<div class="item-slider relative" style="background: url(../assets/img_templates/slider2.jpg);background-size: cover;">
 		<div class="overlay" style="background: rgba(0,0,0,.3)"></div>
 		<div class="container">
 			<div class="row fullscreen justify-content-center align-items-center">
@@ -32,7 +32,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="item-slider relative" style="background: url(../Assets/img_templates/slider3.jpg);background-size: cover;">
+	<div class="item-slider relative" style="background: url(../assets/img_templates/slider3.jpg);background-size: cover;">
 		<div class="overlay" style="background: rgba(0,0,0,.3)"></div>
 		<div class="container">
 			<div class="row fullscreen justify-content-center align-items-center">
@@ -64,7 +64,7 @@
 		<div class="single-info row mt-40">
 			<div class="col-lg-6 col-md-12 mt-120 text-center no-padding info-left">
 				<div class="info-thumb">
-					<img src="../Assets/img_templates/about-img.jpg" class="img-fluid" alt="">
+					<img src="../assets/img_templates/about-img.jpg" class="img-fluid" alt="">
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-12 no-padding info-rigth">
