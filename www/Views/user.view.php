@@ -1,5 +1,5 @@
 <?php if ($action === 'index') : ?>
-    <link rel="stylesheet" type="text/css" href="/css/Users/user.css">
+    <link rel="stylesheet" type="text/css" href="/css/users/user.css">
     <div class="crud-container">
         <h1 class="crud-header">Liste des utilisateurs</h1>
         <table class="crud-table">
@@ -55,7 +55,7 @@
     </div>
 
 <?php elseif ($action === 'edit') : ?>
-    <link rel="stylesheet" type="text/css" href="/css/Users/edit.css">
+    <link rel="stylesheet" type="text/css" href="/css/users/edit.css">
     <div class="crud-container">
         <div class="crud-form">
             <h1 class="form-title">Modifier un utilisateur</h1> <!-- Titre centré en haut du formulaire -->
