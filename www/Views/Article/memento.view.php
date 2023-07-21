@@ -15,7 +15,7 @@
                 </tr>
                 <tr>
                     <th>Contenu :</th>
-                    <td><?php echo substr($row->getContent(), 0, 100); ?></td>
+                    <td><?php echo substr($row->getContent(), 0, 150); ?></td>
                 </tr>
                 <tr>
                     <th>Slug :</th>

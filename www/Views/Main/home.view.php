@@ -69,19 +69,19 @@
 			</div>
 			<div class="col-lg-6 col-md-12 no-padding info-rigth">
 				<div class="info-content">
-					<h2 class="pb-30">We Realize that <br>
-						there are reduced <br>
-						Wastege Stand out</h2>
+					<h2 class="pb-30">Votre site de création <br>
+						et de présentation <br>
+						De voyage et d'article.</h2>
 					<p>
-						inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards – especially in the workplace. That’s why it’s crucial that, as women.
+						Waveflow, une révolution numérique au service des voyageurs. Conception de sites éco-responsables et abordables. Expérience utilisateur inégalée, design sur mesure. Impact environnemental réduit, séduisez les voyageurs soucieux. Choisissez Waveflow pour innover et prospérer. Ensemble, préservons notre planète, tout en boostant votre entreprise.
 					</p>
 					<br>
 					<p>
-						inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards – especially in the workplace. That’s why it’s crucial that, as women. inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards – especially in the workplace. That’s why it’s crucial that, as women.
+						Découvrez Waveflow, le CMS écologique innovant. 🌿 Créez des sites uniques, abordables et éco-responsables. 🌍 Gérez votre contenu avec facilité. Choisissez le futur du web durable avec Waveflow. 💻🌐
 					</p>
 					<br>
 					<p>
-						inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards – especially in the workplace. That’s why it’s crucial that, as women.
+					L'équipe de Waveflow est un véritable rêve d'équipe ! 🌟🤩 Avec 🎨 créativité, 💻 expertise technique, 🚀 passion, et 🤗 excellent service client, ils forment un groupe solide. 🤝👩‍💻👨‍💻 Ensemble, ils donnent vie à des sites web écologiques et performants pour un avenir durable. 🌱🌍 Faites confiance à cette équipe pour réaliser vos projets numériques les plus ambitieux ! 💭💻 #ÉquipeWaveflow #TalentsUnis
 					</p>
 				</div>
 			</div>
@@ -97,7 +97,7 @@
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content pb-30 col-lg-8">
 				<div class="title text-center">
-					<h1 class="mb-10">Latest Project on the go</h1>
+					<h1 class="mb-10">Nos derniers voyages</h1>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> labore et dolore magna aliqua.</p>
 				</div>
 			</div>
@@ -105,37 +105,37 @@
 		<div class="row justify-content-center d-flex">
 			<div class="active-works-carousel mt-40 col-lg-8">
 				<div class="item">
-					<img class="img-fluid" src="../Assets/img_templates/why.jpg" alt="">
+					<img class="img-fluid" src="../assets/img_templates/why.jpg" alt="">
 					<div class="caption text-center mt-20">
-						<h6 class="text-uppercase">Vector Illustration</h6>
+						<h6 class="text-uppercase">Japon</h6>
 						<p>LCD screens are uniquely modern in style, and the liquid crystals that make them work have <br> allowed humanity to create slimmer, more portable technology.</p>
 					</div>
 				</div>
 				<div class="item">
-					<img class="img-fluid" src="../Assets/img_templates/why.jpg" alt="">
+					<img class="img-fluid" src="../assets/img_templates/why.jpg" alt="">
 					<div class="caption text-center mt-20">
-						<h6 class="text-uppercase">Vector Illustration</h6>
+						<h6 class="text-uppercase">Guadeloupe</h6>
 						<p>LCD screens are uniquely modern in style, and the liquid crystals that make them work have <br> allowed humanity to create slimmer, more portable technology.</p>
 					</div>
 				</div>
 				<div class="item">
-					<img class="img-fluid" src="../Assets/img_templates/why.jpg" alt="">
+					<img class="img-fluid" src="../assets/img_templates/why.jpg" alt="">
 					<div class="caption text-center mt-20">
-						<h6 class="text-uppercase">Illustration de voyage</h6>
+						<h6 class="text-uppercase">Île de la réunions</h6>
 						<p>LCD screens are uniquely modern in style, and the liquid crystals that make them work have <br> allowed humanity to create slimmer, more portable technology.</p>
 					</div>
 				</div>
 				<div class="item">
-					<img class="img-fluid" src="../Assets/img_templates/why.jpg" alt="">
+					<img class="img-fluid" src="../assets/img_templates/why.jpg" alt="">
 					<div class="caption text-center mt-20">
-						<h6 class="text-uppercase">paris</h6>
+						<h6 class="text-uppercase">Paris</h6>
 						<p>LCD screens are uniquely modern in style, and the liquid crystals that make them work have <br> allowed humanity to create slimmer, more portable technology.</p>
 					</div>
 				</div>
 				<div class="item">
-					<img class="img-fluid" src="../Assets/img_templates/why.jpg" alt="">
+					<img class="img-fluid" src="../assets/img_templates/why.jpg" alt="">
 					<div class="caption text-center mt-20">
-						<h6 class="text-uppercase">Vector Illustration</h6>
+						<h6 class="text-uppercase">Grêce</h6>
 						<p>LCD screens are uniquely modern in style, and the liquid crystals that make them work have <br> allowed humanity to create slimmer, more portable technology.</p>
 					</div>
 				</div>
@@ -152,8 +152,8 @@
 		<div class="row d-flex justify-content-center">
 			<div class="menu-content pb-60 col-lg-8">
 				<div class="title text-center">
-					<h1 class="mb-10">Some Features that Made us Unique</h1>
-					<p>Who are in extremely love with eco friendly system.</p>
+					<h1 class="mb-10">Nos services unique à porter de main</h1>
+					<p>Qui sont extrêmement amoureux du système écologique.</p>
 				</div>
 			</div>
 		</div>
@@ -162,7 +162,7 @@
 				<div class="single-feature mb-30">
 					<div class="title d-flex flex-row pb-20">
 						<span class="lnr lnr-user"></span>
-						<h4><a href="#">Expert Technicians</a></h4>
+						<h4><a href="#">Équipe Technique</a></h4>
 					</div>
 					<p>
 						Usage of the Internet is becoming more common due to rapid advancement of technology and power.
@@ -173,7 +173,7 @@
 				<div class="single-feature mb-30">
 					<div class="title d-flex flex-row pb-20">
 						<span class="lnr lnr-license"></span>
-						<h4><a href="#">Professional Service</a></h4>
+						<h4><a href="#">Service Professionnel</a></h4>
 					</div>
 					<p>
 						Usage of the Internet is becoming more common due to rapid advancement of technology and power.
@@ -184,7 +184,7 @@
 				<div class="single-feature mb-30">
 					<div class="title d-flex flex-row pb-20">
 						<span class="lnr lnr-phone"></span>
-						<h4><a href="#">Great Support</a></h4>
+						<h4><a href="#">Meilleur Support</a></h4>
 					</div>
 					<p>
 						Usage of the Internet is becoming more common due to rapid advancement of technology and power.
@@ -195,7 +195,7 @@
 				<div class="single-feature">
 					<div class="title d-flex flex-row pb-20">
 						<span class="lnr lnr-rocket"></span>
-						<h4><a href="#">Technical Skills</a></h4>
+						<h4><a href="#">Compétence Technique</a></h4>
 					</div>
 					<p>
 						Usage of the Internet is becoming more common due to rapid advancement of technology and power.
@@ -206,7 +206,7 @@
 				<div class="single-feature">
 					<div class="title d-flex flex-row pb-20">
 						<span class="lnr lnr-diamond"></span>
-						<h4><a href="#">Highly Recomended</a></h4>
+						<h4><a href="#">Recommandé Partout</a></h4>
 					</div>
 					<p>
 						Usage of the Internet is becoming more common due to rapid advancement of technology and power.
@@ -217,7 +217,7 @@
 				<div class="single-feature">
 					<div class="title d-flex flex-row pb-20">
 						<span class="lnr lnr-bubble"></span>
-						<h4><a href="#">Positive Reviews</a></h4>
+						<h4><a href="#">Commentaire positive</a></h4>
 					</div>
 					<p>
 						Usage of the Internet is becoming more common due to rapid advancement of technology and power.
@@ -236,22 +236,22 @@
 		<div class="row no-padding">
 			<div class="active-gallery">
 				<div class="item single-gallery">
-					<img src="../Assets/img_templates/g1.jpg" alt="">
+					<img src="../assets/img_templates/g1.jpg" alt="">
 				</div>
 				<div class="item single-gallery">
-					<img src="../Assets/img_templates/g2.jpg" alt="">
+					<img src="../assets/img_templates/g2.jpg" alt="">
 				</div>
 				<div class="item single-gallery">
-					<img src="../Assets/img_templates/g3.jpg" alt="">
+					<img src="../assets/img_templates/g3.jpg" alt="">
 				</div>
 				<div class="item single-gallery">
-					<img src="../Assets/img_templates/g4.jpg" alt="">
+					<img src="../assets/img_templates/g4.jpg" alt="">
 				</div>
 				<div class="item single-gallery">
-					<img src="../Assets/img_templates/g5.jpg" alt="">
+					<img src="../assets/img_templates/g5.jpg" alt="">
 				</div>
 				<div class="item single-gallery">
-					<img src="../Assets/img_templates/g6.jpg" alt="">
+					<img src="../assets/img_templates/g6.jpg" alt="">
 				</div>
 			</div>
 		</div>

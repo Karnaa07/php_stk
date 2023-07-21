@@ -62,7 +62,7 @@
         <p>Auteur : <?= $author ?></p>
         <p>Date : <?= $date ?></p>
         <p>Theme de l'article : <?= $theme ?></p>
-        <p>Contenu : <?= $content ?></p>
+        <p>Contenu : <?= $content_page ?></p>
     </div>
 </body>
 </html>

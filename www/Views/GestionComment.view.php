@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="../css/user.css">
+<link rel="stylesheet" type="text/css" href="/css/Users/user.css">
 <?php if ($action === 'index'): ?>
     <div class="crud-container">
         <h1 class="crud-header">Liste des commentaires</h1>

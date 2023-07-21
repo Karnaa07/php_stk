@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Forms;
+
 use App\Core\Validator;
 
 class CreatePages extends Validator
@@ -61,35 +63,34 @@ class CreatePages extends Validator
                     "label" => "Couleur",
                     "class" => "form-input",
                     "placeholder" => "Couleur",
-                   // "value" => "#000000",
+                    // "value" => "#000000",
                     "type" => "color",
                     "error" => "Le champ 'Couleur' est requis",
                     "required" => true
                 ],
-                "content" => [
+                "content_page" => [
                     "id" => "create-page-form-content",
                     "label" => "Contenu",
                     "class" => "wysiwyg", // Ajout de la classe wysiwyg
                     "placeholder" => "Contenu",
                     "type" => "textarea",
-                   // "value" => "",
+                    // "value" => "",
                     "error" => "Le champ 'Contenu' est requis",
                     "required" => true
-                    
                 ]
             ]
         ];
 
         return $this->config;
     }
-    
+
     // public function getValue($name)
     // {
     //     // Vérifier si la valeur existe dans les données soumises
     //     if (isset($_POST[$name])) {
     //         return $_POST[$name];
     //     }
-    
+
     //     return '';
     // }
 }

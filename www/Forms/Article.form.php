@@ -46,7 +46,7 @@ class Article extends Validator
                     "label" => "Contenu",
                     "class" => "form-textarea",
                     "placeholder" => "Entrez le contenu de l'article",
-                    "type" => "text",
+                    "type" => "textarea",
                     "error" => "",
                     "required" => true,
                     "value" => "" // Valeur par défaut du champ contenu (chaîne vide)

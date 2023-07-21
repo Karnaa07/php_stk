@@ -1,5 +1,5 @@
 <?php if ($action === 'index') : ?>
-    <link rel="stylesheet" type="text/css" href="../css/user.css">
+    <link rel="stylesheet" type="text/css" href="/css/Users/user.css">
     <div class="crud-container">
         <h1 class="crud-header">Liste des utilisateurs</h1>
         <table class="crud-table">
@@ -55,18 +55,22 @@
     </div>
 
 <?php elseif ($action === 'edit') : ?>
-    <link rel="stylesheet" type="text/css" href="../css/auth/register.css">
+    <link rel="stylesheet" type="text/css" href="/css/Users/edit.css">
     <div class="crud-container">
-        <h1 class="crud-header">Modifier un utilisateur</h1>
-
         <div class="crud-form">
+            <h1 class="form-title">Modifier un utilisateur</h1> <!-- Titre centré en haut du formulaire -->
+
             <?php //$updateForm->renderForm(); 
             ?>
             <?php $this->partial('form', $updateForm, $formValues); ?>
-        </div>
 
-        <div class="crud-back">
-            <a href="/dashboard/users" class="btn btn-primary">Retour à la liste des utilisateurs</a>
+            <div class="crud-back">
+                <a href="/dashboard/users" class="btn btn-primary">
+                    <span class="material-icons-sharp">
+                        arrow_back
+                    </span>
+                </a>
+            </div>
         </div>
     </div>
 

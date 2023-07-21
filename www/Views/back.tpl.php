@@ -16,12 +16,6 @@
 <body>
     <div class="dashboard-container">
         <div class="main-sidebar">
-            <div class="aside-header">
-                <div class="brand">
-                    <img src="../Assets/img/KC.png" alt="">
-                </div>
-            </div>
-
             <div class="sidebar">
                 <ul class="list-items">
                     <li class="item">
@@ -41,22 +35,6 @@
                         </a>
                     </li>
                     <li class="item">
-                        <a href="#">
-                            <span class="material-icons-sharp">
-                                perm_media
-                            </span>
-                            <span>Média</span>
-                        </a>
-                    </li>
-                    <li class="item">
-                        <a href="#">
-                            <span class="material-icons-sharp">
-                                extension
-                            </span>
-                            <span>Plugin</span>
-                        </a>
-                    </li>
-                    <li class="item">
                         <a href="/dashboard/pages">
                             <span class="material-icons-sharp">
                                 pages
@@ -70,14 +48,6 @@
                                 border_color
                             </span>
                             <span>Articles</span>
-                        </a>
-                    </li>
-                    <li class="item">
-                        <a href="#">
-                            <span class="material-icons-sharp">
-                                category
-                            </span>
-                            <span>Catégories</span>
                         </a>
                     </li>
                     <li class="item">
@@ -120,18 +90,12 @@
         </div>
         <div class="extrabar">
             <div class="header-menu">
-                <button class="toggle-menu-btn" id="open-menu">
-                    <span class="material-icons-sharp">
-                        menu
-                    </span>
-                </button>
                 <div class="profile">
-                    <div class="profile-info">
-                        <p>Salut, <strong> <?= $pseudo ?> </strong></p>
-                        <small>Admin</small>
-                    </div>
                     <div class="profile-image">
-                        <img src="../Assets/img/mirio.jpg" alt="" width="100%">
+                        <img src="../assets/img/mirio.jpg" alt="" width="100%">
+                    </div>
+                    <div class="profile-info">
+                        <strong> <?= $pseudo ?> </strong></p>
                     </div>
                 </div>
             </div>
@@ -140,4 +104,3 @@
 </body>
 
 </html>
-
