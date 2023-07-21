@@ -39,6 +39,11 @@
     <?php if ($_SERVER['REQUEST_URI'] === '/login') : ?>
         <input type="button" class="form-submit" value="<?= $config["config"]["not-register"] ?>" onclick="window.location.href = '/register'">
     <?php endif; ?>
+    
+    <?php if ($_SERVER['REQUEST_URI'] === '/dashboard/users-update/') : ?>
+        <input type="button" class="form-submit" value="<?= $config["config"]["back"] ?>" onclick="window.location.href = '/users'">
+    <?php endif; ?>
+
 
     <input type="reset" class="form-reset" value="<?= $config["config"]["reset"] ?>">
 

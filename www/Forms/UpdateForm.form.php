@@ -19,7 +19,7 @@ class UpdateForm extends Validator
                 "class" => "form",
                 "enctype" => "",
                 "submit" => "Modifier",
-                "reset" => "Annuler"
+                "reset" => "Annuler",
             ],
             "inputs" => [
                 "firstname" => [
