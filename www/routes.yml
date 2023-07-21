@@ -106,4 +106,8 @@ comment:
 dashboard/settings:
   controller: Settings
   action: index
+dashboard/commentaires-reported:
+  path: commentaires-reported
+  controller: CommentCrud
+  action: showReportedComments
 ...

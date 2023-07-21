@@ -1,6 +1,3 @@
-<!-- commentaires-list-template.php -->
-
-<!-- // MODIF ICI -->
 <table class="crud-table comment-card">
     <thead>
         <tr>
