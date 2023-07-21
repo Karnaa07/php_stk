@@ -23,6 +23,7 @@ class CommentCrud
         //$view->render();
     }
 
+    // MODIF ICI
     public function approve()
     {
         $id = $_GET['id'];
@@ -30,24 +31,47 @@ class CommentCrud
         // Créer une instance du modèle Comment
         $commentModel = new Comment();
     
-        // Obtenir l'ID du commentaire à approuver
-        $commentModel->setId($id);
-        $commentId = $commentModel->getId();
-    
-        // Vérifier si l'ID du commentaire est valide
-        if (!$commentId) {
+        // Vérifier si le commentaire existe et s'il est signalé
+        $comment = $commentModel->getCommentById($id);
+        if (!$comment) {
             // Gérer l'erreur, commentaire non trouvé
             echo "Le commentaire n'existe pas.";
             exit();
         }
     
-        // Approuver le commentaire dans la base de données 
-        $commentModel->approveComment($commentId);
+        // Approuver le commentaire dans la base de données
+        $commentModel->approveComment($id);
+    
+         // Si le commentaire n'a pas été signalé, mettez simplement is_approved à true
+        if ($comment['is_reported']) {
+            $commentModel->updateCommentStatus($id, false);
+        } else {
+           
+            // Si le commentaire a été signalé, mettez is_reported à NULL
+            $commentModel->updateCommentStatus($id, true);
+        }
     
         // Rediriger vers la liste des commentaires ou afficher un message de succès
-        header('Location: /commentaires');
+        header('Location: /dashboard/commentaires');
         exit();
     }
+    
+    // MODIF ICI
+    public function showReportedComments()
+{
+    // Créer une instance du modèle Comment
+    $commentModel = new Comment();
+    $action = "showReportedComments";
+    $comments = $commentModel->getReportedComments();
+
+    $view = new View("GestionComment", "back");
+    $view->assign("comments", $comments);
+    $view->assign("action", $action);
+    AuthMiddleware::assignPseudoToView($view);
+
+    
+}
+
     
     
 
@@ -73,7 +97,7 @@ class CommentCrud
     $commentModel->deleteComment($commentId);
 
     // Rediriger vers la liste des commentaires ou afficher un message de succès
-    header('Location: /commentaires');
+    header('Location: /dashboard/commentaires');
     exit();
 }
 

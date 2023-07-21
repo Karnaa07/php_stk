@@ -9,7 +9,7 @@
 						<h1 class="text-uppercase text-white">Nouvelle aventure</h1>
 						<p class="text-white">Explorez des destinations exotiques, plongez dans des cultures fascinantes et créez des souvenirs inoubliables lors de nos voyages extraordinaires.
 							Détendez-vous sur des plages de sable blanc, admirez des paysages spectaculaires et découvrez des merveilles naturelles. Rejoignez-nous pour une expérience unique qui restera gravée dans votre mémoire.</p>
-						<a href="#" class="text-uppercase header-btn">Discover Now</a>
+						<a href="/comments" class="text-uppercase header-btn">Laisser nous un commentaire</a>
 					</div>
 				</div>
 
@@ -26,7 +26,7 @@
 						<h1 class="text-uppercase text-white">Nouveau voyage</h1>
 						<p class="text-white">Laissez-vous tenter par de nouvelles aventures et partez à la découverte de destinations captivantes. De la montagne à la mer, en passant par les grandes villes cosmopolites,
 							nos voyages vous offrent des expériences uniques et des moments magiques. Plongez dans la richesse culturelle des pays que vous visiterez et laissez-vous émerveiller par la beauté du monde qui vous entoure.</p>
-						<a href="#" class="text-uppercase header-btn">Discover Now</a>
+						<a href="/comments" class="text-uppercase header-btn">Laisser nous un commentaire</a>
 					</div>
 				</div>
 			</div>
@@ -42,7 +42,7 @@
 						<h1 class="text-uppercase text-white">Nouvelle expérience</h1>
 						<p class="text-white">Vivez des expériences uniques et mémorables lors de nos voyages extraordinaires. Explorez des endroits insolites, goûtez à de délicieuses spécialités culinaires et immergez-vous dans la culture locale. Que vous souhaitiez vous détendre, vous aventurer ou découvrir de nouvelles passions,
 							nos voyages vous offrent une expérience complète qui éveillera tous vos sens et vous laissera des souvenirs inoubliables.</p>
-						<a href="#" class="text-uppercase header-btn">Discover Now</a>
+						<a href="/comments" class="text-uppercase header-btn">Laisser nous un commentaire</a>
 					</div>
 				</div>
 			</div>
@@ -105,7 +105,7 @@
 		<div class="row justify-content-center d-flex">
 			<div class="active-works-carousel mt-40 col-lg-8">
 				<div class="item">
-					<img class="img-fluid" src="../Assets/img_templates/grece.jpg" alt="">
+					<img class="img-fluid" src="../Assets/img_templates/why.jpg" alt="">
 					<div class="caption text-center mt-20">
 						<h6 class="text-uppercase">Vector Illustration</h6>
 						<p>LCD screens are uniquely modern in style, and the liquid crystals that make them work have <br> allowed humanity to create slimmer, more portable technology.</p>
@@ -119,7 +119,7 @@
 					</div>
 				</div>
 				<div class="item">
-					<img class="img-fluid" src="../Assets/img_templates/paris.jpg" alt="">
+					<img class="img-fluid" src="../Assets/img_templates/why.jpg" alt="">
 					<div class="caption text-center mt-20">
 						<h6 class="text-uppercase">Illustration de voyage</h6>
 						<p>LCD screens are uniquely modern in style, and the liquid crystals that make them work have <br> allowed humanity to create slimmer, more portable technology.</p>
@@ -268,7 +268,7 @@
 	<div class="overlay overlay-bg"></div>
 	<div class="container">
 		<div class="video-content">
-			<a href="http://www.youtube.com/watch?v=0O2aH4XLbto" class="play-btn"><img src="../Assets/img_templates/play-btn.png" alt=""></a>
+			<a href="http://www.youtube.com/watch?v=0O2aH4XLbto" class="play-btn"><img src="../assets/img_templates/play-btn.png" alt=""></a>
 			<div class="video-desc">
 				<h3 class="h2 text-white text-uppercase">Being unique is the preference</h3>
 				<h4 class="text-white">Youtube video will appear in popover</h4>
@@ -277,55 +277,3 @@
 	</div>
 </section>
 <!-- Start Video Area -->
-
-
-<!-- Start logo Area -->
-<section class="logo-area">
-	<div class="container">
-		<div class="row">
-
-		</div>
-	</div>
-</section>
-<!-- End logo Area -->
-
-
-<!-- start contact Area -->
-<section class="contact-area section-gap" id="contact">
-	<div class="container">
-		<div class="row d-flex justify-content-center">
-			<div class="menu-content pb-60 col-lg-8">
-				<div class="title text-center">
-					<h1 class="mb-10">If you need, Just drop us a line</h1>
-					<p>Who are in extremely love with eco friendly system.</p>
-				</div>
-			</div>
-		</div>
-		<form class="form-area " id="myForm" action="mail.php" method="post" class="contact-form text-right">
-			<div class="row">
-				<div class="col-lg-6 form-group">
-					<input name="name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" required="" type="text">
-
-					<input name="email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" required="" type="email">
-
-					<input name="subject" placeholder="Enter your subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your subject'" class="common-input mb-20 form-control" required="" type="text">
-				</div>
-				<div class="col-lg-6 form-group">
-					<textarea class="common-textarea mt-10 form-control" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
-					<button class="primary-btn mt-20">Send Message<span class="lnr lnr-arrow-right"></span></button>
-					<div class="alert-msg">
-					</div>
-				</div>
-			</div>
-		</form>
-
-	</div>
-</section>
-<!-- end contact Area -->
-<?php
-if (isset($pseudo)) {
-	echo "<p>Bienvenue, $pseudo !</p>";
-} else {
-	echo "<p>Connectez-vous pour voir votre pseudo.</p>";
-}
-?>

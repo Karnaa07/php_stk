@@ -17,7 +17,7 @@ reset_password:
 reset_password_email:
   controller: Auth
   action: pwdforgot_with_email
-new_pass:
+dashboard/new_pass:
   controller: Auth
   action: change
 logout:
@@ -52,21 +52,21 @@ dashboard/users-delete:
   path: /users-delete
   controller: UserCrud
   action: delete
-pages:
+dashboard/pages:
   path: /pages
   controller: PageController
   action: index
-create-page:
+dashboard/create-page:
   path: /create-page
   controller: PageController
   action: create
-update-page:
+dashboard/update-page:
   controller: PageController
-  action: edit
-delete-page:
+  action: update
+dashboard/delete-page:
   path: /pages-delete
   controller: PageController
-  action: delete
+  action: deletePage
 default:
   controller: Main
   action: home
@@ -82,36 +82,34 @@ show_article:
 show_one_article:
   controller: Article
   action: showOneArticle
-
-# // Commentaire
-
 comments:
   controller: CommentController
-  action: commentController  
-
+  action: commentController
 reportComment:
   controller: CommentController
   action: reportComment
   method: POST
-
-# // CommentCrud
-
 dashboard/commentaires:
   controller: CommentCrud
   action: index
-
-commentaires-delete:
+dashboard/commentaires-delete:
   path: /commentaires-delete
   controller: CommentCrud
   action: delete
-
-commentaires-approve:
+dashboard/commentaires-approve:
   path: /commentaires-approve
   controller: CommentCrud
   action: approve
-
-# // Formulaire commentaire
-
+  
+# // MODIF ICI
+dashboard/commentaires-reported:
+  path: commentaires-reported
+  controller: CommentCrud
+  action: showReportedComments
 comment: 
   controller: CommentController
   action: comment
+dashboard/settings:
+  controller: Settings
+  action: index
+...

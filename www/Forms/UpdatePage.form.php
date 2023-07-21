@@ -2,7 +2,7 @@
 namespace App\Forms;
 use App\Core\Validator;
 
-class CreatePages extends Validator
+class UpdatePage extends Validator
 {
     public $method = "POST";
     protected array $config = [];
@@ -16,7 +16,7 @@ class CreatePages extends Validator
                 "id" => "create-page",
                 "class" => "form",
                 "enctype" => "",
-                "submit" => "Enregistrer",
+                "submit" => "Modifier",
                 "reset" => "Annuler"
             ],
             "inputs" => [
@@ -36,15 +36,6 @@ class CreatePages extends Validator
                     "placeholder" => "Date",
                     "type" => "date",
                     "error" => "Le champ 'Date' est requis",
-                    "required" => true
-                ],
-                "title" => [
-                    "id" => "create-page-form-title",
-                    "label" => "Titre",
-                    "class" => "form-input",
-                    "placeholder" => "Titre",
-                    "type" => "text",
-                    "error" => "Le champ 'Titre' est requis",
                     "required" => true
                 ],
                 "theme" => [
@@ -83,13 +74,13 @@ class CreatePages extends Validator
         return $this->config;
     }
     
-    // public function getValue($name)
-    // {
-    //     // Vérifier si la valeur existe dans les données soumises
-    //     if (isset($_POST[$name])) {
-    //         return $_POST[$name];
-    //     }
+    public function getValue($name)
+    {
+        // Vérifier si la valeur existe dans les données soumises
+        if (isset($_POST[$name])) {
+            return $_POST[$name];
+        }
     
-    //     return '';
-    // }
+        return '';
+    }
 }

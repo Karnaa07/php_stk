@@ -27,7 +27,7 @@ class Article
     $view->assign("articles", $articles);
   }
 
-
+// MODIF ICI
   public function show(): void
   {
     $view = new View("Article/show", "front");
@@ -44,72 +44,78 @@ class Article
   }
 
   public function showOneArticle(): void
-{
+  {
     // Check if an article ID is passed in the GET parameters
     if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-        $articleModel = new ModelArticle();
-        $article = $articleModel->getOneWhere(['id' => $_GET['id']]);
-        $articleId = $_GET['id'];
-        echo "ID de l'article : " . $articleId;
-        // Si l'article existe
-        if ($article) {
+      $articleModel = new ModelArticle();
+      $article = $articleModel->getOneWhere(['id' => $_GET['id']]);
+      $articleId = $_GET['id'];
 
-            // Créer une instance du formulaire de commentaires
-            $form = new CommentForm($articleId);
+      
+      // Si l'article existe
+      if ($article) {
 
-            // Vérifier si le formulaire est soumis et valide
-            if ($form->isSubmited() && $form->isValid()) {
-                // Récupérer les données du formulaire
-                $nom = $_POST['nom'];
-                $email = $_POST['email'];
-                $commentaire = $_POST['commentaire'];
-                $articleId = $_POST['articleId'];
+        // Créer une instance du formulaire de commentaires
+        $form = new CommentForm();
+        $newComment = new Comment();
+        $commentModel = new Comment();
+        $comments = new Comment();
 
-                // Créer une instance du modèle Comment
-                $commentModel = new ModelComment();
-                $newComment = new Comment();
-                $newComment->setNom($nom);
-                $newComment->setEmail($email);
-                $newComment->setCommentaire($commentaire);
-                $newComment->setArticleId($articleId);
-                
-                // Associer le commentaire à l'article en définissant l'ID de l'article
-                $newComment->setArticleId($_GET['id']);
+        // Créer une instance de la vue
+        $view = new View("Article/showOneArticle", "front");
+        $view->assign("title", $article->getTitle()); 
+        $view->assign("article", $article); 
+        $view->assign("form", $form->getConfig());
+        $comments = $commentModel->getCommentsByArticleId($_GET['id']);  // Récupérer les commentaires associés à l'article
+        $view->assign("comments", $comments); // Assignez les commentaires à la vue
+        
+        
+        // Vérifier si le formulaire est soumis et valide
+        if ($form->isSubmited() && $form->isValid()) {
+          // Récupérer les données du formulaire
+          $nom = $_POST['nom'];
+          $email = $_POST['email'];
+          $commentaire = $_POST['commentaire'];
+         
 
-                // Créer le commentaire dans la base de données
-                $newCommentId = $newComment->createComment();
+          // Créer une instance du modèle Comment
+          
+          $newComment->setNom($nom);
+          $newComment->setEmail($email);
+          $newComment->setCommentaire($commentaire);
+         
+
+          // Associer le commentaire à l'article en définissant l'ID de l'article
+          $newComment->setArticleId($articleId);
+
+          // Créer le commentaire dans la base de données
+          $newCommentId = $newComment->createComment();
 
 
-                if ($newCommentId) {
-                    echo "Le commentaire a été créé";
-                } else {
-                    echo "Une erreur s'est produite lors de la création du commentaire.";
-                }
-            }
-
-            // Récupérer les commentaires associés à l'article
-            $commentModel = new ModelComment();
-            $comments = $commentModel->getCommentsByArticleId($_GET['id']);
-
-            // Créer une instance de la vue
-            $view = new View("Article/showOneArticle", "front");
-            $view->assign("title", $article->getTitle()); // Utilisez le titre de l'article comme titre de la page
-            $view->assign("article", $article); // Assignez l'article à la vue pour l'affichage des détails
-            $view->assign("form", $form->getConfig());
-            $view->assign("comments", $comments); // Assignez les commentaires à la vue
+          if ($newCommentId) {
+            echo "Le commentaire a été créé";
+            header('Location: /show_article');
+          } else {
+            echo "Une erreur s'est produite lors de la création du commentaire.";
+          }
         } else {
-            
-            header('Location: /error-page'); 
-            exit;
+          $view->assign("formErrors", $form->errors);
         }
-    } else {
-       
-        header('Location: /error-page'); 
+
+        // Récupérer les commentaires associés à l'article
+      } else {
+
+        header('Location: /404');
         exit;
+      }
+    } else {
+
+      header('Location: /404');
+      exit;
     }
-     // Afficher le formulaire avec les erreurs de validation s'il y en a
+    // Afficher le formulaire avec les erreurs de validation s'il y en a
     $view->assign("formErrors", $form->errors);
-}
+  }
 
 
   public function create(): void
@@ -156,7 +162,7 @@ class Article
     }
 
     // Si l'ID d'article n'est pas valide ou l'article n'existe pas, rediriger vers une page d'erreur ou une autre page appropriée
-    header('Location: /error-page'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
+    header('Location: /404'); // Remplacez "/error-page" par l'URL de la page d'erreur souhaitée
     exit;
   }
 
@@ -166,7 +172,7 @@ class Article
     if (isset($_GET['id']) && is_numeric($_GET['id'])) {
       $articleModel = new ModelArticle();
       $article = $articleModel->getOneWhere(['id' => $_GET['id']]);
-      
+
 
       // Check if the article exists before updating
       if ($article) {
@@ -222,7 +228,7 @@ class Article
 
     if (isset($_GET['id']) && is_numeric($_GET['id'])) {
       $ModelArticleMemento = new ModelArticleMemento();
-      $article_memento = $ModelArticleMemento->getAllWhere(["id_article = '".$_GET['id']."'"]);
+      $article_memento = $ModelArticleMemento->getAllWhere(["id_article = '" . $_GET['id'] . "'"]);
     }
 
 

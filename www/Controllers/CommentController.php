@@ -46,6 +46,7 @@ class CommentController
 
             if ($newCommentId) {
                 echo "Le commentaire a été créé";
+                header('Location: /comments');
             } else {
                 echo "Une erreur s'est produite lors de la création du commentaire.";
             }
@@ -69,9 +70,9 @@ class CommentController
     }
 
     // Définir la propriété $isReported pour chaque commentaire
-    foreach ($comments as $comment) {
-        $comment->setIsReported($comment['is_reported']);
-    }
+    // foreach ($comments as $comment) {
+    //     $comment->setIsReported($comment['is_reported']);
+    // }
 
     // Assigner les commentaires à la vue
     $view->assign("comments", $comments);

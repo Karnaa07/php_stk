@@ -40,7 +40,6 @@
   }
   
   .form-reset {
-    margin-left: 10px;
     padding: 10px 20px;
     background-color: #ccc;
     color: #fff;
@@ -119,5 +118,8 @@
 
 .comment .content {
     margin-top: 5px;
+    font-weight: bold;
 }
+
+
   

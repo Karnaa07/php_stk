@@ -21,6 +21,31 @@ class Pages extends SQL
         $this->pdo = SQL::getInstance()->getConnection();
     }
 
+    public function find($id)
+    {
+        // Utilisez la méthode find de la classe parent pour obtenir les données
+        $data = parent::find($id);
+
+        // Si aucun enregistrement n'a été trouvé, retournez null
+        if (!$data) {
+            return null;
+        }
+
+        // Instanciez un nouvel objet Page et remplissez-le avec les données
+        $page = new self();
+        $page->setId($data['id']);
+        $page->setAuthor($data['author']);
+        $page->setDate($data['date']);
+        $page->setTitle($data['title']);
+        $page->setTheme($data['theme']);
+        $page->setColor($data['color']);
+        $page->setContent($data['content']);
+
+        // Retournez l'objet Page
+        return $page;
+    }
+    
+
     public function getId(): int
     {
         return $this->id;
@@ -94,5 +119,17 @@ class Pages extends SQL
     public function delete()
     {
         $this->deleteWhere(['id' => $this->id]);
+    }
+
+    public function recupInfo(): array {
+        return [
+            'id' => $this->getId(),
+            'author' => $this->getAuthor(),
+            'date' => $this->getDate(),
+            //'title' => $this->getTitle(), // pas utile pour l'update 
+            'theme' => $this->getTheme(),
+            'color' => $this->getColor(),
+            'content' => $this->getContent()
+        ];
     }
 }

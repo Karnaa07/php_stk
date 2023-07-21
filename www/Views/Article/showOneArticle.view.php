@@ -15,15 +15,16 @@
     <!-- <h2>Ajouter un commentaires</h2> -->
 
     <!-- Afficher le formulaire de commentaires -->
-
+    <!-- <?php $this->partial("form", $form, $formErrors) ?> -->
 
     <!-- Afficher les commentaires existants -->
     
-    
+    <!-- // MODIF ICI -->
+
     <div class="comment-list-container">
     <h3>Commentaires :</h3>
     <ul class="comment-list">
-        <?php if (isset($comments) && count($comments) > 0): ?>
+    <?php if (is_array($comments) && null !== $comments && count($comments) > 0): ?>
             <?php foreach ($comments as $comment): ?>
                 <li class="comment">
                     <!-- Afficher les informations du commentaire ici -->

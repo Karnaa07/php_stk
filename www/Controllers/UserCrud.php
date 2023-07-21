@@ -8,6 +8,7 @@ use App\Core\Mail;
 use App\Forms\Auth\Register;
 use App\Forms\UpdateForm;
 use App\Models\User;
+use App\Core\AuthMiddleware;
 
 
 class UserCrud
@@ -31,11 +32,11 @@ class UserCrud
     }
 
 
-
+    
     public function create()
     {
         $form = new Register();
-        $view = new View("Auth/register", "auth");
+        $view = new View("Auth/register", "back");
         $view->assign("form", $form->getConfig());
 
         // Formulaire soumis et valide ?
@@ -115,9 +116,7 @@ class UserCrud
 
     public function edit()
     {
-
         $id = $_GET['id'];
-
         // Récupérer l'utilisateur à modifier depuis la base de données
         $userModel = new User();
         $user = $userModel->find($id);
@@ -130,23 +129,22 @@ class UserCrud
         // Instanciation de la classe UpdateForm
         $updateForm = new UpdateForm();
 
-
-        // Obtention de la configuration du formulaire
-
+        $infos = $user->recupInfo();
 
         // Charger la vue avec le formulaire d'UDAPE et les données de l'utilisateur
-        $view = new View("user", "auth");
+        $view = new View("user", "back");
         $view->assign("user", $user);
         $view->assign("updateForm", $updateForm->getConfig());
+        $view->assign("formValues", $infos);
         $view->assign("action", "edit"); // Ajouter cette ligne pour définir la valeur de $action
-        
+
         if ($updateForm->isSubmited() && $updateForm->isValid()) {
             $user = new User();
             $user = $user->populate($id);
             $user->setFirstname($_POST["firstname"]);
             $user->setLastname($_POST["lastname"]);
             $user->setEmail($_POST["email"]);
-            $user->setPwd($_POST["pwd"]);
+            $user->setRoleId($_POST["role"]);
             $user->setCountry("FR");
             $user->setDateUpdated(date('Y-m-d H:i:s'));
 
@@ -166,8 +164,10 @@ class UserCrud
         $currentUserId = $_SESSION["user"];
 
         if ($id == $currentUserId) {
-            echo "Vous ne pouvez pas supprimer votre propre compte.";
-            header('Refresh: 2; URL= /dashboard/users');
+            echo "<script>";
+            echo "alert('Vous ne pouvez pas supprimer votre propre compte.');";
+            echo "window.location.href = '/dashboard/users';";
+            echo "</script>";
             exit();
         }
 

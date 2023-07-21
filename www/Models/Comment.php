@@ -12,6 +12,8 @@ class Comment extends SQL
     protected $commentaire;
     protected $dateCreation;
     protected $articleId;
+    protected $isReported;
+    protected $isApproved;
 
     public function __construct()
     {
@@ -56,6 +58,24 @@ class Comment extends SQL
     {
         $this->email = $email;
     }
+    public function getisReported()
+    {
+        return $this->isReported;
+    }
+
+    public function setisReported($isReported)
+    {
+        $this->isReported = $isReported;
+    }
+    public function getisApproved()
+    {
+        return $this->isApproved;
+    }
+
+    public function setisApproved($isApproved)
+    {
+        $this->isApproved = $isApproved;
+    }
 
     public function getCommentaire()
     {
@@ -94,7 +114,46 @@ class Comment extends SQL
         return $comments;
     }
 
+// MODIF ICI
+    public function getCommentById($id)
+    {
+        $db = SQL::getInstance()->getConnection();
+        $query = "SELECT * FROM esgi_commentaires WHERE id = :id";
+        $result = $db->prepare($query);
+        $result->execute(['id' => $id]);
+        return $result->fetch(\PDO::FETCH_ASSOC);
+    }
+    
 
+// MODIF ICI
+    public function updateCommentStatus($id, $isReported)
+    {
+        $db = SQL::getInstance()->getConnection();
+    
+        
+        if ($isReported) {
+            // Mettre à jour le champ "is_reported" à true et le champ "is_approved" à NULL
+            $query = "UPDATE esgi_commentaires SET is_reported = true, is_approved = false WHERE id = :id";
+        } else {
+            // Mettre à jour le champ "is_reported" à NULL et le champ "is_approved" à true
+            $query = "UPDATE esgi_commentaires SET is_reported = false, is_approved = true WHERE id = :id";
+        }
+    
+        $result = $db->prepare($query);
+        $result->execute(['id' => $id]);
+        return $result->rowCount() > 0;
+    }
+    
+    
+// MODIF ICI
+    public function getReportedComments()
+    {
+        $db = SQL::getInstance()->getConnection();
+        $query = "SELECT * FROM esgi_commentaires WHERE is_reported = true";
+        $result = $db->query($query);
+        return $result->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    
 
     public function getCommentsByPostId($postId)
     {
@@ -119,20 +178,37 @@ class Comment extends SQL
         return $db->lastInsertId();
     }
     
+// MODIF ICI
+    public function updateComment($updateData, $conditions)
+{
+    $db = SQL::getInstance()->getConnection();
+    $updateFields = '';
+    $params = [];
 
-    public function updateComment($id)
-    {
-        $db = SQL::getInstance()->getConnection();
-        $query = "UPDATE esgi_commentaires SET nom = :nom, email = :email, commentaire = :commentaire WHERE id = :id";
-        $result = $db->prepare($query);
-        $result->execute([
-            'id' => $id,
-            'nom' => $this->nom,
-            'email' => $this->email,
-            'commentaire' => $this->commentaire,
-        ]);
-        return $result->rowCount();
+    // Construction de la clause SET avec les champs à mettre à jour
+    foreach ($updateData as $field => $value) {
+        if (!empty($updateFields)) {
+            $updateFields .= ', ';
+        }
+        $updateFields .= "$field = :$field";
+        $params[":$field"] = $value;
     }
+
+    // Construction de la clause WHERE avec les conditions pour identifier le commentaire
+    $whereClause = '';
+    foreach ($conditions as $field => $value) {
+        if (!empty($whereClause)) {
+            $whereClause .= ' AND ';
+        }
+        $whereClause .= "$field = :$field";
+        $params[":$field"] = $value;
+    }
+
+    $query = "UPDATE esgi_commentaires SET $updateFields WHERE $whereClause";
+    $result = $db->prepare($query);
+    $result->execute($params);
+    return $result->rowCount();
+}
 
     public function deleteComment($id)
     {
@@ -193,4 +269,5 @@ class Comment extends SQL
         // Retourner le tableau des commentaires associés à l'article
         return $comments;
     }
+    
 }

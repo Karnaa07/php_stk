@@ -15,7 +15,7 @@
 	<!--
 		CSS
 		============================================= -->
-	<link rel="stylesheet" href=" css/bootstrap/linearicons.css">
+	<link rel="stylesheet" href="../css/bootstrap/linearicons.css">
 	<link rel="stylesheet" href="../css/bootstrap/font-awesome.min.css">
 	<link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
 	<link rel="stylesheet" href="../css/bootstrap/magnific-popup.css">
@@ -23,6 +23,8 @@
 	<link rel="stylesheet" href="../css/bootstrap/owl.carousel.css">
 	<link rel="stylesheet" href="../css/bootstrap/main.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+	<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 	<!--script js start -->
@@ -62,10 +64,9 @@
 
 
 						<li><a href="/">Accueil</a></li>
-						<li><a href="/pages">Pages</a></li>
-						<li><a href="/comments">Commentaires</a></li>
+						<li><a href="/about-us">Qui nous sommes ?</a></li>
+						<li><a href="/dashboard/pages">Pages</a></li>
 						<li><a href="/show_article">Articles</a></li>
-						<li><a href="/about-us">About us</a></li>
 
 						<?php if (!isset($_SESSION["user"])) : ?>
 							<li><a href="/login">Connexion</a></li>
@@ -104,29 +105,6 @@
 				</div>
 				<div class="col-lg-5  col-md-6 col-sm-6">
 					<div class="single-footer-widget">
-						<h6>Newsletter</h6>
-						<p>Stay update with our latest</p>
-						<div class="" id="mc_embed_signup">
-
-							<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-
-								<div class="d-flex flex-row">
-
-									<input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-
-
-									<button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-									<div style="position: absolute; left: -5000px;">
-										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-									</div>
-
-									<!-- <div class="col-lg-4 col-md-4">
-												<button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
-											</div>  -->
-								</div>
-								<div class="info"></div>
-							</form>
-						</div>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-6 col-sm-6 social-widget">
