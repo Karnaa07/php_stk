@@ -50,11 +50,25 @@ class Article
       $articleModel = new ModelArticle();
       $article = $articleModel->getOneWhere(['id' => $_GET['id']]);
       $articleId = $_GET['id'];
+
+
       // Si l'article existe
       if ($article) {
 
         // Créer une instance du formulaire de commentaires
-        $form = new CommentForm($articleId);
+        $form = new CommentForm();
+        $newComment = new Comment();
+        $commentModel = new Comment();
+        $comments = new Comment();
+
+        // Créer une instance de la vue
+        $view = new View("Article/showOneArticle", "front");
+        $view->assign("title", $article->getTitle());
+        $view->assign("article", $article);
+        $view->assign("form", $form->getConfig());
+        $comments = $commentModel->getCommentsByArticleId($_GET['id']);  // Récupérer les commentaires associés à l'article
+        $view->assign("comments", $comments); // Assignez les commentaires à la vue
+
 
         // Vérifier si le formulaire est soumis et valide
         if ($form->isSubmited() && $form->isValid()) {
@@ -62,18 +76,17 @@ class Article
           $nom = $_POST['nom'];
           $email = $_POST['email'];
           $commentaire = $_POST['commentaire'];
-          $articleId = $_POST['articleId'];
+
 
           // Créer une instance du modèle Comment
-          $commentModel = new ModelComment();
-          $newComment = new Comment();
+
           $newComment->setNom($nom);
           $newComment->setEmail($email);
           $newComment->setCommentaire($commentaire);
-          $newComment->setArticleId($articleId);
+
 
           // Associer le commentaire à l'article en définissant l'ID de l'article
-          $newComment->setArticleId($_GET['id']);
+          $newComment->setArticleId($articleId);
 
           // Créer le commentaire dans la base de données
           $newCommentId = $newComment->createComment();
@@ -81,21 +94,15 @@ class Article
 
           if ($newCommentId) {
             echo "Le commentaire a été créé";
+            header('Location: /show_article');
           } else {
             echo "Une erreur s'est produite lors de la création du commentaire.";
           }
+        } else {
+          $view->assign("formErrors", $form->errors);
         }
 
         // Récupérer les commentaires associés à l'article
-        $commentModel = new ModelComment();
-        $comments = $commentModel->getCommentsByArticleId($_GET['id']);
-
-        // Créer une instance de la vue
-        $view = new View("Article/showOneArticle", "front");
-        $view->assign("title", $article->getTitle()); // Utilisez le titre de l'article comme titre de la page
-        $view->assign("article", $article); // Assignez l'article à la vue pour l'affichage des détails
-        $view->assign("form", $form->getConfig());
-        $view->assign("comments", $comments); // Assignez les commentaires à la vue
       } else {
 
         header('Location: /404');

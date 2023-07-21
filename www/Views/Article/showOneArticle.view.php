@@ -15,7 +15,7 @@
     <!-- <h2>Ajouter un commentaires</h2> -->
 
     <!-- Afficher le formulaire de commentaires -->
-    <!-- <?php $this->partial("form", $form, $formErrors) ?> -->
+    <?php $this->partial("form", $form, $formErrors) ?>
 
     <!-- Afficher les commentaires existants -->
     

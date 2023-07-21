@@ -70,9 +70,9 @@ class CommentController
     }
 
     // Définir la propriété $isReported pour chaque commentaire
-    foreach ($comments as $comment) {
-        $comment->setIsReported($comment['is_reported']);
-    }
+    // foreach ($comments as $comment) {
+    //     $comment->setIsReported($comment['is_reported']);
+    // }
 
     // Assigner les commentaires à la vue
     $view->assign("comments", $comments);
@@ -115,4 +115,3 @@ class CommentController
         exit();
     }
 }
-
