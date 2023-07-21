@@ -8,7 +8,6 @@ import {
 } from "../components/Inputs.js";
 import { root } from "../index.js";
 import generateStructure from "../core/generateStructure.js";
-import Page2 from "./Page2.js";
 
 const validationSchema = {
   type: "object",
@@ -55,7 +54,7 @@ export default function Page1() {
           errorElement.remove();
         }
 
-        fetch("/set-admin", {
+        fetch("/installer", {
           method: "POST",
           body: JSON.stringify(data),
           headers: {
@@ -76,7 +75,7 @@ export default function Page1() {
               if (!errorElement) {
                 errorElement = document.createElement("div");
                 errorElement.id = "errorElement";
-                errorElement.classList.add("alert", "alert-danger");
+                errorElement.classList.add("alert");
                 errorElement.textContent = responseData.message;
                 root.appendChild(errorElement);
                 errorElement.setAttribute("tabindex", "0");
@@ -89,9 +88,6 @@ export default function Page1() {
             if (errorElement) {
               errorElement.remove();
             }
-
-            sessionStorage.setItem("currentPage", "page2");
-            root.replaceChild(generateStructure(Page2()), root.firstChild);
           });
       }
     } catch (error) {
@@ -109,29 +105,15 @@ export default function Page1() {
       {
         type: "h1",
         children: ["Waveflow!"],
-        attributes: {
-          class: "text-center p-3 text-primary",
-        },
       },
       {
         type: "p",
         children: ["Installation de notre CMS"],
-        attributes: { class: "mb-2 p-2" },
       },
-      {
-        type: "p",
-        children: [
-          "Veuillez suivre les étapes ci-dessous pour finaliser la création de votre site.",
-        ],
-        attributes: { class: "mb-4 p-2" },
-      },
-
       {
         type: "form",
         attributes: {
           method: "post",
-          style: { display: "flex", flexDirection: "column" },
-          class: "container",
         },
         events: {
           submit: isValid,
@@ -144,7 +126,7 @@ export default function Page1() {
           pwdConfirm(),
           {
             type: "button",
-            attributes: { type: "submit", class: "btn btn-primary text-white" },
+            attributes: { type: "submit" },
             children: ["Suivant"],
           },
         ],

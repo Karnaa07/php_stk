@@ -95,12 +95,12 @@ export default function form_check(variable, conf) {
 
   if ("format" in conf && conf.format === "pwd") {
     const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/;
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
     if (!passwordRegex.test(variable.value)) {
       return {
         isValid: false,
         message:
-          "Le mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre, un caractère spécial, et être d'au moins 8 caractères",
+          "Le mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre, et être d'au moins 8 caractères",
       };
     }
   }

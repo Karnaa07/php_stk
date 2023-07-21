@@ -1,7 +1,5 @@
 import InputGroup from "./InputGroup.js";
 
-// FirstPage of Installer, create an user
-
 export let firstname = () =>
   InputGroup(
     "firstname",
@@ -53,28 +51,4 @@ export let pwdConfirm = () =>
     "pwdConfirm",
     "Confirmez votre mot de passe",
     "Confirmez votre mot de passe"
-  );
-
-// SecondPage of Installer, control the database
-
-export let bddPrefix = () =>
-  InputGroup(
-    "bddPrefix",
-    "Préfixe pour la base de données",
-    "text",
-    "bddPrefix",
-    "bddPrefix",
-    "",
-    "Entrez le préfixe de votre base de données."
-  );
-
-export let adminEmail = () =>
-  InputGroup(
-    "adminEmail",
-    "E-mail de l'administrateur",
-    "email",
-    "adminEmail",
-    "adminEmail",
-    "",
-    "Entrez l'adresse mail de l'administrateur."
   );

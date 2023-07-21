@@ -34,14 +34,12 @@ export default function generateStructure(structure) {
       if (attribute.startsWith("data-")) {
         element.dataset[attribute.substring(5)] =
           structure.attributes[attribute];
-      } else if (attribute === "style") {
-        Object.assign(element.style, structure.attributes[attribute]);
       } else {
         element.setAttribute(attribute, structure.attributes[attribute]);
       }
     }
   }
 
-  structure.node = element;
+  //structure.node = element;
   return element;
 }
