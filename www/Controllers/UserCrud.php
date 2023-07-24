@@ -31,7 +31,6 @@ class UserCrud
         $view->assign("action", $action);
     }
 
-
     
     public function create()
     {

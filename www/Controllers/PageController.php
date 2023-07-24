@@ -87,7 +87,6 @@ class PageController
         $view->assign("formErrors", $form->errors);
     }
 
-
     public function show()
     {
       // get uri by removing the slash

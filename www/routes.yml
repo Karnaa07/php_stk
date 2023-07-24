@@ -107,18 +107,6 @@ bresil-2019:
   path: /bresil-2019
   controller: PageController
   action: show
-turquie-2025:
-  path: /turquie-2025
-  controller: PageController
-  action: show
-bon-plan:
-  path: /bon-plan
-  controller: PageController
-  action: show
-esgi:
-  path: /esgi
-  controller: PageController
-  action: show
 cheval:
   path: /cheval
   controller: PageController
